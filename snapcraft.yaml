@@ -1,6 +1,6 @@
 # InnoVault - Snapcraft Build - Known to build in most Ubuntu versions
 # https://innovaultwallet.org
-# https://github.com/carsenk/innovault
+# https://github.com/innova-foundation/innovault
 # By Carsen Klock
 name: innovault
 version: '1.9.9'
@@ -51,7 +51,7 @@ apps:
  
 parts:
   headless:
-    source: https://github.com/carsenk/innovault.git
+    source: https://github.com/innova-foundation/innovault.git
     source-type: git
     source-tag: master
     plugin: nodejs
@@ -71,7 +71,7 @@ parts:
       - curl
       - build-essential
   innovault:
-    source: https://github.com/carsenk/innovault.git
+    source: https://github.com/innova-foundation/innovault.git
     source-type: git
     source-tag: master
     plugin: nodejs

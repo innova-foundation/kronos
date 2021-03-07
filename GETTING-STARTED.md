@@ -19,11 +19,11 @@ INNOVAULT BASH INSTALLER SCRIPT
 Simply run the single command below in your Terminal or via SSH, then choose one of the options if you want to Install InnoVault with or without Innova chaindata or if you want to just update!:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/carsenk/innovault/master/installinnovault.sh | bash
+wget -qO- https://raw.githubusercontent.com/innova-foundation/innovault/master/installinnovault.sh | bash
 ```
 or
 ```bash
-curl -o- https://raw.githubusercontent.com/carsenk/innovault/master/installinnovault.sh | bash
+curl -o- https://raw.githubusercontent.com/innova-foundation/innovault/master/installinnovault.sh | bash
 ```
 
 You can choose an option 1-3 from the installer script above to either install InnoVault, install InnoVault with Innova chaindata, or Update InnoVault!
@@ -63,7 +63,7 @@ sudo mkdir -p ~/InnoVault/DATA/storage
 
 sudo mkdir -p ~/InnoVault/DATA/innovaultleveldb
 
-git clone https://github.com/carsenk/innovault.git
+git clone https://github.com/innova-foundation/innovault.git
 
 cd innovault
 
@@ -81,7 +81,7 @@ RUNNING THE INNOVAULT ELECTRON APP (Windows, macOS, etc.):
 -----------------
 Install NodeJS v12.16.3 via NVM or Installer from https://nodejs.org
 ```
-git clone https://github.com/carsenk/innovault.git
+git clone https://github.com/innova-foundation/innovault.git
 
 cd innovault
 
@@ -96,7 +96,7 @@ BUILDING THE INNOVAULT ELECTRON APP (If you want to build your own binaries):
 -----------------
 Install NodeJS v12.16.3 via NVM or Installer from https://nodejs.org
 ```
-git clone https://github.com/carsenk/innovault.git
+git clone https://github.com/innova-foundation/innovault.git
 
 cd innovault
 

@@ -220,7 +220,7 @@ if [ -d "innovault" ]; then
   sudo rm -rf innovault
 fi
 
-git clone https://github.com/carsenk/innovault
+git clone https://github.com/innova-foundation/innovault
 
 cd innovault
 
@@ -465,7 +465,7 @@ if [ -d "innovault" ]; then
   sudo rm -rf innovault
 fi
 
-git clone https://github.com/carsenk/innovault
+git clone https://github.com/innova-foundation/innovault
 
 cd innovault
 

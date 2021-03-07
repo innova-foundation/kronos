@@ -12,7 +12,7 @@ const { shell, session, Menu, protocol, nativeTheme, ipcMain} = require('electro
 
 const contextMenu = require('electron-context-menu');
 
-app.setAppUserModelId("com.carsenk.innovault");
+app.setAppUserModelId("com.innova-foundation.innovault");
 app.setAsDefaultProtocolClient('InnoVault');
 
 const log = require('electron-log');
@@ -27,7 +27,7 @@ const autoUpdater = updater.autoUpdater;
 // const feed = `${server}/OWNER/REPO/${process.platform}-${process.arch}/${app.getVersion()}`;
 
 // autoUpdater.setFeedURL(feed);
-// //https://github.com/carsenk/innovault/releases/download/v1.7.2-Beta/InnoVault-Setup-1.7.2-Beta.exe
+// //https://github.com/innova-foundation/innovault/releases/download/v1.7.2-Beta/InnoVault-Setup-1.7.2-Beta.exe
 
 // autoUpdater.setFeedURL({ urlF });
 

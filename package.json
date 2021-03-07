@@ -4,7 +4,7 @@
   "description": "A Dashboard Interface and Wallet for Innova (INN), Ethereum (ETH), and USDT (USDT) built with NodeJS and Electron",
   "repository": {
     "type": "git",
-    "url": "https://github.com/carsenk/innovault.git"
+    "url": "https://github.com/innova-foundation/innovault.git"
   },
   "author": "Carsen Klock",
   "license": "MIT",
@@ -31,10 +31,10 @@
     "@metamask/detect-provider": "^1.1.0",
     "app-root-path": "^3.0.0",
     "bip32": "^2.0.6",
-    "bip32d": "git://github.com/carsenk/bip32d.git",
+    "bip32d": "git://github.com/innova-foundation/bip32d.git",
     "bip39": "^3.0.2",
-    "bitcoin": "git://github.com/carsenk/node-bitcoin.git",
-    "bitcoinjs-d-lib": "git://github.com/carsenk/bitcoinjs-lib-pos.git",
+    "bitcoin": "git://github.com/innova-foundation/node-bitcoin.git",
+    "bitcoinjs-d-lib": "git://github.com/innova-foundation/bitcoinjs-lib-pos.git",
     "bitcoinjs-lib": "^5.2.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
@@ -48,7 +48,7 @@
     "csurf": "^1.11.0",
     "custom-electron-titlebar": "^3.2.4",
     "dat-swarm-defaults": "^1.0.2",
-    "innovajs": "git://github.com/carsenk/innovajs-lib.git",
+    "innovajs": "git://github.com/innova-foundation/innovajs-lib.git",
     "discovery-swarm": "^6.1.0",
     "dotenv": "^8.2.0",
     "electron-compile": "6.4.4",
@@ -66,7 +66,7 @@
     "express-rate-limit": "^5.1.3",
     "express-session": "^1.17.1",
     "express-socket.io-session": "^1.3.5",
-    "express-status-monitor": "git://github.com/carsenk/express-status-monitor.git",
+    "express-status-monitor": "git://github.com/innova-foundation/express-status-monitor.git",
     "express-toastr": "^2.0.2",
     "fs": "0.0.1-security",
     "get-port": "^5.1.1",
@@ -74,7 +74,7 @@
     "identity-wallet": "^1.4.1",
     "ip": "^1.1.5",
     "jquery": "^3.5.1",
-    "json-storage-fs": "git://github.com/carsenk/json-storage-fs.git",
+    "json-storage-fs": "git://github.com/innova-foundation/json-storage-fs.git",
     "keymaster": "^1.6.2",
     "level": "^6.0.1",
     "lob": "^6.1.0",
@@ -107,7 +107,7 @@
     "unirest": "^0.6.0",
     "validator": "^13.1.1",
     "wallet-address-validator": "^0.2.4",
-    "wallet-address-validatord": "git://github.com/carsenk/wallet-address-validator.git",
+    "wallet-address-validatord": "git://github.com/innova-foundation/wallet-address-validator.git",
     "yubikey-client": "^0.2.5"
   },
   "devDependencies": {
@@ -128,7 +128,7 @@
     "utf-8-validate": "^5.0.3"
   },
   "build": {
-    "appId": "com.carsenk.innovault",
+    "appId": "com.innova-foundation.innovault",
     "productName": "InnoVault",
     "files": [
       "dist/src/**/*",
@@ -211,16 +211,16 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "prerelease": false,
-            "repo": "carsenk/innovault",
+            "repo": "innova-foundation/innovault",
             "repository": {
-              "owner": "carsenk",
+              "owner": "innova-foundation",
               "name": "innovault"
             }
           }
         }
       ],
       "github_repository": {
-        "owner": "carsenk",
+        "owner": "innova-foundation",
         "name": "innovault"
       },
       "makers": [
