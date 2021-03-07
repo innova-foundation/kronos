@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Core Mode Dashboard Controller
+* InnoVault Core Mode Dashboard Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -20,7 +20,7 @@ const cpuu = require('cputilization');
 const toastr = require('express-toastr');
 const exec = require('child_process').exec;
 const shell = require('shelljs');
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const bitcoinjs = require('bitcoinjs-lib');
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
@@ -67,7 +67,7 @@ if (currentOS === 'linux') {
     }
 
 } else {
-    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
     function shahash(key) {
         key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -110,11 +110,11 @@ exports.simpleindex = (req, res) => {
     let promises = [];
     let promises2 = [];
   
-    //ElectrumX Hosts for Denarius
-    const delectrumxhost1 = 'electrumx1.denarius.pro';
-    const delectrumxhost2 = 'electrumx2.denarius.pro';
-    const delectrumxhost3 = 'electrumx3.denarius.pro';
-    const delectrumxhost4 = 'electrumx4.denarius.pro';
+    //ElectrumX Hosts for Innova
+    const delectrumxhost1 = 'electrumx1.innova.pro';
+    const delectrumxhost2 = 'electrumx2.innova.pro';
+    const delectrumxhost3 = 'electrumx3.innova.pro';
+    const delectrumxhost4 = 'electrumx4.innova.pro';
 
     //ElectrumX Hosts for Bitcoin
     const btcelectrumhost1 = 'bitcoin.lukechilds.co';
@@ -162,11 +162,11 @@ exports.simpleindex = (req, res) => {
 
     var decryptedmnemonic = decrypt(seedphrasedb);
     mnemonic = decryptedmnemonic;
-    const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+    const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
-    const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 Denarii (ARI)
+    const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 USDT (USDT)
     const ariAbi = [
-    // Some details about Denarii ERC20 ABI
+    // Some details about USDT ERC20 ABI
     "function name() view returns (string)",
     "function symbol() view returns (string)",
     "function balanceOf(address) view returns (uint)",
@@ -432,7 +432,7 @@ exports.simpleindex = (req, res) => {
         }
         const latestblocks = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
@@ -448,7 +448,7 @@ exports.simpleindex = (req, res) => {
             {
                 socket.emit("newblock", {block: data});
                 //Storage.set('newblock', data);
-                //console.log("Got New Denarius Block Height");
+                //console.log("Got New Innova Block Height");
             }
             //TODO: NEED TO SETUP CLUSTERING AND ALSO ERROR SANITY CHECKING IF SERVER(S) OFFLINE
             // Set up a subscription for new block headers and handle events with our callback function.
@@ -471,7 +471,7 @@ exports.simpleindex = (req, res) => {
         }
         const latestBTCblocks = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
@@ -490,7 +490,7 @@ exports.simpleindex = (req, res) => {
             {
                 socket.emit("newbtcblock", {block: data});
                 //Storage.set('newblock', data);
-                //console.log("Got New Denarius Block Height");
+                //console.log("Got New Innova Block Height");
             }
             //TODO: NEED TO SETUP CLUSTERING AND ALSO ERROR SANITY CHECKING IF SERVER(S) OFFLINE
             // Set up a subscription for new block headers and handle events with our callback function.
@@ -523,9 +523,9 @@ exports.simpleindex = (req, res) => {
 
         const addresscount = 4; // 3 Addresses Generated
 
-        // Denarius Network Params Object
+        // Innova Network Params Object
         const network = {
-            messagePrefix: '\x19Denarius Signed Message:\n',
+            messagePrefix: '\x19Innova Signed Message:\n',
             bech32: 'd',
             bip32: {
               public: 0x0488b21e,
@@ -560,9 +560,9 @@ exports.simpleindex = (req, res) => {
         const btcaddressKeypair0 = rootbtc.derivePath(btcaddressPath0);
 
         // Get the p2pkh base58 public address of the keypair
-        const p2pkhaddy0 = denarius.payments.p2pkh({ pubkey: addressKeypair0.publicKey, network }).address;
+        const p2pkhaddy0 = innova.payments.p2pkh({ pubkey: addressKeypair0.publicKey, network }).address;
 
-        const p2pkaddy = denarius.payments.p2pkh({ pubkey: addressKeypair0.publicKey, network }).pubkey.toString('hex');
+        const p2pkaddy = innova.payments.p2pkh({ pubkey: addressKeypair0.publicKey, network }).pubkey.toString('hex');
 
         const btcp2pkhaddy0 = bitcoinjs.payments.p2pkh({ pubkey: btcaddressKeypair0.publicKey, bitcoinnetwork }).address; //Legacy 1
 
@@ -585,7 +585,7 @@ exports.simpleindex = (req, res) => {
         // console.log(btcsegwitbech32);
         // console.log(btcsegwitp2shaddy);
 
-        //Denarius Scripthashes
+        //Innova Scripthashes
         const bytes = bs58.decode(p2pkhaddy0);
         const byteshex = bytes.toString('hex');
         const remove00 = byteshex.substring(2);
@@ -626,7 +626,7 @@ exports.simpleindex = (req, res) => {
             }
             const dWalletBal = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-                const electrum = new ElectrumCluster('Kronos Core Mode D Balance', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+                const electrum = new ElectrumCluster('InnoVault Core Mode INN Balance', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
                 
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
@@ -637,7 +637,7 @@ exports.simpleindex = (req, res) => {
                     // Wait for enough connections to be available.
                     await electrum.ready();
                     
-                    // Request the balance of the requested Scripthash D address
+                    // Request the balance of the requested Scripthash INN address
 
                     const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
 
@@ -678,7 +678,7 @@ exports.simpleindex = (req, res) => {
             }
             const btcWalletBal = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-                const electrum = new ElectrumCluster('Kronos Core Mode BTC Balance', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+                const electrum = new ElectrumCluster('InnoVault Core Mode BTC Balance', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
                 
                 // Add some servers to the cluster.
                 electrum.addServer(btcelectrumhost1);
@@ -735,10 +735,10 @@ exports.simpleindex = (req, res) => {
           const addressKeypair = root.derivePath(addressPath);
 
           // Get the p2pkh base58 public address of the keypair
-          const p2pkhaddy = denarius.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).address;
+          const p2pkhaddy = innova.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).address;
 
           // Get the compressed pubkey p2pk
-          const p2pkaddy = denarius.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).pubkey.toString('hex');
+          const p2pkaddy = innova.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).pubkey.toString('hex');
 
           //console.log(addressKeypair);
 
@@ -755,7 +755,7 @@ exports.simpleindex = (req, res) => {
         var mainaddy = Storage.get('mainaddress');
         var btcaddy = Storage.get('btcsegwitaddy');
 
-        //const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+        //const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
         //let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         QRCode.toDataURL(mainaddy, { color: { dark: '#000000FF', light:"#777777FF" } }, function(err, qrcode) {
@@ -786,7 +786,7 @@ exports.simpleindex = (req, res) => {
         //Grab Full Transaction History from BTC ElectrumX
         const btctxhistoryfull = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos Core Mode BTC TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault Core Mode BTC TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
@@ -801,7 +801,7 @@ exports.simpleindex = (req, res) => {
             // Wait for enough connections to be available.
             await electrum.ready();
             
-            // Request the balance of the requested Scripthash D address
+            // Request the balance of the requested Scripthash INN address
 
             //const txs = [];
             const gethistory1 = await electrum.request('blockchain.scripthash.get_history', scripthashbtc);
@@ -836,7 +836,7 @@ exports.simpleindex = (req, res) => {
         //Grab Full Transaction History from BTC ElectrumX
         const btcmemtxhistoryfull = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos Core Mode BTC TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault Core Mode BTC TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
@@ -851,7 +851,7 @@ exports.simpleindex = (req, res) => {
             // Wait for enough connections to be available.
             await electrum.ready();
             
-            // Request the balance of the requested Scripthash D address
+            // Request the balance of the requested Scripthash INN address
 
             //const txs = [];
             const gethistory1 = await electrum.request('blockchain.scripthash.get_mempool', scripthashbtc);
@@ -886,7 +886,7 @@ exports.simpleindex = (req, res) => {
         //Grab Full Transaction History from BTC ElectrumX
         const btcutxoHistory = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos Core Mode BTC UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault Core Mode BTC UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
@@ -901,7 +901,7 @@ exports.simpleindex = (req, res) => {
             // Wait for enough connections to be available.
             await electrum.ready();
             
-            // Request the balance of the requested Scripthash D address
+            // Request the balance of the requested Scripthash INN address
 
             //const txs = [];
             const gethistory1 = await electrum.request('blockchain.scripthash.listunspent', scripthashbtc);
@@ -969,7 +969,7 @@ exports.simpleindex = (req, res) => {
 
             const scripthasha = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-                const electrum = new ElectrumCluster('Kronos Core Mode Balances', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+                const electrum = new ElectrumCluster('InnoVault Core Mode Balances', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
                 
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
@@ -980,7 +980,7 @@ exports.simpleindex = (req, res) => {
                 // Wait for enough connections to be available.
                 await electrum.ready();
                 
-                // Request the balance of the requested Scripthash D address
+                // Request the balance of the requested Scripthash INN address
 
                 const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
 
@@ -1004,7 +1004,7 @@ exports.simpleindex = (req, res) => {
 
             const scripthashb = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-                const electrum = new ElectrumCluster('Kronos Core Mode Unconfirmed Balances', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+                const electrum = new ElectrumCluster('InnoVault Core Mode Unconfirmed Balances', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
                 
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
@@ -1015,7 +1015,7 @@ exports.simpleindex = (req, res) => {
                 // Wait for enough connections to be available.
                 await electrum.ready();
                 
-                // Request the balance of the requested Scripthash D address
+                // Request the balance of the requested Scripthash INN address
 
                 const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
 
@@ -1037,10 +1037,10 @@ exports.simpleindex = (req, res) => {
                 return addedunbalance;
             }
 
-            //Grab Full Transaction History from D ElectrumX
+            //Grab Full Transaction History from INN ElectrumX
             const txhistoryfull = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-                const electrum = new ElectrumCluster('Kronos Core Mode TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+                const electrum = new ElectrumCluster('InnoVault Core Mode TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
                 
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
@@ -1052,7 +1052,7 @@ exports.simpleindex = (req, res) => {
                 // Wait for enough connections to be available.
                 await electrum.ready();
                 
-                // Request the balance of the requested Scripthash D address
+                // Request the balance of the requested Scripthash INN address
 
                 //const txs = [];
                 const gethistory1 = await electrum.request('blockchain.scripthash.get_history', scripthash);
@@ -1084,10 +1084,10 @@ exports.simpleindex = (req, res) => {
                 }
             }
 
-            //Grab UTXO Transaction History from D ElectrumX
+            //Grab UTXO Transaction History from INN ElectrumX
             const utxohistory = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-                const electrum = new ElectrumCluster('Kronos Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+                const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
                 
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
@@ -1098,7 +1098,7 @@ exports.simpleindex = (req, res) => {
                 // Wait for enough connections to be available.
                 await electrum.ready();
                 
-                // Request the balance of the requested Scripthash D address
+                // Request the balance of the requested Scripthash INN address
 
                 //const utxos = [];
 
@@ -1155,11 +1155,11 @@ exports.simpleindex = (req, res) => {
 
         //});
 
-        //Grab Denarii and Ethereum Data
+        //Grab USDT and Ethereum Data
         const ethWalletBal = async () => {        
             //let signer = provider.getSigner(0);
     
-            const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+            const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     
             // provider.getBlockNumber().then((blockNumber) => {
             //     console.log("Current ETH block number: " + blockNumber);
@@ -1183,7 +1183,7 @@ exports.simpleindex = (req, res) => {
         const ariWalletBal = async () => {        
             //let signer = provider.getSigner(0);
     
-            const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+            const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     
             // provider.getBlockNumber().then((blockNumber) => {
             //     console.log("Current ETH block number: " + blockNumber);
@@ -1194,7 +1194,7 @@ exports.simpleindex = (req, res) => {
             //let ethbalance = await provider.getBalance(ethwalletp.address);
     
             // You can also use an ENS name for the contract address
-            const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 Denarii (ARI)
+            const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 USDT (USDT)
             const ariAbi = [
             // Some details about the token
             "function name() view returns (string)",
@@ -1234,7 +1234,7 @@ exports.simpleindex = (req, res) => {
         }
 
         // const ethWalletTX = async () => {
-        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
@@ -1251,13 +1251,13 @@ exports.simpleindex = (req, res) => {
         // }
 
         // const ariWalletTX = async () => {
-        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     let etherscanProvider = new ethers.providers.EtherscanProvider(ethnetworktype);
 
-        //     const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 Denarii (ARI)
+        //     const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 USDT (USDT)
         //     const ariAbi = [
         //     // Some details about the token
         //     "function name() view returns (string)",
@@ -1281,7 +1281,7 @@ exports.simpleindex = (req, res) => {
         // }
 
         // const BoxProfile = async () => {
-        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our Kronos seed        
+        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our InnoVault seed        
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     //3Box Profile
@@ -1321,16 +1321,16 @@ exports.simpleindex = (req, res) => {
         // }
 
         // const SetupBoxSpace = async () => {
-        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our Kronos seed        
+        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our InnoVault seed        
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     var thebox = await ThreeBox.openBox(ethwalletp.address, provider);
 
         //     //await thebox.syncDone;
 
-        //     //const chatSpace = await thebox.openSpace('Kronos');
+        //     //const chatSpace = await thebox.openSpace('InnoVault');
 
-        //     //const thread = await chatSpace.joinThread('Kronos v1.7.0');
+        //     //const thread = await chatSpace.joinThread('InnoVault v1.7.0');
 
         //     return thebox;
         // }
@@ -1361,8 +1361,8 @@ exports.simpleindex = (req, res) => {
                 });                
                 Storage.set('totalbal', totalbal);
                 Storage.set('accountarray', scripthasharray);
-                let denariusutxos = scripthasharray[0].utxos;
-                let denariustxs = scripthasharray[0].txs;
+                let innovautxos = scripthasharray[0].utxos;
+                let innovatxs = scripthasharray[0].txs;
                 let bitcointxs = scripthasharray[0].btctxs;
                 let bitcoinmem = scripthasharray[0].btcmemtxs;
                 let bitcoinutxos = scripthasharray[0].btcutxos;
@@ -1370,7 +1370,7 @@ exports.simpleindex = (req, res) => {
                 //console.log(scripthasharray)
                 //console.log('----- ', scripthasharray);
                 //.log(bitcoinmem);
-                //Storage.set('dutxo', denariusutxos);
+                //Storage.set('dutxo', innovautxos);
 
                 // Get Total Unconfirmed Balances of all derived addresses
                 var totalunbal;
@@ -1410,7 +1410,7 @@ exports.simpleindex = (req, res) => {
                         res.io.removeAllListeners('connection'); 
                         }
                         //Get Current D/BTC and D/USD price from CoinGecko
-                        unirest.get("https://api.coingecko.com/api/v3/coins/denarius?tickers=true&market_data=true&community_data=false&developer_data=true")
+                        unirest.get("https://api.coingecko.com/api/v3/coins/innova?tickers=true&market_data=true&community_data=false&developer_data=true")
                         .headers({'Accept': 'application/json'})
                         .end(function (result) {
                             if (!result.error) {
@@ -1628,8 +1628,8 @@ exports.simpleindex = (req, res) => {
                     newblock: newblock,
                     unbalance: unbalance,
                     balancearray: scripthasharray,
-                    dtxs: denariustxs,
-                    utxos: denariusutxos,
+                    dtxs: innovatxs,
+                    utxos: innovautxos,
                     erctxs: erctxs,
                     ethtxs: ethtxs,
                     btctxs: bitcointxs,

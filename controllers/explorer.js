@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Explorer Controller
+* InnoVault Explorer Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -27,7 +27,7 @@ const db = dbr.db;
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
 const bip32 = require("bip32d");
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const Storage = require('json-storage-fs');
 const os = require('os');
 
@@ -59,7 +59,7 @@ if (currentOS === 'linux') {
   }
 
 } else {
-  let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+  let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
   function shahash(key) {
       key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -91,7 +91,7 @@ exports.getaddress = function (req, res) {
   var urladdy = req.params.addr;
   //console.log('PASSED ADDRESS: ', urladdy);
 
-  //Connect to our D node 
+  //Connect to our INN node 
 //process.env.DUSER
 const client = new bitcoin.Client({
 	host: decrypt(Storage.get('rpchost')),
@@ -106,11 +106,11 @@ const client = new bitcoin.Client({
 
   res.locals.lanip = ipaddy;
 
-  //The used Electrumx Hosts for our Kronos ElectrumX Cluster
-  const delectrumxhost1 = 'electrumx1.denarius.pro';
-  const delectrumxhost2 = 'electrumx2.denarius.pro';
-  const delectrumxhost3 = 'electrumx3.denarius.pro';
-  const delectrumxhost4 = 'electrumx4.denarius.pro';
+  //The used Electrumx Hosts for our InnoVault ElectrumX Cluster
+  const delectrumxhost1 = 'electrumx1.innova.pro';
+  const delectrumxhost2 = 'electrumx2.innova.pro';
+  const delectrumxhost3 = 'electrumx3.innova.pro';
+  const delectrumxhost4 = 'electrumx4.innova.pro';
 
   //Global Vars
   var scripthasharray = [];
@@ -272,7 +272,7 @@ const client = new bitcoin.Client({
 
           const scripthashf = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
@@ -283,7 +283,7 @@ const client = new bitcoin.Client({
             // Wait for enough connections to be available.
             await electrum.ready();
 
-            // Request the balance of the requested Scripthash D address
+            // Request the balance of the requested Scripthash INN address
             const balancescripthash1 = await electrum.request('blockchain.scripthash.get_balance', scripthash);
 
             const p2pkbalancescripthash1 = await electrum.request('blockchain.scripthash.get_balance', p2pkscripthash);
@@ -325,7 +325,7 @@ const client = new bitcoin.Client({
 
           const scripthashtx = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
@@ -416,7 +416,7 @@ exports.gettx = function (req, res) {
       var urltx = req.params.tx;
       //console.log('PASSED TXID: ', urltx);
 
-      //Connect to our D node 
+      //Connect to our INN node 
       //process.env.DUSER
       const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -564,7 +564,7 @@ exports.getblock = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -805,7 +805,7 @@ exports.getblock = function (req, res) {
 
 /**
  * POST /search
- * Search Denarius Blockchain
+ * Search Innova Blockchain
  */
 exports.search = (req, res, next) => {
   var searchreq = req.body.explorersearch;
@@ -813,7 +813,7 @@ exports.search = (req, res, next) => {
   console.log('Search Request', searchreq)
 
   var regexpTx = new RegExp('[0-9a-zA-Z]{64}?');
-  var regexpAddr = new RegExp('^(D)?[0-9a-zA-Z]{34}$'); //D Regular Expression for Addresses
+  var regexpAddr = new RegExp('^(INN)?[0-9a-zA-Z]{34}$'); //D Regular Expression for Addresses
   var scripthashregex = new RegExp('^(d)?[0-9a-zA-Z]{34}$'); // d Scripthash Addresses
   var regexpBlockNum = new RegExp('[0-9]{1,7}?'); // Blocks have same hash regex as TX...hmmm
   var regexpBlock = new RegExp('^[0][0-9a-zA-Z]{64}?'); // Blocks have same hash regex as TX...hmmm

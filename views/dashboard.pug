@@ -171,7 +171,7 @@ block content
           .modal-content(style='color:#FFF !important;background-color:#111 !important; border-color: #444 !important;')
               .modal-header(style='border-bottom: none !important;')
                   button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                  h4.modal-title Unlock Denarius Wallet For Staking Only
+                  h4.modal-title Unlock Innova Wallet For Staking Only
               .modal-body
                 .form-horizontal
                   .row
@@ -181,7 +181,7 @@ block content
                       p(align='left')
                         strong Are you sure you want to unlock your wallet for staking only?
                       p(align='left')
-                        | Enter your Denarius wallet encryption passphrase below
+                        | Enter your Innova wallet encryption passphrase below
                   br
                   form.form-horizontal(action='/unlockstaking', method='POST', id='sendunlocks')
                     input(type='hidden' name='_csrf' value=csrftoken)
@@ -197,7 +197,7 @@ block content
           .modal-content(style='color:#FFF !important;background-color:#111 !important; border-color: #444 !important;')
               .modal-header(style='border-bottom: none !important;')
                   button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                  h4.modal-title Unlock Denarius Wallet
+                  h4.modal-title Unlock Innova Wallet
               .modal-body
                 .form-horizontal
                   .row
@@ -207,7 +207,7 @@ block content
                       p(align='left')
                         strong Are you sure you want to unlock your wallet?
                       p(align='left')
-                        | Enter your Denarius wallet encryption passphrase below
+                        | Enter your Innova wallet encryption passphrase below
                   br
                   form.form-horizontal(action='/unlock', method='POST', id='sendunlock')
                     input(type='hidden' name='_csrf' value=csrftoken)
@@ -223,7 +223,7 @@ block content
           .modal-content(style='color:#FFF !important;background-color:#111 !important; border-color: #444 !important;')
               .modal-header(style='border-bottom: none !important;')
                   button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                  h4.modal-title Lock Denarius Wallet
+                  h4.modal-title Lock Innova Wallet
               .modal-body
                 .form-horizontal
                 .row
@@ -234,7 +234,7 @@ block content
                       strong Are you sure you want to lock your wallet?
                     form.form-horizontal(action='/lock', method='POST', id='sendlock')
                       input(type='hidden' name='_csrf' value=csrftoken)
-                      p(align='left') Locking your wallet will prevent staking rewards and the staker thread from running, but your coinage on your D will still grow.
+                      p(align='left') Locking your wallet will prevent staking rewards and the staker thread from running, but your coinage on your INN will still grow.
               .modal-footer(style='border-top: none !important;')
                   button.btn.btn-danger(type='submit', id='submit', onclick='confirmedl()') Lock Wallet
                   button.btn.btn-default(type='button', data-dismiss='modal') Close
@@ -243,7 +243,7 @@ block content
           .modal-content(style='color:#FFF !important;background-color:#111 !important; border-color: #444 !important;')
               .modal-header(style='border-bottom: none !important;')
                   button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                  h4.modal-title Encrypt Denarius Wallet
+                  h4.modal-title Encrypt Innova Wallet
               .modal-body
                 .form-horizontal
                   .row
@@ -272,7 +272,7 @@ block content
       .div(style='margin-top:25px;')
         form.form-horizontal(action='/search', method='POST', id='explorer')
           input(type='hidden' name='_csrf' value=csrftoken)
-          input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search Kronos for Denarius Block # or Transaction Hash or D Address')
+          input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search InnoVault for Innova Block # or Transaction Hash or INN Address')
       .row.mobilerow(style='margin-top:9px;')
         .col-md-4(align='left', style='margin-top:40px;')
           .row
@@ -290,7 +290,7 @@ block content
             | Everything is 
             span(style='color: #42B905;') Great!
             br
-            span.mobilerow2(style='font-size:12px;color:#999;') DENARIUS IS SYNCED
+            span.mobilerow2(style='font-size:12px;color:#999;') INNOVA IS SYNCED
         .col-md-4(style='margin-top:35px;')
           p(align='center')
             span.animate__animated.animate__fadeIn#link
@@ -379,7 +379,7 @@ block content
               |  Stats
             p Block Height: 
               strong #{blockheight}
-              p Denarius Version #{version}
+              p Innova Version #{version}
               p Protocol v#{protocol}
               p Is Syncing: #{syncing}
               p Peer Connections: 
@@ -436,7 +436,7 @@ block content
             | Network Stake Rate is 6% APR of D
         .col-sm-3
           p(align='center')
-            img(src='../img/denarius.png', height='128px;', align='center')
+            img(src='../img/innova.png', height='128px;', align='center')
         .col-sm-3
           p
             i.fa.fa-arrow-up 

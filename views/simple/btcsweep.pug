@@ -9,10 +9,10 @@ block content
     }
   .container
     p
-      .titlesmall(align='center', style='color:#888;padding:15px;width: 100%;max-width: 700px;margin:0 auto;') Import a Bitcoin (BTC) private key into Kronos Wallet, in WIF format. Starts with L or K for Bitcoin addresses. This will scan the private key for any UTXOs/balances and then send the funds to your main Kronos address.
+      .titlesmall(align='center', style='color:#888;padding:15px;width: 100%;max-width: 700px;margin:0 auto;') Import a Bitcoin (BTC) private key into InnoVault Wallet, in WIF format. Starts with L or K for Bitcoin addresses. This will scan the private key for any UTXOs/balances and then send the funds to your main InnoVault address.
     div.rowclass(style='font-weight:400;font-size:14px;padding:30px;background-color:#222;margin:5px;margin-top:0;border-radius:15px;', align='center')
       p
-        .importkey(align='center', style='color: green;') Kronos is attempting to sweep the BTC private key...Please wait...
+        .importkey(align='center', style='color: green;') InnoVault is attempting to sweep the BTC private key...Please wait...
       p
         form.form-horizontal(action='/btcsweep', method='POST', id='sendimport')
           input(type='hidden' name='_csrf' value=csrftoken)

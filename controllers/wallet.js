@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Wallet Controller
+* InnoVault Wallet Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -27,7 +27,7 @@ const db = dbr.db;
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
 const bip32 = require("bip32d");
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const Storage = require('json-storage-fs');
 const os = require('os');
 
@@ -59,7 +59,7 @@ if (currentOS === 'linux') {
   }
 
 } else {
-  let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+  let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
   function shahash(key) {
       key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -97,7 +97,7 @@ exports.getWithdraw = (req, res) => {
 
   res.locals.lanip = ipaddy;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -214,7 +214,7 @@ exports.getRaw = (req, res) => {
 
   res.locals.lanip = ipaddy;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -331,7 +331,7 @@ exports.getPriv = (req, res) => {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -452,7 +452,7 @@ exports.getSign = (req, res) => {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -550,7 +550,7 @@ exports.getSign = (req, res) => {
         balance = 0;
       }
     res.render('account/sign', {
-        title: 'Sign a Denarius Message',
+        title: 'Sign a Innova Message',
         balance: balance,
         offline: offline,
         sendicon: sendicon,
@@ -569,7 +569,7 @@ exports.getVerify = (req, res) => {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -667,7 +667,7 @@ exports.getVerify = (req, res) => {
         balance = 0;
       }
     res.render('account/verify', {
-        title: 'Verify a Denarius Message',
+        title: 'Verify a Innova Message',
         balance: balance,
         offline: offline,
         sendicon: sendicon,
@@ -686,7 +686,7 @@ exports.getBackup = (req, res) => {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -786,7 +786,7 @@ exports.getBackup = (req, res) => {
         balance = 0;
       }
     res.render('account/backup', {
-        title: 'Backup your D Wallet',
+        title: 'Backup your INN Wallet',
         balance: balance,
         offline: offline,
         sendicon: sendicon,
@@ -809,7 +809,7 @@ exports.addresses = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -821,11 +821,11 @@ exports.addresses = function (req, res) {
 
   res.locals.lanip = ipaddy;
 
-  //The used Electrumx Hosts for our Kronos ElectrumX Cluster
-  const delectrumxhost1 = 'electrumx1.denarius.pro';
-  const delectrumxhost2 = 'electrumx2.denarius.pro';
-  const delectrumxhost3 = 'electrumx3.denarius.pro';
-  const delectrumxhost4 = 'electrumx4.denarius.pro';
+  //The used Electrumx Hosts for our InnoVault ElectrumX Cluster
+  const delectrumxhost1 = 'electrumx1.innova.pro';
+  const delectrumxhost2 = 'electrumx2.innova.pro';
+  const delectrumxhost3 = 'electrumx3.innova.pro';
+  const delectrumxhost4 = 'electrumx4.innova.pro';
 
   //Global Vars
   var addressed;
@@ -983,7 +983,7 @@ exports.addresses = function (req, res) {
 
         const scripthasha = async () => {
           // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-          const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+          const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
           
           // Add some servers to the cluster.
           electrum.addServer(delectrumxhost1);
@@ -1012,7 +1012,7 @@ exports.addresses = function (req, res) {
           
           const scripthashp2pk = changeEndianness(shaaddress1);
           
-          // Request the balance of the requested Scripthash D address
+          // Request the balance of the requested Scripthash INN address
 
           const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
 
@@ -1119,7 +1119,7 @@ exports.addresses = function (req, res) {
 
             const scripthashb = async () => {
               // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-              const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+              const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
               
               // Add some servers to the cluster.
               electrum.addServer(delectrumxhost1);
@@ -1148,7 +1148,7 @@ exports.addresses = function (req, res) {
               
               const p2pkscripthash1 = changeEndianness(shaaddress1p);
 
-              // Request the balance of the requested Scripthash D address
+              // Request the balance of the requested Scripthash INN address
               const balancescripthash1 = await electrum.request('blockchain.scripthash.get_balance', scripthash1);
               
               const p2pkbalancescripthash1 = await electrum.request('blockchain.scripthash.get_balance', p2pkscripthash1);
@@ -1227,7 +1227,7 @@ exports.addresses = function (req, res) {
             });
           }
 
-          var qr = 'denarius:'+addyy;
+          var qr = 'innova:'+addyy;
 
         }
       
@@ -1287,7 +1287,7 @@ exports.addresses = function (req, res) {
 
           const scripthashe = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-            const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+            const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
             
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
@@ -1316,7 +1316,7 @@ exports.addresses = function (req, res) {
             
             const p2pkscripthash2 = changeEndianness(shaaddress2p);
             
-            // Request the balance of the requested Scripthash D address
+            // Request the balance of the requested Scripthash INN address
             const balancescripthash2 = await electrum.request('blockchain.scripthash.get_balance', scripthash2);
               
             const p2pkbalancescripthash2 = await electrum.request('blockchain.scripthash.get_balance', p2pkscripthash2);
@@ -1401,7 +1401,7 @@ exports.address = function (req, res) {
     const ip = require('ip');
     const ipaddy = ip.address();
 
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
       host: decrypt(Storage.get('rpchost')),
@@ -1516,11 +1516,11 @@ exports.address = function (req, res) {
         var chaindl = 'nooverlay';
         var chaindlbtn = 'nobtn';
 
-        var qr = 'denarius:'+address
+        var qr = 'innova:'+address
 
         QRCode.toDataURL(qr, function(err, data_url) {
 
-        res.render('account/newaddress', { title: 'New D Address', user: req.user, offline: offline, sendicon: sendicon, staketoggle: staketoggle, balance: balance, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn, address: address, data_url: data_url });
+        res.render('account/newaddress', { title: 'New INN Address', user: req.user, offline: offline, sendicon: sendicon, staketoggle: staketoggle, balance: balance, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn, address: address, data_url: data_url });
     });
   });
   });
@@ -1537,7 +1537,7 @@ exports.genkey = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -1652,11 +1652,11 @@ exports.genkey = function (req, res) {
       var chaindl = 'nooverlay';
       var chaindlbtn = 'nobtn';
 
-      var qr = 'denarius:'+genkey
+      var qr = 'innova:'+genkey
 
       QRCode.toDataURL(qr, function(err, data_url) {
 
-      res.render('account/genkey', { title: 'New D FS Key', user: req.user, offline: offline, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn, genkey: genkey, data_url: data_url });
+      res.render('account/genkey', { title: 'New INN FS Key', user: req.user, offline: offline, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn, genkey: genkey, data_url: data_url });
   });
 });
 });
@@ -1666,7 +1666,7 @@ exports.genkey = function (req, res) {
 
 /**
  * POST /withdraw
- * Send Denarius funds
+ * Send Innova funds
  */
 exports.withdraw = (req, res, next) => {
 	  var fee = 0.0001;
@@ -1674,7 +1674,7 @@ exports.withdraw = (req, res, next) => {
     var sendtoaddress = req.body.sendaddress;
     var amount = req.body.amount;
 
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
       host: decrypt(Storage.get('rpchost')),
@@ -1691,11 +1691,11 @@ exports.withdraw = (req, res, next) => {
 
         var balance = info;
 
-    var valid = WAValidator.validate(`${sendtoaddress}`, 'DNR'); //Need to update to D still
+    var valid = WAValidator.validate(`${sendtoaddress}`, 'DNR'); //Need to update to INN still
 
     if (parseFloat(amount) - fee > balance) {
-        req.toastr.error('Withdrawal amount exceeds your D balance!', 'Balance Error!', { positionClass: 'toast-bottom-left' });
-        //req.flash('errors', { msg: 'Withdrawal amount exceeds your D balance'});
+        req.toastr.error('Withdrawal amount exceeds your INN balance!', 'Balance Error!', { positionClass: 'toast-bottom-left' });
+        //req.flash('errors', { msg: 'Withdrawal amount exceeds your INN balance'});
         return res.redirect('/withdraw');
 
     } else {
@@ -1713,15 +1713,15 @@ exports.withdraw = (req, res, next) => {
                 var sendtx = sendFromtx;
                 var vamount = parseFloat(`${amount}`);
 
-                req.toastr.success(`${vamount} D was sent successfully!`, 'Success!', { positionClass: 'toast-bottom-left' });
+                req.toastr.success(`${vamount} INN was sent successfully!`, 'Success!', { positionClass: 'toast-bottom-left' });
                 req.flash('success', { msg: `Your <strong>${vamount} D</strong> was sent successfully! TX ID: <a href="https://coinexplorer.net/D/transaction/${sendtx}" target="_blank">${sendtx}</a>` });
                 return res.redirect('/withdraw');
             }
         });
 
     } else {
-        req.toastr.error('You entered an invalid Denarius (D) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
-        //req.flash('errors', { msg: 'You entered an invalid Denarius (D) Address!' });
+        req.toastr.error('You entered an invalid Innova (INN) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
+        //req.flash('errors', { msg: 'You entered an invalid Innova (INN) Address!' });
         return res.redirect('/withdraw');
     }
   }
@@ -1734,7 +1734,7 @@ exports.transactions = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -1864,7 +1864,7 @@ exports.startfs = (req, res, next) => {
 
     var alias = req.body.alias;
 
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
       host: decrypt(Storage.get('rpchost')),
@@ -1906,7 +1906,7 @@ exports.fs = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2063,7 +2063,7 @@ exports.peers = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2200,12 +2200,12 @@ exports.peers = function (req, res) {
 
 /**
  * POST /sendraw
- * Send Raw Transaction to D network
+ * Send Raw Transaction to INN network
  */
 exports.sendRaw = (req, res, next) => {
   var rawtx = req.body.rawtx;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2247,7 +2247,7 @@ exports.sendRaw = (req, res, next) => {
 exports.importPriv = (req, res, next) => {
   var privkey = req.body.privkey;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2281,14 +2281,14 @@ exports.importPriv = (req, res, next) => {
 
 /**
  * POST /signmsg
- * Sign Denarius Message
+ * Sign Innova Message
  */
 exports.signMsg = (req, res, next) => {
   //var username = req.user.email;
   var sendtoaddress = req.body.sendaddress;
   var msg = req.body.unsignedmsg;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2305,7 +2305,7 @@ exports.signMsg = (req, res, next) => {
 
       var balance = info;
 
-  var valid = WAValidator.validate(`${sendtoaddress}`, 'DNR'); //Need to update to D still
+  var valid = WAValidator.validate(`${sendtoaddress}`, 'DNR'); //Need to update to INN still
 
   if (valid) {
 
@@ -2326,8 +2326,8 @@ exports.signMsg = (req, res, next) => {
       });
 
   } else {
-      req.toastr.error('You entered an invalid Denarius (D) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
-      //req.flash('errors', { msg: 'You entered an invalid Denarius (D) Address!' });
+      req.toastr.error('You entered an invalid Innova (INN) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
+      //req.flash('errors', { msg: 'You entered an invalid Innova (INN) Address!' });
       return res.redirect('/sign');
   }
 
@@ -2337,7 +2337,7 @@ exports.signMsg = (req, res, next) => {
 
 /**
  * POST /verifymsg
- * Verify Denarius Message
+ * Verify Innova Message
  */
 exports.verifyMsg = (req, res, next) => {
   //var username = req.user.email;
@@ -2345,7 +2345,7 @@ exports.verifyMsg = (req, res, next) => {
   var msg = req.body.unsignedmsg;
   var signature = req.body.signature;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2362,7 +2362,7 @@ exports.verifyMsg = (req, res, next) => {
 
       var balance = info;
 
-  var valid = WAValidator.validate(`${sendtoaddress}`, 'DNR'); //Need to update to D still
+  var valid = WAValidator.validate(`${sendtoaddress}`, 'DNR'); //Need to update to INN still
 
   if (valid) {
 
@@ -2390,8 +2390,8 @@ exports.verifyMsg = (req, res, next) => {
       });
 
   } else {
-      req.toastr.error('You entered an invalid Denarius (D) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
-      //req.flash('errors', { msg: 'You entered an invalid Denarius (D) Address!' });
+      req.toastr.error('You entered an invalid Innova (INN) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
+      //req.flash('errors', { msg: 'You entered an invalid Innova (INN) Address!' });
       return res.redirect('/verify');
   }
 
@@ -2400,12 +2400,12 @@ exports.verifyMsg = (req, res, next) => {
 
 /**
  * POST /backupwallet
- * Backup Denarius Wallet
+ * Backup Innova Wallet
  */
 exports.backupWallet = (req, res, next) => {
   var location = req.body.backuploc;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2441,13 +2441,13 @@ exports.backupWallet = (req, res, next) => {
 // var mnemonic;
 // let seedaddresses = [];
 
-// // Fetch the Kronos LevelDB
+// // Fetch the InnoVault LevelDB
 // db.get('seedphrase', function (err, value) {
 // 	if (err) {
 		
 // 		// If seedphrase does not exist in levelDB then generate one
 // 		mnemonic = bip39.generateMnemonic();
-// 		console.log("~Generated Denarius Mnemonic~ ", mnemonic);
+// 		console.log("~Generated Innova Mnemonic~ ", mnemonic);
 
 // 		// Encrypt the seedphrase for storing in the DB
 // 		var encryptedmnemonic = encrypt(mnemonic);
@@ -2473,7 +2473,7 @@ exports.backupWallet = (req, res, next) => {
 // 	}
 
 
-// 	console.log("Stored Denarius Mnemonic: ", mnemonic);
+// 	console.log("Stored Innova Mnemonic: ", mnemonic);
 
 // 	//Convert our mnemonic seed phrase to BIP39 Seed Buffer 
 // 	const seed = bip39.mnemonicToSeedSync(mnemonic);
@@ -2482,9 +2482,9 @@ exports.backupWallet = (req, res, next) => {
 // 	// BIP32 From BIP39 Seed
 // 	const root = bip32.fromSeed(seed);
 
-// 	// Denarius Network Params Object
+// 	// Innova Network Params Object
 // 	const network = {
-// 			messagePrefix: '\x19Denarius Signed Message:\n',
+// 			messagePrefix: '\x19Innova Signed Message:\n',
 // 			bech32: 'd',
 // 			bip32: {
 // 				public: 0x0488b21e,
@@ -2506,7 +2506,7 @@ exports.backupWallet = (req, res, next) => {
 // 		const addressKeypair = root.derivePath(addressPath);
 
 // 		// Get the p2pkh base58 public address of the keypair
-// 		const p2pkhaddy = denarius.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).address;
+// 		const p2pkhaddy = innova.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).address;
 
 // 		const privatekey = addressKeypair.toWIF();
 	
@@ -2551,7 +2551,7 @@ exports.getSeed = (req, res) => {
       ps = decryptedpass;
     }
 
-    // Fetch the Kronos LevelDB
+    // Fetch the InnoVault LevelDB
     db.get('seedphrase', function (err, value) {
       if (err) {
 
@@ -2566,9 +2566,9 @@ exports.getSeed = (req, res) => {
       // BIP32 From BIP39 Seed
       const root = bip32.fromSeed(seed);
 
-      // Denarius Network Params Object
+      // Innova Network Params Object
       const network = {
-          messagePrefix: '\x19Denarius Signed Message:\n',
+          messagePrefix: '\x19Innova Signed Message:\n',
           bech32: 'd',
           bip32: {
             public: 0x0488b21e,
@@ -2589,7 +2589,7 @@ exports.getSeed = (req, res) => {
         const addressKeypair = root.derivePath(addressPath);
 
         // Get the p2pkh base58 public address of the keypair
-        const p2pkhaddy = denarius.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).address;
+        const p2pkhaddy = innova.payments.p2pkh({ pubkey: addressKeypair.publicKey, network }).address;
 
         const privatekey = addressKeypair.toWIF();
       
@@ -2602,7 +2602,7 @@ exports.getSeed = (req, res) => {
       res.locals.seedphrase = store;
   
     res.render('account/getseed', {
-        title: 'Denarius Seed Phrase',
+        title: 'Innova Seed Phrase',
         totalbal: totalbal,
         seedphrase: store
     });
@@ -2619,7 +2619,7 @@ exports.genMini = function (req, res) {
 
   res.locals.lanip = ipaddy;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2734,7 +2734,7 @@ exports.convertMini = function (req, res) {
 
   res.locals.lanip = ipaddy;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2851,7 +2851,7 @@ exports.xpub = (req, res) => {
 
   res.locals.lanip = ipaddy;
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -2866,11 +2866,11 @@ exports.xpub = (req, res) => {
   const utxoarray = [];
   const promises = [];
 
-  //ElectrumX Hosts for Denarius
-  const delectrumxhost1 = 'electrumx1.denarius.pro';
-  const delectrumxhost2 = 'electrumx2.denarius.pro';
-  const delectrumxhost3 = 'electrumx3.denarius.pro';
-  const delectrumxhost4 = 'electrumx4.denarius.pro';
+  //ElectrumX Hosts for Innova
+  const delectrumxhost1 = 'electrumx1.innova.pro';
+  const delectrumxhost2 = 'electrumx2.innova.pro';
+  const delectrumxhost3 = 'electrumx3.innova.pro';
+  const delectrumxhost4 = 'electrumx4.innova.pro';
 
   client.getBalance(function (error, info, resHeaders) {
     if (error) {
@@ -3004,7 +3004,7 @@ exports.xpub = (req, res) => {
 
     const scripthasha = async () => {
       // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-      const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+      const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
       
       // Add some servers to the cluster.
       electrum.addServer(delectrumxhost1);
@@ -3015,7 +3015,7 @@ exports.xpub = (req, res) => {
       // Wait for enough connections to be available.
       await electrum.ready();
       
-      // Request the balance of the requested Scripthash D address
+      // Request the balance of the requested Scripthash INN address
 
       const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
 
@@ -3037,10 +3037,10 @@ exports.xpub = (req, res) => {
       return addedbalance;
     }
 
-    //Grab Full Transaction History from D ElectrumX
+    //Grab Full Transaction History from INN ElectrumX
     const txhistoryfull = async () => {
       // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-      const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+      const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
       
       // Add some servers to the cluster.
       electrum.addServer(delectrumxhost1);
@@ -3051,7 +3051,7 @@ exports.xpub = (req, res) => {
       // Wait for enough connections to be available.
       await electrum.ready();
       
-      // Request the balance of the requested Scripthash D address
+      // Request the balance of the requested Scripthash INN address
 
       const txs = [];
 
@@ -3082,10 +3082,10 @@ exports.xpub = (req, res) => {
       return txs;
     }
 
-    //Grab UTXO Transaction History from D ElectrumX
+    //Grab UTXO Transaction History from INN ElectrumX
     const utxohistory = async () => {
       // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-      const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+      const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
       
       // Add some servers to the cluster.
       electrum.addServer(delectrumxhost1);
@@ -3096,7 +3096,7 @@ exports.xpub = (req, res) => {
       // Wait for enough connections to be available.
       await electrum.ready();
       
-      // Request the balance of the requested Scripthash D address
+      // Request the balance of the requested Scripthash INN address
 
       const utxos = [];
 
@@ -3168,7 +3168,7 @@ exports.xpub = (req, res) => {
           //   console.log("EMITTED BALANCE");
           // });
 
-        res.render('account/keepkeybal', { title: 'Kronos KeepKey Balance', balancearray: scripthasharray, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
+        res.render('account/keepkeybal', { title: 'InnoVault KeepKey Balance', balancearray: scripthasharray, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
     });
   } else {
     console.log('ERROR DIDNT GET XPUB');
@@ -3179,13 +3179,13 @@ exports.xpub = (req, res) => {
 });
 };
 
-//GET for KeepKey Denarius Client Page
+//GET for KeepKey Innova Client Page
 exports.keepkey = function (req, res) {
 
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our D node 
+  //Connect to our INN node 
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -3286,7 +3286,7 @@ exports.keepkey = function (req, res) {
           }
         }
 
-    res.render('account/keepkey', { title: 'Kronos KeepKey', staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
+    res.render('account/keepkey', { title: 'InnoVault KeepKey', staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
     });
 
   });

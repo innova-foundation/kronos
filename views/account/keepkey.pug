@@ -91,16 +91,16 @@ block content
     }
   #notify
   .container
-    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Denarius KeepKey Manager
+    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Innova KeepKey Manager
     p(align='center')
-      | This tool provides the ability to access your KeepKey device through Kronos and acts as a KeepKey client for Denarius, This only works by visiting Kronos on your localhost via localhost:3000 or 127.0.0.1:3000 and is a major WIP.
+      | This tool provides the ability to access your KeepKey device through InnoVault and acts as a KeepKey client for Innova, This only works by visiting InnoVault on your localhost via localhost:3000 or 127.0.0.1:3000 and is a major WIP.
     br
     br
   .row.container.rowclass(style='font-weight:400;font-size:14px;padding:30px;background-color:#222;margin:15px;border-radius:15px;', align='center')
     .col-md-12
       p
         button#keepkey.btn.btn-default(style='width:450px;height:60px;font-size:16px;') Pair with your KeepKey
-        button#nextbutton.btn.btn-default(style='width:450px;height:60px;font-size:16px;background-color:#222;display:none;') Get your Denarius Address
+        button#nextbutton.btn.btn-default(style='width:450px;height:60px;font-size:16px;background-color:#222;display:none;') Get your Innova Address
         form.form-horizontal#sendxpub(action='/keepkeyaddr', method='POST')
           input(type='hidden', name='_csrf', value=_csrf)
           input#xpubin(type='hidden', name='xpubin', value='')
@@ -185,7 +185,7 @@ block content
             .form-group
               label.col-sm-3.control-label Device Label
               .col-sm-8(style='margin-bottom:15px;')
-                input#inputlabel.blackinput4(style='width:98%;', type='text', placeholder='Kronos KeepKey')
+                input#inputlabel.blackinput4(style='width:98%;', type='text', placeholder='InnoVault KeepKey')
             .form-group
               label.col-sm-3.control-label BIP39 Password?
               .col-sm-8(style='margin-bottom:25px;')

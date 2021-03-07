@@ -5,7 +5,7 @@ var http = require('http');
 var ip = require('ip');
 
 var lan = '0.0.0.0';
-var port = normalizePort('3300'); //Port 3300 for Kronos's Socket.io Server
+var port = normalizePort('3300'); //Port 3300 for InnoVault's Socket.io Server
 app.set('port', port);
 var ipaddy = ip.address();
 
@@ -61,7 +61,7 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('Kronos Socket.io Server Listening on ' + JSON.stringify(addr.address) + ' on ' + bind);
+  console.log('InnoVault Socket.io Server Listening on ' + JSON.stringify(addr.address) + ' on ' + bind);
   //debug('Listening on ' + bind);
   //main();
 }

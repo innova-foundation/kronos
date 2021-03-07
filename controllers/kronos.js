@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Controller
+* InnoVault Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -20,7 +20,7 @@ const cpuu = require('cputilization');
 const toastr = require('express-toastr');
 const exec = require('child_process').exec;
 const shell = require('shelljs');
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
 const bip32 = require("bip32d");
@@ -62,7 +62,7 @@ if (currentOS === 'linux') {
     }
 
 } else {
-    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
     function shahash(key) {
         key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -95,7 +95,7 @@ exports.unlock = (req, res, next) => {
   //var sendtoaddress = req.body.sendaddress;
   //var amount = req.body.amount;
 
-  	//Connect to our D node 
+  	//Connect to our INN node 
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -127,7 +127,7 @@ exports.unlockstaking = (req, res, next) => {
 	//var sendtoaddress = req.body.sendaddress;
 	//var amount = req.body.amount;
 
-	//Connect to our D node 
+	//Connect to our INN node 
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -159,7 +159,7 @@ exports.lock = (req, res, next) => {
 	//var sendtoaddress = req.body.sendaddress;
 	//var amount = req.body.amount;
 
-	//Connect to our D node 
+	//Connect to our INN node 
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -193,7 +193,7 @@ exports.lock = (req, res, next) => {
 	//var amount = req.body.amount;
 
 	//req.assert('password2', 'Passwords do not match').equals(req.body.passphrase);
-	//Connect to our D node 
+	//Connect to our INN node 
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -227,7 +227,7 @@ exports.lock = (req, res, next) => {
   //Reboot Wallet
   exports.reboot = (req, res, next) => {
 
-	//Execute denarius.daemon stop command
+	//Execute innova.daemon stop command
 	shell.exec(`bash restartnode.sh`, function(err){
 		if(err){
 		  console.log(err);
@@ -237,11 +237,11 @@ exports.lock = (req, res, next) => {
 		}
 	});
 
-	//req.toastr.success('Success!', 'Stopping Denarius...Please wait', { positionClass: 'toast-bottom-left' });
+	//req.toastr.success('Success!', 'Stopping Innova...Please wait', { positionClass: 'toast-bottom-left' });
 
 	//sleep(120000); // sleep for 120 seconds
 
-	//req.toastr.success('Success!', 'Starting Denarius...Please wait', { positionClass: 'toast-bottom-left' });
+	//req.toastr.success('Success!', 'Starting Innova...Please wait', { positionClass: 'toast-bottom-left' });
 
 	//sleep(120000); // sleep for 120 seconds
 
@@ -256,7 +256,7 @@ exports.lock = (req, res, next) => {
 	//var sendtoaddress = req.body.sendaddress;
 	//var amount = req.body.amount;
 
-	//Connect to our D node 
+	//Connect to our INN node 
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -266,7 +266,7 @@ exports.lock = (req, res, next) => {
 		timeout: 30000
 	});
 
-	var valid = WAValidator.validate(`${addi}`, 'DNR'); //Need to update to D still
+	var valid = WAValidator.validate(`${addi}`, 'DNR'); //Need to update to INN still
 
 	if (valid) {
 
@@ -290,8 +290,8 @@ exports.lock = (req, res, next) => {
 
 	} else {
 
-        req.toastr.error('You entered an invalid Denarius (D) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
-        //req.flash('errors', { msg: 'You entered an invalid Denarius (D) Address!' });
+        req.toastr.error('You entered an invalid Innova (INN) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
+        //req.flash('errors', { msg: 'You entered an invalid Innova (INN) Address!' });
 		return res.redirect('/addresses');
 		
     }
@@ -314,14 +314,14 @@ next();
 
 };
 
-// GET Kronos Chat for Advanced Mode
+// GET InnoVault Chat for Advanced Mode
 exports.getchat = (req, res) => {
 	const ip = require('ip');
 	const ipaddy = ip.address();
 
     res.locals.lanip = ipaddy;
         
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -418,7 +418,7 @@ exports.getchat = (req, res) => {
 						staketoggle = 'Not Yet Staking';
 					}
 				}
-				//Denarius Main Account to go off of
+				//Innova Main Account to go off of
 				var account = '333D'; //Needs work
 				client.getAddressesByAccount(`dpi(${account})`, function (err, addresses, resHeaders) {
 					if (err) {
@@ -441,11 +441,11 @@ exports.getchat = (req, res) => {
 							});
 						}
 			
-						var qr = 'denarius:'+address;
+						var qr = 'innova:'+address;
 			
 					}
 		
-		res.render('advchat', {title: 'Kronos Chat', mainaddress: address, staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
+		res.render('advchat', {title: 'InnoVault Chat', mainaddress: address, staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
 	});
 });
 });

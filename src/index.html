@@ -2,7 +2,7 @@
 <html data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <title>Kronos</title>
+    <title>InnoVault</title>
     <style>
       html, body {
         background-color: #ccc;
@@ -191,7 +191,7 @@
         Close
       </button>
       <button id="restart-button" onClick="restartApp()" class="hidden">
-        Restart Kronos
+        Restart InnoVault
       </button>
     </div>
     <div id="loading" align="center">
@@ -247,7 +247,7 @@
         //node spawn is "./node_modules/node/bin/node" for Linux/Unix - Setup for Windows
         node = spawn(
           nodeloc,
-          ["./bin/kronos"],
+          ["./bin/innovault"],
           {
             cwd: app.getAppPath()
           }
@@ -268,7 +268,7 @@
 
       // ipcRenderer.on('app_version', (event, arg) => {
       //   ipcRenderer.removeAllListeners('app_version');
-      //   version.innerText = 'Kronos Version ' + arg.version;
+      //   version.innerText = 'InnoVault Version ' + arg.version;
       //   loadedversion = arg.version;
       // });
 
@@ -279,13 +279,13 @@
       ipcRenderer.on('update_available', () => {
         ipcRenderer.removeAllListeners('update_available');
         notification.classList.remove('hidden');
-        message.innerText = 'A new Kronos update is available! Downloading it now...';
+        message.innerText = 'A new InnoVault update is available! Downloading it now...';
       });
       ipcRenderer.on('update_downloaded', () => {
         ipcRenderer.removeAllListeners('update_downloaded');
         notification.classList.remove('hidden');
         restartButton.classList.remove('hidden');
-        message.innerText = 'A Kronos update was downloaded. It will be installed upon restart. Restart now?';
+        message.innerText = 'A InnoVault update was downloaded. It will be installed upon restart. Restart now?';
       });
 
       if (os.platform() === 'darwin') {
@@ -340,7 +340,7 @@
 
       hotkey("f5", () => {        
         window.location.href = window.location.href;
-        // alert('You rebooted Kronos!');
+        // alert('You rebooted InnoVault!');
       });
 
       function isElectron() {
@@ -371,12 +371,12 @@
       // function togglelog() {
       //   if ($serverLog.css("display") === "none") {
       //     $serverLog.css("display", "block");
-      //     togglebutton.innerHTML = "Hide [-] Kronos Version "+loadedversion;
+      //     togglebutton.innerHTML = "Hide [-] InnoVault Version "+loadedversion;
       //     $expressApp.addClass("expressAppHide");
       //   } else {
       //     $expressApp.removeClass("expressAppHide");
       //     $serverLog.css("display", "none");
-      //     togglebutton.innerHTML = "Logs [+] Kronos Version "+loadedversion;
+      //     togglebutton.innerHTML = "Logs [+] InnoVault Version "+loadedversion;
       //   }
       // }
 
@@ -416,41 +416,41 @@
 
       // function getUserHome() {
       //   if (os.platform() === 'win32') {
-      //     if (!mkdirp.sync(node.env.APPDATA+'\\Kronos\\DATA\\')) {
-      //       mkdirp.sync(node.env.APPDATA+'\\Kronos\\DATA\\kronosleveldb\\');
-      //       return node.env.APPDATA+'\\Kronos\\DATA\\'; 
+      //     if (!mkdirp.sync(node.env.APPDATA+'\\InnoVault\\DATA\\')) {
+      //       mkdirp.sync(node.env.APPDATA+'\\InnoVault\\DATA\\innovaultleveldb\\');
+      //       return node.env.APPDATA+'\\InnoVault\\DATA\\'; 
       //     }
-      //     return node.env.APPDATA+'\\Kronos\\DATA\\'; 
+      //     return node.env.APPDATA+'\\InnoVault\\DATA\\'; 
       //   } else {
-      //     if (!mkdirp.sync(node.env.HOME+'/Kronos/DATA/')) {
-      //       mkdirp.sync(node.env.HOME+'/Kronos/DATA/kronosleveldb/');
-      //       return node.env.HOME+'/Kronos/DATA/'; 
+      //     if (!mkdirp.sync(node.env.HOME+'/InnoVault/DATA/')) {
+      //       mkdirp.sync(node.env.HOME+'/InnoVault/DATA/innovaultleveldb/');
+      //       return node.env.HOME+'/InnoVault/DATA/'; 
       //     }
-      //     return node.env.HOME+'/Kronos/DATA/'; 
+      //     return node.env.HOME+'/InnoVault/DATA/'; 
       //   }
       // }
 
       function getUserHome() {
         // From process.env 
         if (process.platform == 'win32') {
-          if (!mkdirp.sync(process.env.APPDATA+'\\Kronos\\DATA\\')) {
-            mkdirp.sync(process.env.APPDATA+'\\Kronos\\DATA\\kronosleveldb\\');
-            return process.env.APPDATA+'\\Kronos\\DATA\\'; 
+          if (!mkdirp.sync(process.env.APPDATA+'\\InnoVault\\DATA\\')) {
+            mkdirp.sync(process.env.APPDATA+'\\InnoVault\\DATA\\innovaultleveldb\\');
+            return process.env.APPDATA+'\\InnoVault\\DATA\\'; 
           }
-          return process.env.APPDATA+'\\Kronos\\DATA\\'; 
+          return process.env.APPDATA+'\\InnoVault\\DATA\\'; 
         } else {
-          if (!mkdirp.sync(process.env.HOME+'/Kronos/DATA/')) {
-            mkdirp.sync(process.env.HOME+'/Kronos/DATA/kronosleveldb/');
-            return process.env.HOME+'/Kronos/DATA/'; 
+          if (!mkdirp.sync(process.env.HOME+'/InnoVault/DATA/')) {
+            mkdirp.sync(process.env.HOME+'/InnoVault/DATA/innovaultleveldb/');
+            return process.env.HOME+'/InnoVault/DATA/'; 
           }
-          return process.env.HOME+'/Kronos/DATA/'; 
+          return process.env.HOME+'/InnoVault/DATA/'; 
         }
       }
 
-      const kronoslog = fs.createWriteStream(getUserHome()+`kronos.log`);
+      const innovaultlog = fs.createWriteStream(getUserHome()+`innovault.log`);
 
-      node.stdout.pipe(kronoslog);
-      node.stderr.pipe(kronoslog);
+      node.stdout.pipe(innovaultlog);
+      node.stderr.pipe(innovaultlog);
       //redirectOutput(node.stdout);
       //redirectOutput(node.stderr);
 

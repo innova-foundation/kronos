@@ -1,34 +1,34 @@
-# KRONOS GETTING STARTED
+# INNOVAULT GETTING STARTED
 
-KRONOS INFORMATION
+INNOVAULT INFORMATION
 -----------------
-Kronos creates a `/data` and a `/kronosleveldb` folder for storing your data and local databases. Kronos data is encrypted using a randomly generated secret key upon the first launch of Kronos.
+InnoVault creates a `/data` and a `/innovaultleveldb` folder for storing your data and local databases. InnoVault data is encrypted using a randomly generated secret key upon the first launch of InnoVault.
 
-Kronos Data Directory for Linux/macOS `~/Kronos/DATA` or Windows `C:/Users/<user>/AppData/Roaming/Kronos/DATA`
+InnoVault Data Directory for Linux/macOS `~/InnoVault/DATA` or Windows `C:/Users/<user>/AppData/Roaming/InnoVault/DATA`
 
-If you wish to start fresh with Kronos and get back to the selection screen, delete the `/data` and `/kronosleveldb` folders after shutting down Kronos. Kronos logs are stored in the Kronos Data Directory `~/Kronos/DATA/kronos.log` or `C:/Users/<user>/AppData/Roaming/Kronos/DATA/kronos.log`
+If you wish to start fresh with InnoVault and get back to the selection screen, delete the `/data` and `/innovaultleveldb` folders after shutting down InnoVault. InnoVault logs are stored in the InnoVault Data Directory `~/InnoVault/DATA/innovault.log` or `C:/Users/<user>/AppData/Roaming/InnoVault/DATA/innovault.log`
 
 Helpful Commands
 -----------------
-`nohup npm run headless &` To run Kronos in a headless mode on your LAN (typically ran from Raspberry Pi) (Outputs log to nohup.out)
-`node -r esm ./bin/kronos` Alternative command to the `npm run headless` command, no log output
-`npm run kronos` To run Kronos in app mode with Electron, also outputs LAN server (can be ran from OS of choice with GUI)
+`nohup npm run headless &` To run InnoVault in a headless mode on your LAN (typically ran from Raspberry Pi) (Outputs log to nohup.out)
+`node -r esm ./bin/innovault` Alternative command to the `npm run headless` command, no log output
+`npm run innovault` To run InnoVault in app mode with Electron, also outputs LAN server (can be ran from OS of choice with GUI)
 
-KRONOS BASH INSTALLER SCRIPT
+INNOVAULT BASH INSTALLER SCRIPT
 -----------------
-Simply run the single command below in your Terminal or via SSH, then choose one of the options if you want to Install Kronos with or without Denarius chaindata or if you want to just update!:
+Simply run the single command below in your Terminal or via SSH, then choose one of the options if you want to Install InnoVault with or without Innova chaindata or if you want to just update!:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/carsenk/kronos/master/installkronos.sh | bash
+wget -qO- https://raw.githubusercontent.com/carsenk/innovault/master/installinnovault.sh | bash
 ```
 or
 ```bash
-curl -o- https://raw.githubusercontent.com/carsenk/kronos/master/installkronos.sh | bash
+curl -o- https://raw.githubusercontent.com/carsenk/innovault/master/installinnovault.sh | bash
 ```
 
-You can choose an option 1-3 from the installer script above to either install Kronos, install Kronos with Denarius chaindata, or Update Kronos!
+You can choose an option 1-3 from the installer script above to either install InnoVault, install InnoVault with Innova chaindata, or Update InnoVault!
 
-RUN KRONOS HEADLESS MODE (Raspberry Pi, etc.):
+RUN INNOVAULT HEADLESS MODE (Raspberry Pi, etc.):
 -----------------
 Install NodeJS v12.x via NodeSource or Installer from https://nodejs.org
 
@@ -55,17 +55,17 @@ To install the Yarn package manager, run:
      sudo apt-get update && sudo apt-get install yarn
 ```
 
-Install and Run Kronos
+Install and Run InnoVault
 ```
 sudo apt install build-essential gcc g++ make
 
-sudo mkdir -p ~/Kronos/DATA/storage
+sudo mkdir -p ~/InnoVault/DATA/storage
 
-sudo mkdir -p ~/Kronos/DATA/kronosleveldb
+sudo mkdir -p ~/InnoVault/DATA/innovaultleveldb
 
-git clone https://github.com/carsenk/kronos.git
+git clone https://github.com/carsenk/innovault.git
 
-cd kronos
+cd innovault
 
 sudo su
 
@@ -77,28 +77,28 @@ nohup npm run headless &
 ```
 
 
-RUNNING THE KRONOS ELECTRON APP (Windows, macOS, etc.):
+RUNNING THE INNOVAULT ELECTRON APP (Windows, macOS, etc.):
 -----------------
 Install NodeJS v12.16.3 via NVM or Installer from https://nodejs.org
 ```
-git clone https://github.com/carsenk/kronos.git
+git clone https://github.com/carsenk/innovault.git
 
-cd kronos
+cd innovault
 
 npm install -g electron electron-forge electron-rebuild electron-builder node-gyp windows-build-tools
 
 npm install
 
-npm run kronos
+npm run innovault
 ```
 
-BUILDING THE KRONOS ELECTRON APP (If you want to build your own binaries):
+BUILDING THE INNOVAULT ELECTRON APP (If you want to build your own binaries):
 -----------------
 Install NodeJS v12.16.3 via NVM or Installer from https://nodejs.org
 ```
-git clone https://github.com/carsenk/kronos.git
+git clone https://github.com/carsenk/innovault.git
 
-cd kronos
+cd innovault
 
 npm install -g electron electron-forge electron-rebuild electron-builder node-gyp windows-build-tools
 

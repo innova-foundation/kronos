@@ -1,18 +1,18 @@
 // Copyright (c) 2020 Carsen Klock
-// Kronos LevelDB Data Store using Level
+// InnoVault LevelDB Data Store using Level
 const level = require('level');
   
-//console.log(`Kronos Data Directory: ` + getUserHome()+`\\Kronos\\DATA`); 
+//console.log(`InnoVault Data Directory: ` + getUserHome()+`\\InnoVault\\DATA`); 
 
 function getUserHome() {
     // From process.env 
     if (process.platform == 'win32') {
-      return process.env.APPDATA+'\\Kronos\\DATA\\'; 
+      return process.env.APPDATA+'\\InnoVault\\DATA\\'; 
     } else {
-      return process.env.HOME+'/Kronos/DATA/'; 
+      return process.env.HOME+'/InnoVault/DATA/'; 
     }
 } 
 
-const database = level(getUserHome()+'kronosleveldb');
+const database = level(getUserHome()+'innovaultleveldb');
 
 module.exports = database;

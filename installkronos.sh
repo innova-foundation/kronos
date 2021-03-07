@@ -3,11 +3,11 @@
 VERSION='v1.9.9-Beta'
 
 TEMP=/tmp/answer$$
-whiptail --title "Kronos ${VERSION} for Denarius"  --menu  "Installer for Kronos Secondary Layer :" 20 0 0 1 "Install Kronos w/ Denarius Config" 2 "Install Kronos w/ Denarius Config & Chaindata" 3 "Update & Upgrade Kronos ${VERSION}" 2>$TEMP
+whiptail --title "InnoVault ${VERSION} for Innova"  --menu  "Installer for InnoVault Secondary Layer :" 20 0 0 1 "Install InnoVault w/ Innova Config" 2 "Install InnoVault w/ Innova Config & Chaindata" 3 "Update & Upgrade InnoVault ${VERSION}" 2>$TEMP
 choice=`cat $TEMP`
 case $choice in
 
-1) echo 1 "Installer for Kronos"
+1) echo 1 "Installer for InnoVault"
 #COLORS
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
@@ -15,7 +15,7 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# License Kronos Installer
+# License InnoVault Installer
 #
 #The MIT License (MIT)
 #
@@ -146,10 +146,10 @@ printf "Version ${VERSION}\n\n"
 
 progress_bar 3
 
-printf "${GREEN}Installing Kronos, Denarius, and related dependancies${NC}\n"
+printf "${GREEN}Installing InnoVault, Innova, and related dependancies${NC}\n"
 
 lsof /var/lib/dpkg/lock >/dev/null 2>&1
-[ $? = 0 ] && echo "dpkg is currently locked, cannot install Kronos...Please ensure you are not running software updates"
+[ $? = 0 ] && echo "dpkg is currently locked, cannot install InnoVault...Please ensure you are not running software updates"
 
 sudo apt-get update -y && sudo apt-get upgrade -y
 
@@ -161,19 +161,19 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 sudo apt-get install -y nodejs
 
-mkdir -p ~/Kronos/DATA/storage
+mkdir -p ~/InnoVault/DATA/storage
 
-mkdir -p ~/Kronos/DATA/kronosleveldb
+mkdir -p ~/InnoVault/DATA/innovaultleveldb
 
 printf "${GREEN}Dependancies Installed Successfully!${NC}\n"
 
 printf "${GREEN}Successfully Installed Node Version 12.x from NodeSource!${NC}\n"
 
-printf "${GREEN}Snap installing Denarius...${NC}\n"
+printf "${GREEN}Snap installing Innova...${NC}\n"
 
-sudo snap install denarius
+sudo snap install innova
 
-denarius.daemon stop
+innova.daemon stop
 
 printf "${GREEN}This will take 30 seconds...${NC}\n"
 
@@ -188,43 +188,43 @@ PWPD3=$(pwgen 50 1)
 
 echo "Generated random username and password..."
 
-#Update denarius.conf to match env credentials
+#Update innova.conf to match env credentials
 
-touch ~/snap/denarius/common/.denarius/denarius.conf
+touch ~/snap/innova/common/.innova/innova.conf
 
-sed -i "s/.*rpcuser=.*/rpcuser="${PWUD1}"/" ~/snap/denarius/common/.denarius/denarius.conf
+sed -i "s/.*rpcuser=.*/rpcuser="${PWUD1}"/" ~/snap/innova/common/.innova/innova.conf
 
-sed -i "s/.*rpcpassword=.*/rpcpassword="${PWPD2}"/" ~/snap/denarius/common/.denarius/denarius.conf
+sed -i "s/.*rpcpassword=.*/rpcpassword="${PWPD2}"/" ~/snap/innova/common/.innova/innova.conf
 
-if [ ! -f ~/snap/denarius/common/.denarius/walletnotify.sh ]; then
-touch ~/snap/denarius/common/.denarius/walletnotify.sh
+if [ ! -f ~/snap/innova/common/.innova/walletnotify.sh ]; then
+touch ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a #!/bin/sh' ~/snap/denarius/common/.denarius/walletnotify.sh
+sed -i '$a #!/bin/sh' ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a curl http://127.0.0.1:3000/walletnotify -d "txid=$@"' ~/snap/denarius/common/.denarius/walletnotify.sh
+sed -i '$a curl http://127.0.0.1:3000/walletnotify -d "txid=$@"' ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a walletnotify=curl http://127.0.0.1:3000/walletnotify -d "txid=%s"' ~/snap/denarius/common/.denarius/denarius.conf
+sed -i '$a walletnotify=curl http://127.0.0.1:3000/walletnotify -d "txid=%s"' ~/snap/innova/common/.innova/innova.conf
 fi
 
 echo "Injected newly generated username and password..."
 
-echo "Starting Denarius"
+echo "Starting Innova"
 
-denarius.daemon
+innova.daemon
 
 progress_bar 20
 
-echo "Installing Kronos from Github"
+echo "Installing InnoVault from Github"
 
-if [ -d "kronos" ]; then
-  sudo rm -rf kronos
+if [ -d "innovault" ]; then
+  sudo rm -rf innovault
 fi
 
-git clone https://github.com/carsenk/kronos
+git clone https://github.com/carsenk/innovault
 
-cd kronos
+cd innovault
 
-echo "Installing Kronos Node Modules..."
+echo "Installing InnoVault Node Modules..."
 
 sudo su
 
@@ -240,15 +240,15 @@ cd ..
 
 cd ..
 
-echo "Successfully Installed Kronos Node Modules"
+echo "Successfully Installed InnoVault Node Modules"
 
 echo "Updating Enviroment..."
 
 nohup npm run headless &
 
-echo "Kronos and Denarius are successfully installed! Kronos is now running on port 3000, open your browser to this devices local LAN IP, e.g. 192.168.x.x:3000"
+echo "InnoVault and Innova are successfully installed! InnoVault is now running on port 3000, open your browser to this devices local LAN IP, e.g. 192.168.x.x:3000"
                 ;;
-2) echo 2 "Installer for Kronos with fast chain sync"
+2) echo 2 "Installer for InnoVault with fast chain sync"
 #COLORS
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
@@ -256,7 +256,7 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# License Kronos Installer
+# License InnoVault Installer
 #
 # This script is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by
@@ -360,10 +360,10 @@ printf "Version ${VERSION}\n\n"
 
 progress_bar 3
 
-printf "${GREEN}Installing Kronos, Denarius, and related dependancies${NC}\n"
+printf "${GREEN}Installing InnoVault, Innova, and related dependancies${NC}\n"
 
 lsof /var/lib/dpkg/lock >/dev/null 2>&1
-[ $? = 0 ] && echo "dpkg is currently locked, cannot install Kronos...Please ensure you are not running software updates"
+[ $? = 0 ] && echo "dpkg is currently locked, cannot install InnoVault...Please ensure you are not running software updates"
 
 sudo apt-get update -y && sudo apt-get upgrade -y
 
@@ -375,19 +375,19 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 sudo apt-get install -y 
 
-mkdir -p ~/Kronos/DATA/storage
+mkdir -p ~/InnoVault/DATA/storage
 
-mkdir -p ~/Kronos/DATA/kronosleveldb
+mkdir -p ~/InnoVault/DATA/innovaultleveldb
 
 printf "${GREEN}Dependancies Installed Successfully!${NC}\n"
 
 printf "${GREEN}Successfully Installed Node Version 12.x from NodeSource!${NC}\n"
 
-printf "${GREEN}Snap installing Denarius...${NC}\n"
+printf "${GREEN}Snap installing Innova...${NC}\n"
 
-sudo snap install denarius
+sudo snap install innova
 
-denarius.daemon stop
+innova.daemon stop
 
 printf "${GREEN}This will take 30 seconds...${NC}\n"
 
@@ -402,11 +402,11 @@ PWPD3=$(pwgen 50 1)
 
 echo "Generated random username and password..."
 
-#Update denarius.conf to match env credentials
+#Update innova.conf to match env credentials
 
-mkdir -p ~/snap/denarius/common/.denarius/
+mkdir -p ~/snap/innova/common/.innova/
 
-echo "Downloading and unzipping Denarius chaindata..."
+echo "Downloading and unzipping Innova chaindata..."
 
 architecture=""
 case $(uname -m) in
@@ -421,55 +421,55 @@ echo ${architecture}
 
 if [ ${architecture} == "arm" ] || [ ${architecture} == "arm64" ]|| [ ${architecture} == "aarch64" ]; then
 
-  cd ~/snap/denarius/common/.denarius
-  wget https://denarii.cloud/pichaindata.zip
+  cd ~/snap/innova/common/.innova
+  wget https://innovai.cloud/pichaindata.zip
   unzip pichaindata.zip
 
 else
 
-  cd ~/snap/denarius/common/.denarius
-  wget https://denarii.cloud/chaindata.zip
+  cd ~/snap/innova/common/.innova
+  wget https://innovai.cloud/chaindata.zip
   unzip chaindata.zip
 
 fi
 
 cd ~
 
-touch ~/snap/denarius/common/.denarius/denarius.conf
+touch ~/snap/innova/common/.innova/innova.conf
 
-sed -i "s/.*rpcuser=.*/rpcuser="${PWUD1}"/" ~/snap/denarius/common/.denarius/denarius.conf
+sed -i "s/.*rpcuser=.*/rpcuser="${PWUD1}"/" ~/snap/innova/common/.innova/innova.conf
 
-sed -i "s/.*rpcpassword=.*/rpcpassword="${PWPD2}"/" ~/snap/denarius/common/.denarius/denarius.conf
+sed -i "s/.*rpcpassword=.*/rpcpassword="${PWPD2}"/" ~/snap/innova/common/.innova/innova.conf
 
-if [ ! -f ~/snap/denarius/common/.denarius/walletnotify.sh ]; then
-touch ~/snap/denarius/common/.denarius/walletnotify.sh
+if [ ! -f ~/snap/innova/common/.innova/walletnotify.sh ]; then
+touch ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a #!/bin/sh' ~/snap/denarius/common/.denarius/walletnotify.sh
+sed -i '$a #!/bin/sh' ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a curl http://127.0.0.1:3000/walletnotify -d "txid=$@"' ~/snap/denarius/common/.denarius/walletnotify.sh
+sed -i '$a curl http://127.0.0.1:3000/walletnotify -d "txid=$@"' ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a walletnotify=curl http://127.0.0.1:3000/walletnotify -d "txid=%s"' ~/snap/denarius/common/.denarius/denarius.conf
+sed -i '$a walletnotify=curl http://127.0.0.1:3000/walletnotify -d "txid=%s"' ~/snap/innova/common/.innova/innova.conf
 fi
 
 echo "Injected newly generated username and password..."
 
-echo "Starting Denarius"
+echo "Starting Innova"
 
-denarius.daemon
+innova.daemon
 
 progress_bar 20
 
-echo "Installing Kronos from Github"
+echo "Installing InnoVault from Github"
 
-if [ -d "kronos" ]; then
-  sudo rm -rf kronos
+if [ -d "innovault" ]; then
+  sudo rm -rf innovault
 fi
 
-git clone https://github.com/carsenk/kronos
+git clone https://github.com/carsenk/innovault
 
-cd kronos
+cd innovault
 
-echo "Installing Kronos Node Modules..."
+echo "Installing InnoVault Node Modules..."
 
 sudo su
 
@@ -485,15 +485,15 @@ cd ..
 
 cd ..
 
-echo "Successfully Installed Kronos Node Modules"
+echo "Successfully Installed InnoVault Node Modules"
 
 echo "Updating Enviroment..."
 
 nohup npm run headless &
 
-echo "Kronos and Denarius are successfully installed! Kronos is now running on port 3000, open your browser to this devices local LAN IP, e.g. 192.168.x.x:3000"
+echo "InnoVault and Innova are successfully installed! InnoVault is now running on port 3000, open your browser to this devices local LAN IP, e.g. 192.168.x.x:3000"
                 ;;
-3) echo 3 "Update Kronos ${VERSION} for Denarius"
+3) echo 3 "Update InnoVault ${VERSION} for Innova"
 
 echo "Updating in progress...This is a work in progress"
 
@@ -505,7 +505,7 @@ printf "|   _ (  |     __)| |   | || (\ \) || |   | |(_____  )\n"
 printf "|  ( \ \ | (\ (   | |   | || | \   || |   | |      ) |\n"
 printf "|  /  \ \| ) \ \__| (___) || )  \  || (___) |/\____) |\n"
 printf "|_/    \/|/   \__/(_______)|/    )_)(_______)\_______)\n"
-printf "Updating to Kronos Version ${VERSION}\n\n"
+printf "Updating to InnoVault Version ${VERSION}\n\n"
 
 echo "Ensuring you have NVM and v12 NodeJS/NPM"
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -514,17 +514,17 @@ sudo apt-get install -y nodejs
 
 npm install -g npm node-gyp electron electron-forge electron-rebuild
 
-if [ ! -f ~/snap/denarius/common/.denarius/walletnotify.sh ]; then
-touch ~/snap/denarius/common/.denarius/walletnotify.sh
+if [ ! -f ~/snap/innova/common/.innova/walletnotify.sh ]; then
+touch ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a #!/bin/sh' ~/snap/denarius/common/.denarius/walletnotify.sh
+sed -i '$a #!/bin/sh' ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a curl http://127.0.0.1:3000/walletnotify -d "txid=$@"' ~/snap/denarius/common/.denarius/walletnotify.sh
+sed -i '$a curl http://127.0.0.1:3000/walletnotify -d "txid=$@"' ~/snap/innova/common/.innova/walletnotify.sh
 
-sed -i '$a walletnotify=curl http://127.0.0.1:3000/walletnotify -d "txid=%s"' ~/snap/denarius/common/.denarius/denarius.conf
+sed -i '$a walletnotify=curl http://127.0.0.1:3000/walletnotify -d "txid=%s"' ~/snap/innova/common/.innova/innova.conf
 fi
 
-cd kronos
+cd innovault
 
 git checkout .
 
@@ -532,7 +532,7 @@ git pull
 
 NODEPID=$(pidof node)
 
-echo "Killing PID of Kronos for update ${NODEPID}"
+echo "Killing PID of InnoVault for update ${NODEPID}"
 
 sudo kill -9 ${NODEPID}
 
@@ -554,7 +554,7 @@ cd ..
 
 nohup npm run headless &
 
-echo "Successfully Updated Kronos to ${VERSION}, You may now login from your web browser."
+echo "Successfully Updated InnoVault to ${VERSION}, You may now login from your web browser."
                 ;;
 esac
 echo Selected $choice

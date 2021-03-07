@@ -1,26 +1,25 @@
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * Kronos by Carsen Klock 2020, Main app.js
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * * KRONOS - DECENTRALIZED APPLICATION AND LAN SERVER
+ * * INNOVAULT - DECENTRALIZED APPLICATION AND LAN SERVER
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 
- *  _        _______  _______  _        _______  _______ 
- * | \    /\(  ____ )(  ___  )( (    /|(  ___  )(  ____ \
- * |  \  / /| (    )|| (   ) ||  \  ( || (   ) || (    \/
- * |  (_/ / | (____)|| |   | ||   \ | || |   | || (_____ 
- * |   _ (  |     __)| |   | || (\ \) || |   | |(_____  )
- * |  ( \ \ | (\ (   | |   | || | \   || |   | |      ) |
- * |  /  \ \| ) \ \__| (___) || )  \  || (___) |/\____) |
- * |_/    \/|/   \__/(_______)|/    )_)(_______)\_______)
+ *
+ *  _____      __      _      __      _     ____     __    __     ____     __    __   _____       ________
+ * |_   _|    /  \    / )    /  \    / )   / __ \    ) )  ( (    (    )    ) )  ( (  (_   _)     (___  ___)
+ *  | |     / /\ \  / /    / /\ \  / /   / /  \ \  ( (    ) )   / /\ \   ( (    ) )   | |           ) )
+ *  | |     ) ) ) ) ) )    ) ) ) ) ) )  ( ()  () )  \ \  / /   ( (__) )   ) )  ( (    | |          ( (
+ *  | |    ( ( ( ( ( (    ( ( ( ( ( (   ( ()  () )   \ \/ /     )    (   ( (    ) )   | |   __      ) )
+ * _| |__  / /  \ \/ /    / /  \ \/ /    \ \__/ /     \  /     /  /\  \   ) \__/ (  __| |___) )    ( (
+ *|_____| (_/    \__/    (_/    \__/      \____/       \/     /__(  )__\  \______/  \________/     /__\
  *
  *
- * Kronos Module dependencies.
- * 
- * 
- * 
+ * InnoVault Module dependencies.
+ *
+ *
+ *
  */
 const express = require('express');
 const compression = require('compression');
@@ -75,7 +74,7 @@ const readline = require('readline')
 
 // // Peer Identity, a random hash for identify your peer
 // const myId = crypto.randomBytes(32)
-// console.log('Your Kronos Peer identity: ' + myId.toString('hex'))
+// console.log('Your InnoVault Peer identity: ' + myId.toString('hex'))
 
 // // reference to redline interface
 // let rl
@@ -84,7 +83,7 @@ const readline = require('readline')
 //  */
 // function log () {
 //   if (rl) {
-//     rl.clearLine()    
+//     rl.clearLine()
 //     rl.close()
 //     rl = undefined
 //   }
@@ -114,7 +113,7 @@ const readline = require('readline')
 //   });
 // }
 
-// /** 
+// /**
 //  * Default DNS and DHT servers
 //  * This servers are used for peer discovery and establishing connection
 //  */
@@ -142,7 +141,7 @@ const readline = require('readline')
 //    * The channel we are connecting to.
 //    * Peers should discover other peers in this channel
 //    */
-//   sw.join('kronos')
+//   sw.join('innovault')
 
 //   sw.on('connection', (conn, info) => {
 //     // Connection id
@@ -188,7 +187,7 @@ const readline = require('readline')
 //   })
 
 //   // Read user message from command line
-//   askUser()  
+//   askUser()
 
 // })()
 // ;(async () => {
@@ -220,8 +219,8 @@ const readline = require('readline')
 //     await gateway.start();
 //     const ipfsa = new IPFSAPI(node);
 //     await ipfsa.start();
-//     console.log('Kronos IPFS Gateway Started: 127.0.0.1:9090')
-//     console.log('Kronos IPFS Node Started: ', id);
+//     console.log('InnoVault IPFS Gateway Started: 127.0.0.1:9090')
+//     console.log('InnoVault IPFS Node Started: ', id);
 //     Storage.set('ipfs', id);
 //   } catch (err) {
 //     console.error(err);
@@ -231,19 +230,19 @@ const readline = require('readline')
 var currentOS = os.platform();
 
 function getUserHome() {
-  // From process.env 
+  // From process.env
   if (process.platform == 'win32') {
-    if (!mkdirp.sync(process.env.APPDATA+'\\Kronos\\DATA\\')) {
-      mkdirp.sync(process.env.APPDATA+'\\Kronos\\DATA\\kronosleveldb\\');
-      return process.env.APPDATA+'\\Kronos\\DATA\\'; 
+    if (!mkdirp.sync(process.env.APPDATA+'\\InnoVault\\DATA\\')) {
+      mkdirp.sync(process.env.APPDATA+'\\InnoVault\\DATA\\innovaultleveldb\\');
+      return process.env.APPDATA+'\\InnoVault\\DATA\\';
     }
-    return process.env.APPDATA+'\\Kronos\\DATA\\'; 
+    return process.env.APPDATA+'\\InnoVault\\DATA\\';
   } else {
-    if (!mkdirp.sync(process.env.HOME+'/Kronos/DATA/')) {
-      mkdirp.sync(process.env.HOME+'/Kronos/DATA/kronosleveldb/');
-      return process.env.HOME+'/Kronos/DATA/'; 
+    if (!mkdirp.sync(process.env.HOME+'/InnoVault/DATA/')) {
+      mkdirp.sync(process.env.HOME+'/InnoVault/DATA/innovaultleveldb/');
+      return process.env.HOME+'/InnoVault/DATA/';
     }
-    return process.env.HOME+'/Kronos/DATA/'; 
+    return process.env.HOME+'/InnoVault/DATA/';
   }
 }
 
@@ -253,10 +252,10 @@ var dir = getUserHome();
 //     //fs.mkdirSync(dir);
 //     if (process.platform == 'win32') {
 //       mkdirp.sync(dir);
-//       mkdirp.sync(process.env.APPDATA+'\\Kronos\\DATA\\kronosleveldb');
+//       mkdirp.sync(process.env.APPDATA+'\\InnoVault\\DATA\\innovaultleveldb');
 //     } else {
 //       mkdirp.sync(dir);
-//       mkdirp.sync(process.env.HOME+'/Kronos/DATA/kronosleveldb/');
+//       mkdirp.sync(process.env.HOME+'/InnoVault/DATA/innovaultleveldb/');
 //     }
 // }
 
@@ -264,8 +263,8 @@ if (currentOS === 'linux') {
   const randosecret = randomstring.generate(42);
   const randosess = randomstring.generate(42);
   //let linkey = files.readFileSync('.env', 'utf-8');
-  //console.log(`Kronos Data Directory: ` + getUserHome()+`\\Kronos\\DATA`); 
-  
+  //console.log(`InnoVault Data Directory: ` + getUserHome()+`\\InnoVault\\DATA`);
+
   if (!fs.existsSync(getUserHome()+'.env')) {
     fs.writeFileSync(getUserHome()+'.env', `KEY=${randosecret}\nSESS_KEY=${randosess}`);
   }
@@ -273,28 +272,28 @@ if (currentOS === 'linux') {
 } else {
   // const randosecret = randomstring.generate(42);
   // const randosess = randomstring.generate(42);
-  // let keytary = keytar.getPasswordSync('Kronos', 'localkey');
+  // let keytary = keytar.getPasswordSync('InnoVault', 'localkey');
 
   // // console.log('Keytar: ' + keytary);
 
   // if (keytary == null) {
-  //   keytar.setPasswordSync('Kronos', 'localkey', randosecret);
-  //   keytar.setPasswordSync('Kronos', 'localses', randosess);
+  //   keytar.setPasswordSync('InnoVault', 'localkey', randosecret);
+  //   keytar.setPasswordSync('InnoVault', 'localses', randosess);
   // }
   const randosecret = randomstring.generate(42);
   const randosess = randomstring.generate(42);
 
-  //console.log(`Kronos Data Directory: ` + getUserHome()+`\\Kronos\\DATA`); 
-  
+  //console.log(`InnoVault Data Directory: ` + getUserHome()+`\\InnoVault\\DATA`);
+
   if (!fs.existsSync(getUserHome()+`.env`)) {
     fs.writeFileSync(getUserHome()+`.env`, `KEY=${randosecret}\nSESS_KEY=${randosess}`);
   }
 }
 
 //Print in console your LAN IP
-console.log(`Kronos running on your LAN: ${ip.address()} on platform ${currentOS}`);
+console.log(`InnoVault running on your LAN: ${ip.address()} on platform ${currentOS}`);
 
-const logpath = getUserHome()+`/kronos.log`;
+const logpath = getUserHome()+`/innovault.log`;
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -303,20 +302,20 @@ const logpath = getUserHome()+`/kronos.log`;
 
 dotenv.config({ path: getUserHome()+`.env` });
 
-// var privateKey  = fs.readFileSync('./ssl/kronos.key', 'utf8');
-// var certificate = fs.readFileSync('./ssl/kronos.crt', 'utf8');
+// var privateKey  = fs.readFileSync('./ssl/innovault.key', 'utf8');
+// var certificate = fs.readFileSync('./ssl/innovault.crt', 'utf8');
 
 // var credentials = {key: privateKey, cert: certificate};
 
 /**
  * Controllers (route handlers).
  */
-const kronosController = require('./controllers/kronos');
+const innovaultController = require('./controllers/innovault');
 const authController = require('./controllers/auth');
 const dashController = require('./controllers/dashboard');
 const sDashController = require('./controllers/simple/dashboard');
 const sTXController = require('./controllers/simple/txs');
-const coreController = require('./controllers/simple/kronos');
+const coreController = require('./controllers/simple/innovault');
 const toolsController = require('./controllers/tools');
 const walletController = require('./controllers/wallet');
 const explorerController = require('./controllers/explorer');
@@ -378,7 +377,7 @@ app.use((req, res, next) => {
     socket_idx.push(socket.id);
 
     if (socket_idx[0] === socket.id) {
-      // remove the connection listener for any subsequent 
+      // remove the connection listener for any subsequent
       // connections with the same ID
       res.io.removeAllListeners('connection');
     }
@@ -388,11 +387,11 @@ app.use((req, res, next) => {
     var notifydb;
     var thedir = appRoot + '/notifies.txt';
     var thedb = files.readFileSync(thedir).toString();
-    
+
     if (thedb == '') {
       notifydb = '';
     } else {
-      notifydb = thedb;      
+      notifydb = thedb;
 
       console.log("IM EMITTING WEEFEEEE");
 
@@ -409,28 +408,28 @@ app.use((req, res, next) => {
       var notifydb;
       var thedir = appRoot + '/notifies.txt';
       var thedb = await files.readFileSync(thedir).toString();
-      
+
       if (thedb == '') {
         notifydb = '';
       } else {
-        notifydb = thedb;   
-    
+        notifydb = thedb;
+
         console.log("INTERVAL RUNNING ON SOCKET EMIT");
-      
+
         socket.emit("notifications", {notifydb: notifydb});
-      
+
         files.writeFile('notifies.txt', '', function (err) {
           if (err) throw err;
           console.log('Notification Cleared!');
         });
 
-      }   
+      }
 
     }
 
     setInterval(() => {asyncFun();}, 3000);
   });
-  // res.locals.csrftoken = req.csrfToken(); 
+  // res.locals.csrftoken = req.csrfToken();
   next();
 });
 
@@ -444,15 +443,15 @@ if (currentOS === 'linux') {
     resave: true,
     saveUninitialized: true,
     unset: 'destroy',
-    name: 'KronosAuth',
+    name: 'InnoVaultAuth',
     cookie: {
         maxAge: (1000 * 60 * 60 * 24) // default is 1 day
     }
   });
-  
+
   //New Auth Sharing Session with Sockets.io
   app.use(sess);
-  
+
   io.use(sharedsession(sess));
 } else {
 
@@ -463,7 +462,7 @@ if (currentOS === 'linux') {
     resave: true,
     saveUninitialized: true,
     unset: 'destroy',
-    name: 'KronosAuth',
+    name: 'InnoVaultAuth',
     cookie: {
         maxAge: (1000 * 60 * 60 * 24) // default is 1 day
     }
@@ -476,7 +475,7 @@ if (currentOS === 'linux') {
 }
 
 app.set('trust proxy',1);
- 
+
 // Load express-toastr
 // You can pass an object of default options to toastr(), see example/index.coffee
 app.use(toastr());
@@ -487,7 +486,7 @@ var csrfProtection = csrf({ cookie: true })
 
 app.use(function (req, res, next)
 {
-    res.locals.csrftoken = req.csrfToken(); 
+    res.locals.csrftoken = req.csrfToken();
     res.locals.toasts = req.toastr.render()
     next()
 });
@@ -500,7 +499,7 @@ var auth = function(req,res,next){
   if (!req.session.loggedin){
       //console.log('You are NOT AUTHED');
       return res.redirect("/login");
-      //return res.render('login', { title: 'Kronos Login'});
+      //return res.render('login', { title: 'InnoVault Login'});
   } else {
       //console.log('You are AUTHED');
       return next();
@@ -511,7 +510,7 @@ var authseed = function(req,res,next){
   if (!req.session.loggedin2){
       //console.log('You are NOT AUTHED');
       return res.redirect("/auth");
-      //return res.render('login', { title: 'Kronos Login'});
+      //return res.render('login', { title: 'InnoVault Login'});
   } else {
       //console.log('You are AUTHED');
       return next();
@@ -522,7 +521,7 @@ var authterm = function(req,res,next){
   if (!req.session.loggedin3){
       //console.log('You are NOT AUTHED');
       return res.redirect("http://" + ip.address() + ":3000/autht");
-      //return res.render('login', { title: 'Kronos Login'});
+      //return res.render('login', { title: 'InnoVault Login'});
   } else {
       //console.log('You are AUTHED');
       return next();
@@ -533,7 +532,7 @@ var authtermpop = function(req,res,next){
   if (!req.session.loggedin4){
       //console.log('You are NOT AUTHED');
       return res.redirect("http://" + ip.address() + ":3000/authk");
-      //return res.render('login', { title: 'Kronos Login'});
+      //return res.render('login', { title: 'InnoVault Login'});
   } else {
       //console.log('You are AUTHED');
       return next();
@@ -544,7 +543,7 @@ var authtermpop = function(req,res,next){
 // gritty.listen(io, {
 //   prefix: '/gritty',
 // });
- 
+
 const Limiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 5 minutes
   max: 50 // Max 50 Requests
@@ -559,7 +558,7 @@ const TXLimiter = rateLimit({
  * Primary app routes.
  */
 
-//Kronos Auth Controller
+//InnoVault Auth Controller
 app.get('/login', Limiter, authController.login);
 app.get('/auth', auth, Limiter, authController.auth);
 app.get('/autht', auth, Limiter, authController.autht);
@@ -635,16 +634,16 @@ app.post('/autht', auth, Limiter, authController.postAutht);
 app.post('/authk', auth, Limiter, authController.postAuthk);
 
 
-//POST Routes for kronosController
-app.post('/unlock', auth, kronosController.unlock);
-app.post('/unlockstaking', auth, kronosController.unlockstaking);
-app.post('/lock', auth, kronosController.lock);
-app.post('/encrypt', auth, kronosController.encrypt);
-app.post('/reboot', auth, kronosController.reboot);
-app.post('/privkey', auth, kronosController.privkey);
-app.post('/walletnotify', TXLimiter, kronosController.notification);
+//POST Routes for innovaultController
+app.post('/unlock', auth, innovaultController.unlock);
+app.post('/unlockstaking', auth, innovaultController.unlockstaking);
+app.post('/lock', auth, innovaultController.lock);
+app.post('/encrypt', auth, innovaultController.encrypt);
+app.post('/reboot', auth, innovaultController.reboot);
+app.post('/privkey', auth, innovaultController.privkey);
+app.post('/walletnotify', TXLimiter, innovaultController.notification);
 
-app.get('/advchat', auth, kronosController.getchat);
+app.get('/advchat', auth, innovaultController.getchat);
 
 //Tools Controller
 app.get('/ddebug', auth, toolsController.getDebugLog);
@@ -657,7 +656,7 @@ app.get('/', auth, dashController.index);
 app.post('/', auth, dashController.index);
 
 
-// Kronos Explorer Controller
+// InnoVault Explorer Controller
 app.get('/tx/:tx', auth, explorerController.gettx);
 app.get('/block/:block', auth, explorerController.getblock);
 app.get('/address/:addr', auth, explorerController.getaddress);
@@ -713,10 +712,10 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(port, '0.0.0.0', () => {
-  var tri = tribus.digest('Denarius');
-  console.log('Tribus Hash of "Denarius"', tri);
-  console.log('Kronos Interface is running at http://' + ip.address() + ':%d', '3000', app.get('env'));
-  console.log('Open the URL above in your web browser on your local network to start using the browser version of Kronos!\n');
+  var tri = tribus.digest('Innova');
+  console.log('Tribus Hash of "Innova"', tri);
+  console.log('InnoVault Interface is running at http://' + ip.address() + ':%d', '3000', app.get('env'));
+  console.log('Open the URL above in your web browser on your local network to start using the browser version of InnoVault!\n');
 });
 
 module.exports = {app: app, server: server};

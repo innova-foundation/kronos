@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Tools Controller
+* InnoVault Tools Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -20,7 +20,7 @@ const cpuu = require('cputilization');
 const toastr = require('express-toastr');
 const exec = require('child_process').exec;
 const shell = require('shelljs');
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
 const bip32 = require("bip32d");
@@ -60,7 +60,7 @@ if (currentOS === 'linux') {
     }
 
 } else {
-    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
     function shahash(key) {
         key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -87,14 +87,14 @@ if (typeof Storage.get('rpchost') == 'undefined') {
 	Storage.set('rpcpass', 'null');
 }
 
-// GET Kronos Settings
+// GET InnoVault Settings
 exports.getSettings = (req, res) => {
 	const ip = require('ip');
 	const ipaddy = ip.address();
 
     res.locals.lanip = ipaddy;
     
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -192,20 +192,20 @@ exports.getSettings = (req, res) => {
 					}
 				}
 		
-		res.render('settings', {title: 'Kronos Settings', staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
+		res.render('settings', {title: 'InnoVault Settings', staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
 	});
 });
 });
 };
 
-// GET Denarius Debug Log File
+// GET Innova Debug Log File
 exports.getDebugLog = (req, res) => {
 	const ip = require('ip');
 	const ipaddy = ip.address();
 
     res.locals.lanip = ipaddy;
         
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -218,12 +218,12 @@ exports.getDebugLog = (req, res) => {
 	console.log("HOME DIRECTORY:", os.homedir());
 
 	// if (os.platform() == 'win32') {
-	// 	var debugloc = os.homedir() + '\AppData\Roaming\Denarius\debug.log';
+	// 	var debugloc = os.homedir() + '\AppData\Roaming\Innova\debug.log';
 	// } else {
-	// 	var debugloc = os.homedir() + '\snap\denarius\common\.denarius\debug.log';
+	// 	var debugloc = os.homedir() + '\snap\innova\common\.innova\debug.log';
 	// }
 	
-	var debugloc = ((os.platform() == 'win32') ? os.homedir() + '/AppData/Roaming/Denarius/debug.log' : os.homedir() + '/snap/denarius/common/.denarius/debug.log');
+	var debugloc = ((os.platform() == 'win32') ? os.homedir() + '/AppData/Roaming/Innova/debug.log' : os.homedir() + '/snap/innova/common/.innova/debug.log');
 
 	console.log("FULL DIRECTORY", debugloc);
 
@@ -327,7 +327,7 @@ exports.getDebugLog = (req, res) => {
 
 		const lines = file.split('\n');
 		
-		res.render('debug', {title: 'Denarius Debug Log', lines: lines, debugloc: debugloc, staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
+		res.render('debug', {title: 'Innova Debug Log', lines: lines, debugloc: debugloc, staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
 	});
 });
 });
@@ -341,7 +341,7 @@ exports.terminal = (req, res) => {
 
     res.locals.lanip = ipaddy;
     
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -445,7 +445,7 @@ exports.terminal = (req, res) => {
 				// Initialize node-pty with an appropriate shell
 				var shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 		
-		res.render('account/terminal', {title: 'Kronos Terminal', staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
+		res.render('account/terminal', {title: 'InnoVault Terminal', staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
 	});
 });
 });
@@ -458,7 +458,7 @@ exports.termPop = (req, res) => {
 
     res.locals.lanip = ipaddy;
     
-    //Connect to our D node 
+    //Connect to our INN node 
     //process.env.DUSER
     const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -562,7 +562,7 @@ exports.termPop = (req, res) => {
 				// Initialize node-pty with an appropriate shell
 				var shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 		
-		res.render('account/termpop', {title: 'Kronos Terminal', staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
+		res.render('account/termpop', {title: 'InnoVault Terminal', staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
 	});
 });
 });

@@ -40,23 +40,23 @@ block content
                       i.fa.fa-key.fa-5x
                     .col-sm-9(style='margin-top:10px !important;')
                       p(align='left')
-                        strong Get the private key of an owned Denarius address
+                        strong Get the private key of an owned Innova address
                       p(align='left')
-                        | Enter your Denarius wallet address below
+                        | Enter your Innova wallet address below
                   br
                   form.form-horizontal(action='/privkey', method='POST', id='sendpriv')
                     input(type='hidden', name='_csrf', value=_csrf)
                     .form-group
-                      label.col-sm-3.control-label(for='addi') Enter D Address
+                      label.col-sm-3.control-label(for='addi') Enter INN Address
                       .col-sm-7
                         input.form-control.blackinput(type='text', name='addi', id='addi', placeholder='D8jRk63FQDRUfeKqz99rkmCr47qsFUT5K2')
               .modal-footer(style='border-top: none !important;')
                   button.btn.btn-danger(type='submit', id='submit', onclick='confirmedpk()') Get Private Key
                   button.btn.btn-default(type='button', data-dismiss='modal') Close
   .container
-    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Denarius Addresses
+    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Innova Addresses
     p(align='center') 
-      | These are your Denarius (D) addresses and their respective balances that you own.
+      | These are your Innova (INN) addresses and their respective balances that you own.
       br
       br
       br
@@ -65,7 +65,7 @@ block content
           .row
             .col-md-2(align='center')
               .qrcode(align='center')
-                a(href='denarius:' + addyy)
+                a(href='innova:' + addyy)
                   img(src='' + addyqr, align='center', style='border-radius:10px; width:75px;')
             .col-md-5(align='center', style='margin-top:25px;')
               strong #{addyy}
@@ -80,7 +80,7 @@ block content
                     button.btn.btn-sm.btn-default(type='submit', id='submit', onclick='getaddress()')
                       | Get New Address
       #box(align='center')
-        em Write down or import your private key into Denarius-QT or denariusd to access your main wallet address
+        em Write down or import your private key into Innova-QT or innovad to access your main wallet address
         br
         strong #{privkey}
     .row
@@ -98,7 +98,7 @@ block content
                 a(href='/address/'+address.address) #{address.address}
             p(align='center')
               .qrcode(align='center')
-                a(href='denarius:' + address.address)
+                a(href='innova:' + address.address)
                   img(src='' + address.qr, align='center', style='border-radius:10px;')
             p(align='center')
               .span(style='font-size:16px;text-align:center;color:#777;') Balance
@@ -118,7 +118,7 @@ block content
           each address in scripthasharray
             tr
               td(align='center')
-                a(href='denarius:' + address.address)
+                a(href='innova:' + address.address)
                   img(src='' + address.qr, align='center', style='width:75px;border-radius:10px;')
               td(align='center') 
                 a(href='/address/'+address.address) #{address.address}

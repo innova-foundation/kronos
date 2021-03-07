@@ -1,48 +1,47 @@
-# Kronos Wallet
+# InnoVault Wallet
 
-Official Website: https://kronoswallet.com
-#### A Dashboard Interface and Wallet for Denarius (D), Bitcoin (BTC), Ethereum (ETH), and Denarii (ARI) written in NodeJS and Electron
+
+#### A Dashboard Interface and Wallet for Innova (INN), Bitcoin (BTC), Ethereum (ETH), and USDT (USDT) written in NodeJS and Electron
 =======================
-![Kronos Logo](https://user-images.githubusercontent.com/10162347/93870495-8bd68680-fc8a-11ea-85f7-a5ca7b52d1ba.png)
 
-[![GitHub version](https://img.shields.io/github/release/carsenk/kronos.svg)](https://badge.fury.io/gh/carsenk%2Fkronos)
-[![Build Status](https://travis-ci.org/carsenk/kronos.svg?branch=master)](https://travis-ci.org/carsenk/kronos) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/carsenk/kronos) [![Dependency Status](https://david-dm.org/carsenk/kronos/status.svg?style=flat)](https://david-dm.org/carsenk/kronos) [![devDependencies Status](https://david-dm.org/carsenk/kronos/dev-status.svg)](https://david-dm.org/carsenk/kronos?type=dev) [![Join the chat at https://discord.gg/UPpQy3n](https://img.shields.io/badge/Discord-Chat-blue.svg?logo=discord)](https://discord.gg/UPpQy3n)
+[![GitHub version](https://img.shields.io/github/release/carsenk/innovault.svg)](https://badge.fury.io/gh/carsenk%2Finnovault)
+[![Build Status](https://travis-ci.org/carsenk/innovault.svg?branch=master)](https://travis-ci.org/carsenk/innovault) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/carsenk/innovault) [![Dependency Status](https://david-dm.org/carsenk/innovault/status.svg?style=flat)](https://david-dm.org/carsenk/innovault) [![devDependencies Status](https://david-dm.org/carsenk/innovault/dev-status.svg)](https://david-dm.org/carsenk/innovault?type=dev) [![Join the chat at https://discord.gg/UPpQy3n](https://img.shields.io/badge/Discord-Chat-blue.svg?logo=discord)](https://discord.gg/UPpQy3n)
 
-[![Kronos downloads](https://img.shields.io/github/downloads/carsenk/kronos/total.svg)](https://github.com/carsenk/kronos/releases)
-[![HitCount](http://hits.dwyl.io/carsenk/kronos.svg)](http://hits.dwyl.io/carsenk/kronos)
+[![InnoVault downloads](https://img.shields.io/github/downloads/carsenk/innovault/total.svg)](https://github.com/carsenk/innovault/releases)
+[![HitCount](http://hits.dwyl.io/carsenk/innovault.svg)](http://hits.dwyl.io/carsenk/innovault)
 <a href="https://discord.gg/UPpQy3n"><img src="https://discordapp.com/api/guilds/334361453320732673/embed.png" alt="Discord server" /></a>
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/carsenk/kronos.svg) ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/carsenk/kronos.svg)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/carsenk/innovault.svg) ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/carsenk/innovault.svg)
 
-[![Build history](https://buildstats.info/travisci/chart/carsenk/kronos?branch=master)](https://travis-ci.org/carsenk/kronos?branch=master)
+[![Build history](https://buildstats.info/travisci/chart/carsenk/innovault?branch=master)](https://travis-ci.org/carsenk/innovault?branch=master)
 
 This is a massive project with active development in progress and this repo will be updated in time, be warned, things can break and always always backup backup backup!
 
-Kronos is a Dashboard Interface and Wallet for Denarius (D), Bitcoin (BTC), Ethereum (ETH), and Denarii (ARI) as an app written in NodeJS and Electron. The Kronos Wallet is also now available on Windows, macOS, and Linux platforms. (You can also access it on mobile from your local network).
+InnoVault is a Dashboard Interface and Wallet for Innova (INN), Bitcoin (BTC), Ethereum (ETH), and USDT (USDT) as an app written in NodeJS and Electron. The InnoVault Wallet is also now available on Windows, macOS, and Linux platforms. (You can also access it on mobile from your local network).
 
-Send and Receive D, BTC, ETH, and ARI Funds, create new addresses, view transactions, unlock/lock wallet, stake D, reboot your node, import private keys, encrypt your wallet, broadcast raw transactions, sign and verify Denarius messages, and much more!
+Send and Receive D, BTC, ETH, and ARI Funds, create new addresses, view transactions, unlock/lock wallet, stake D, reboot your node, import private keys, encrypt your wallet, broadcast raw transactions, sign and verify Innova messages, and much more!
 
-This was built for the Raspberry Pi in mind and one with at least 2GB of RAM. 4GB and 8GB models are recommended! Kronos will run on any Linux distro with a minimal amount of 2GB of RAM.
+This was built for the Raspberry Pi in mind and one with at least 2GB of RAM. 4GB and 8GB models are recommended! InnoVault will run on any Linux distro with a minimal amount of 2GB of RAM.
 
-Running the Kronos headless installer script below installs denarius via snap install and then modifies your .env in Kronos and denarius.conf to a random rpcuser and rpcpass, Kronos will then be running on your LAN (192.168.x.x:3000) on port 3000.
+Running the InnoVault headless installer script below installs innova via snap install and then modifies your .env in InnoVault and innova.conf to a random rpcuser and rpcpass, InnoVault will then be running on your LAN (192.168.x.x:3000) on port 3000.
 
-# [GET STARTED USING KRONOS](https://github.com/carsenk/kronos/blob/master/GETTING-STARTED.md)
+# [GET STARTED USING INNOVAULT](https://github.com/carsenk/innovault/blob/master/GETTING-STARTED.md)
 
 Recommended Devices and OS
 -----------------
 * Windows 10
 * macOS 10.11 or greater
 * Linux (Any modern distro, Ubuntu preferred)
-* 4GB RAM recommended for Advanced Mode with Denarius running
-* 2GB RAM recommended for Core Mode without Denarius running
+* 4GB RAM recommended for Advanced Mode with Innova running
+* 2GB RAM recommended for Core Mode without Innova running
 
 Screenshots
 -----------------
 
-![Kronos](https://user-images.githubusercontent.com/10162347/101270083-c94b9b80-3732-11eb-95cc-d9af53031225.png)
+![InnoVault](https://user-images.githubusercontent.com/10162347/101270083-c94b9b80-3732-11eb-95cc-d9af53031225.png)
 
-![Kronos Chat](https://user-images.githubusercontent.com/10162347/101270126-5131a580-3733-11eb-93e2-56f6f77ff9d8.png)
+![InnoVault Chat](https://user-images.githubusercontent.com/10162347/101270126-5131a580-3733-11eb-93e2-56f6f77ff9d8.png)
 
-![Kronos](https://user-images.githubusercontent.com/10162347/101270092-ee400e80-3732-11eb-97a8-36cf76db37ee.png)
+![InnoVault](https://user-images.githubusercontent.com/10162347/101270092-ee400e80-3732-11eb-97a8-36cf76db37ee.png)
 
 
 Features
@@ -54,24 +53,24 @@ Features
 - Core Mode and Advanced Mode
 - Send and Receive D
 - Wallet Addresses
-- Address Balances Powered by Scripthash and ElectrumX (denarius.pro)
+- Address Balances Powered by Scripthash and ElectrumX (innova.pro)
 - View all transactions
-- Stake your Denarius in Advanced Mode
+- Stake your Innova in Advanced Mode
 - Block Explorer for Addresses, Blocks, and Transactions
-- Realtime Denarius Block Height on Dashboard
+- Realtime Innova Block Height on Dashboard
 - Realtime CPU and Memory Usage Gauges
 - Unlock/Lock/Encrypt your wallet
 - Backup Wallet
-- Sign/Verify Denarius Messages
+- Sign/Verify Innova Messages
 - Import Private Keys
 - Export Private Keys
 - Broadcast Raw Transaction
 - View FortunaStake Nodes
 - Generate FS Key
-- KeepKey Client (View Denarius Address and Balance and TX History) (No TX Signing Yet)
+- KeepKey Client (View Innova Address and Balance and TX History) (No TX Signing Yet)
 - Easy to install
-- Auto Updates for Denarius via Snap
-- Easy installer to install Kronos
+- Auto Updates for Innova via Snap
+- Easy installer to install InnoVault
 - Mobile Ready Responsive Design
 - Flash and Toastr notifications
 - MVC Project Structure
@@ -82,27 +81,27 @@ Features
 
 Changes
 -------------
-As of v1.5.0 Beta of Kronos it is now built with Electron for Windows, macOS, and Linux as an AIO app to use alongside a Denarius node.
+As of v1.5.0 Beta of InnoVault it is now built with Electron for Windows, macOS, and Linux as an AIO app to use alongside a Innova node.
 
-As of v1.5.5 Beta of Kronos it now features multi modes "Core" which only relays on ElectrumX SPV Servers and a more "Pro" mode where you can configure the RPC details to your Denarius node.
+As of v1.5.5 Beta of InnoVault it now features multi modes "Core" which only relays on ElectrumX SPV Servers and a more "Pro" mode where you can configure the RPC details to your Innova node.
 
-As of v1.6.0 Beta of Kronos it now features ETH and ARI support fully, you can send and receive ARI or ETH in Core Mode in Kronos
+As of v1.6.0 Beta of InnoVault it now features ETH and ARI support fully, you can send and receive ARI or ETH in Core Mode in InnoVault
 
-As of v1.6.3 Beta of Kronos it now features using OS built keychain security for storing randomly generated secret keys for use with Kronos encryption.
+As of v1.6.3 Beta of InnoVault it now features using OS built keychain security for storing randomly generated secret keys for use with InnoVault encryption.
 
-As of v1.7.5 Beta of Kronos it now has binaries built and auto updating for the binaries along with a dedicated data directory for Kronos data.
+As of v1.7.5 Beta of InnoVault it now has binaries built and auto updating for the binaries along with a dedicated data directory for InnoVault data.
 
-As of v1.7.7 Beta of Kronos it now has decentralized encrypted chat between both Core and Advanced Modes. Importing of seed phrases in Core Mode is now available!
+As of v1.7.7 Beta of InnoVault it now has decentralized encrypted chat between both Core and Advanced Modes. Importing of seed phrases in Core Mode is now available!
 
 Prerequisites
 -------------
 
-- [denariusd](https://github.com/carsenk/denarius)
+- [innovad](https://github.com/carsenk/innova)
 - [Node.js 12+](http://nodejs.org)
 
 Getting Started
 ---------------
-[GET STARTED USING KRONOS](https://github.com/carsenk/kronos/blob/master/GETTING-STARTED.md)
+[GET STARTED USING INNOVAULT](https://github.com/carsenk/innovault/blob/master/GETTING-STARTED.md)
 
 
 License

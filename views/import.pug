@@ -4,7 +4,7 @@ doctype html
 html(dir="ltr", lang="en-US")
 	head
 		meta(http-equiv="content-type", content="text/html; charset=utf-8")
-		meta(name="author", content="Kronos Seed Import")
+		meta(name="author", content="InnoVault Seed Import")
 		link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css')
 		style.
 			/* style.css */	
@@ -143,8 +143,8 @@ html(dir="ltr", lang="en-US")
 					span(style='color:#ccc;')
 						| Import a Seed
 					br
-					.toptxt(style='color:#777;font-size:12px;max-width:500px;') Input a BIP39 12 or 24 Word Seed "Phrase", Ensure that you have these words written down and saved somewhere safe. Your Kronos wallets will be derived from this phrase. 
-					div(style='background-color:#311212;border-radius:15px;padding:5px;color:#fff;font-weight:bold;font-size:11px;margin-top:10px;margin-bottom:10px;') Importing a seed phrase will permanently erase your current Kronos seed phrase!
+					.toptxt(style='color:#777;font-size:12px;max-width:500px;') Input a BIP39 12 or 24 Word Seed "Phrase", Ensure that you have these words written down and saved somewhere safe. Your InnoVault wallets will be derived from this phrase. 
+					div(style='background-color:#311212;border-radius:15px;padding:5px;color:#fff;font-weight:bold;font-size:11px;margin-top:10px;margin-bottom:10px;') Importing a seed phrase will permanently erase your current InnoVault seed phrase!
 					input(type='hidden' name='_csrf' value=csrftoken)
 					textarea(id="SEEDPHRASE" name="SEEDPHRASE" placeholder='' autofocus) #{mnemonic}
 					br

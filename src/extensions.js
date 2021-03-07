@@ -24,7 +24,7 @@ const loadMetamaskFromManifest = (session, metamaskPath) => {
     manifest.content_scripts[0].matches = ['chrome://brave/**/*'];
     manifest.key = METAMASK_KEY;
     session.defaultSession.extensions.load(metamaskPath, manifest, 'component');
-    //session.defaultSession.loadExtension('C:\Users\carse\Desktop\kronos\src\extensions\metamask');
+    //session.defaultSession.loadExtension('C:\Users\carse\Desktop\innovault\src\extensions\metamask');
      //extension.loadExtension(metamaskPath);
   });
 };

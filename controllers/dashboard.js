@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Dashboard Controller
+* InnoVault Dashboard Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -20,7 +20,7 @@ const cpuu = require('cputilization');
 const toastr = require('express-toastr');
 const exec = require('child_process').exec;
 const shell = require('shelljs');
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
 const bip32 = require("bip32d");
@@ -60,7 +60,7 @@ if (currentOS === 'linux') {
     }
 
 } else {
-    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
     function shahash(key) {
         key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -95,7 +95,7 @@ const ipaddy = ip.address();
 
 res.locals.lanip = ipaddy;
 
-//Connect to our D node 
+//Connect to our INN node 
 //process.env.DUSER
 const client = new bitcoin.Client({
 	host: decrypt(Storage.get('rpchost')),
@@ -105,11 +105,11 @@ const client = new bitcoin.Client({
 	timeout: 30000
 });
 
-//ElectrumX Hosts for Denarius
-const delectrumxhost1 = 'electrumx1.denarius.pro';
-const delectrumxhost2 = 'electrumx2.denarius.pro';
-const delectrumxhost3 = 'electrumx3.denarius.pro';
-const delectrumxhost4 = 'electrumx4.denarius.pro';
+//ElectrumX Hosts for Innova
+const delectrumxhost1 = 'electrumx1.innova.pro';
+const delectrumxhost2 = 'electrumx2.innova.pro';
+const delectrumxhost3 = 'electrumx3.innova.pro';
+const delectrumxhost4 = 'electrumx4.innova.pro';
 
 let socket_id = [];
 let socket_id2 = [];
@@ -378,7 +378,7 @@ res.io.on('connection', function (socket) {
 	}
 	const latestblocks = async () => {
 		// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-		const electrum = new ElectrumCluster('Kronos ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+		const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 		
 		// Add some servers to the cluster.
 		electrum.addServer(delectrumxhost1);
@@ -393,7 +393,7 @@ res.io.on('connection', function (socket) {
 		const handleNewBlocks = function(data)
 		{
 			socket.emit("newblock", {block: data});
-			//console.log("Got New Denarius Block Height");
+			//console.log("Got New Innova Block Height");
 		}
 		//TODO: NEED TO SETUP CLUSTERING AND ALSO ERROR SANITY CHECKING IF SERVER(S) OFFLINE
 		// Set up a subscription for new block headers and handle events with our callback function.
@@ -406,7 +406,7 @@ res.io.on('connection', function (socket) {
 	latestblocks();
 });
 
-	//Denarius Main Account to go off of
+	//Innova Main Account to go off of
 	var account = '333D'; //Needs work
 
 	client.getAddressesByAccount(`dpi(${account})`, function (err, addresses, resHeaders) {
@@ -430,7 +430,7 @@ res.io.on('connection', function (socket) {
 				});
 			}
 
-			var qr = 'denarius:'+address;
+			var qr = 'innova:'+address;
 
 		}
 
@@ -630,13 +630,13 @@ res.io.on('connection', function (socket) {
 				walleticon = 'fa fa-5x fa-unlock coloru';
 				walletstatus = 'Unlocked';
 				walletlink = '#DisplayModalLock';
-				sending = '<p align="center" style="margin-top:55px;"><a class="btn btn-gold" href="/withdraw" style="  background-color: #222 !important;	border: none !important;border-radius:90px !important;padding:30px !important;"><i class="fa fa-5x fa-paper-plane"></i></a><br /><br />Send Denarius</p>';
+				sending = '<p align="center" style="margin-top:55px;"><a class="btn btn-gold" href="/withdraw" style="  background-color: #222 !important;	border: none !important;border-radius:90px !important;padding:30px !important;"><i class="fa fa-5x fa-paper-plane"></i></a><br /><br />Send Innova</p>';
 				sendicon = 'display: visible !important;';
 			} else if (walletstatuss == 'unencrypted') {
 				walleticon = 'fa fa-5x fa-key'
 				walletstatus = 'Unencrypted';
 				walletlink = '#DisplayModalEncrypt';
-				sending = '<p align="center" style="margin-top:55px;"><a class="btn btn-gold" href="/withdraw" style="  background-color: #222 !important;	border: none !important;border-radius:90px !important;padding:30px !important;"><i class="fa fa-5x fa-paper-plane"></i></a><br /><br />Send Denarius</p>';
+				sending = '<p align="center" style="margin-top:55px;"><a class="btn btn-gold" href="/withdraw" style="  background-color: #222 !important;	border: none !important;border-radius:90px !important;padding:30px !important;"><i class="fa fa-5x fa-paper-plane"></i></a><br /><br />Send Innova</p>';
 				sendicon = 'display: visible !important';
 			} else if (walletstatuss == 'locked') {
 				walleticon = 'fa fa-5x fa-lock colorr';
@@ -682,7 +682,7 @@ res.io.on('connection', function (socket) {
 			var cryptoidblocks = result.body;
 
 		//Get Current D/BTC and D/USD price from CoinGecko
-		// unirest.get("https://api.coingecko.com/api/v3/coins/denarius?tickers=true&market_data=true&community_data=false&developer_data=true")
+		// unirest.get("https://api.coingecko.com/api/v3/coins/innova?tickers=true&market_data=true&community_data=false&developer_data=true")
 		// 	.headers({'Accept': 'application/json'})
 		// 	.end(function (result) {
 		// 		if (result.body['market_data']['current_price'] != undefined) {
@@ -710,7 +710,7 @@ res.io.on('connection', function (socket) {
 			  res.io.removeAllListeners('connection'); 
 			}
 			//Get Current D/BTC and D/USD price from CoinGecko
-			unirest.get("https://api.coingecko.com/api/v3/coins/denarius?tickers=true&market_data=true&community_data=false&developer_data=true")
+			unirest.get("https://api.coingecko.com/api/v3/coins/innova?tickers=true&market_data=true&community_data=false&developer_data=true")
 			.headers({'Accept': 'application/json'})
 			.end(function (result) {
 				if (!result.error) {

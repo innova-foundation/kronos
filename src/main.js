@@ -12,8 +12,8 @@ const { shell, session, Menu, protocol, nativeTheme, ipcMain} = require('electro
 
 const contextMenu = require('electron-context-menu');
 
-app.setAppUserModelId("com.carsenk.kronos");
-app.setAsDefaultProtocolClient('Kronos');
+app.setAppUserModelId("com.carsenk.innovault");
+app.setAsDefaultProtocolClient('InnoVault');
 
 const log = require('electron-log');
 const updater = require("electron-updater");
@@ -27,7 +27,7 @@ const autoUpdater = updater.autoUpdater;
 // const feed = `${server}/OWNER/REPO/${process.platform}-${process.arch}/${app.getVersion()}`;
 
 // autoUpdater.setFeedURL(feed);
-// //https://github.com/carsenk/kronos/releases/download/v1.7.2-Beta/Kronos-Setup-1.7.2-Beta.exe
+// //https://github.com/carsenk/innovault/releases/download/v1.7.2-Beta/InnoVault-Setup-1.7.2-Beta.exe
 
 // autoUpdater.setFeedURL({ urlF });
 
@@ -171,20 +171,20 @@ app.on("activate", function() {
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-log.info('Kronos starting...');
+log.info('InnoVault starting...');
 
 // if (fs.existsSync(path.resolve(path.dirname(process.execPath), '..', 'update.exe'))) {
 //   setInterval(() => {
 //     autoUpdater.checkForUpdates();
 //   }, 60000);
 // } else {
-//   log.info('Started Kronos via Electron instead of exe, Disabling Auto-Updates...');
+//   log.info('Started InnoVault via Electron instead of exe, Disabling Auto-Updates...');
 // }
 
 
 //autoUpdater.checkForUpdates();
 // autoUpdater.checkForUpdatesAndNotify();
-log.info('Kronos checking for updates...');
+log.info('InnoVault checking for updates...');
 
 
 ipcMain.on('open-link', (evt, link) => {
@@ -197,11 +197,11 @@ ipcMain.on('app_version', (event) => {
 
 autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
-  log.info('Kronos Update is available!');
+  log.info('InnoVault Update is available!');
 });
 autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('update_downloaded');
-  log.info('Kronos Update was downloaded!');
+  log.info('InnoVault Update was downloaded!');
 });
 
 // autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -210,7 +210,7 @@ autoUpdater.on('update-downloaded', () => {
 //     buttons: ['Restart', 'Later'],
 //     title: 'Application Update',
 //     message: process.platform === 'win32' ? releaseNotes : releaseName,
-//     detail: 'A new version of Kronos has been downloaded. Restart the application to apply the updates.'
+//     detail: 'A new version of InnoVault has been downloaded. Restart the application to apply the updates.'
 //   };
 
 //   dialog.showMessageBox(dialogOpts).then((returnValue) => {

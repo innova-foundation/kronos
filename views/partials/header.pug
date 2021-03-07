@@ -1,10 +1,10 @@
 div(class=offline)
   div(class=offlinebtn)
     p 
-      h1 Denarius Node Offline
+      h1 Innova Node Offline
     p
       #rebooter
-      button.btn.btn-danger(type='submit', id='submitrb',  onclick='reboot()') REBOOT DENARIUS NODE
+      button.btn.btn-danger(type='submit', id='submitrb',  onclick='reboot()') REBOOT INNOVA NODE
       form.form-horizontal(action='/reboot', method='POST', id='sendreboot')
         input(type='hidden' name='_csrf' value=csrftoken)
 div(class=chaindl)
@@ -23,7 +23,7 @@ div(class=chaindl)
     br
     br 
     div(align='center', style='background-color:#141414; width:500px; margin: 0 auto; padding:30px;border-radius:15px;')
-      h1 Denarius Node Syncing...
+      h1 Innova Node Syncing...
       p
         div(style='background-color: #222;padding:15px;border-radius:15px;margin-left:20px;margin-right:20px;')
           h1(style='margin:0;padding:0;')
@@ -48,7 +48,7 @@ div(class=chaindl)
         strong #{datareceived}
       hr(style='border-top: 1px solid #222;')
       p(style='color:#666;')
-        | Please wait...This can take awhile...Denarius is downloading blocks. When Denarius is synced, you will be able to access Kronos.
+        | Please wait...This can take awhile...Innova is downloading blocks. When Innova is synced, you will be able to access InnoVault.
     p
       //- img(src='../img/syncing.svg', alt='Syncing Blocks...', border='0')
       #blockcount(data-value=blockpercent)
@@ -72,7 +72,7 @@ script.
   socket.on('notifications', function (data) {
       console.log('GOT NOTIFY', data);
       if (data.notifydb != '') {
-        $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Denarius TX Notification<br/><a href='/tx/"+ data.notifydb.toString() +"' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
+        $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Innova TX Notification<br/><a href='/tx/"+ data.notifydb.toString() +"' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
       }
   });
   function closeNotify() {
@@ -88,7 +88,7 @@ script.
         span.icon-bar
         span.icon-bar
       .navbar-brand
-        img.res(src='../img/klogo.svg', alt='Kronos', border='0')
+        img.res(src='../img/klogo.svg', alt='InnoVault', border='0')
     .collapse.navbar-collapse
       ul.nav.navbar-nav
           li(class=(title == 'Dashboard') ? 'active' : undefined)
@@ -143,7 +143,7 @@ script.
               li
                 a(href='http://'+lanip+':3000/ddebug', onclick="javascript:event.target.port=3000") 
                   i.fas.fa-bug  
-                  |   Denarius Debug Log
+                  |   Innova Debug Log
               li.divider
               li
                 a(href='http://'+lanip+':3000/sign', onclick="javascript:event.target.port=3000") 
@@ -216,7 +216,7 @@ script.
               li
                 a(href='https://discord.gg/UPpQy3n', target='_blank')
                   i.fab.fa-discord 
-                  |   Denarius Discord
+                  |   Innova Discord
               li.divider
               li
                 a(href='http://'+lanip+':3000/logout', onclick="javascript:event.target.port=3000")

@@ -17,9 +17,9 @@ block content
     }
   #notify
   .container(style='margin-top:30px;')
-    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Send Denarius
+    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Send Innova
     p
-      .titlesmall(align='center') Send Denarius to any other D address!
+      .titlesmall(align='center') Send Innova to any other INN address!
     br
     div.rowclass(style='font-weight:400;font-size:14px;padding:30px;background-color:#222;margin:15px;border-radius:15px;', align='center')
       p
@@ -54,7 +54,7 @@ block content
           input(type='hidden', name='_csrf', value=_csrf)
           input(type='hidden' name='_csrf' value=csrftoken)
           .form-group
-            label.col-sm-3.control-label(for='sendaddress') D Wallet Address
+            label.col-sm-3.control-label(for='sendaddress') INN Wallet Address
             .col-sm-7
               input.form-control.blackinput3(type='text', name='sendaddress', id='sendaddress', placeholder='D8jRk63FQDRUfeKqz99rkmCr47qsFUT5K2')
           .form-group
@@ -68,7 +68,7 @@ block content
             .col-sm-7
               .input-group
                 input.form-control.blackinput3(type='text', name='fee', id='fee', value='-0.0001',  disabled)
-                span.input-group-addon(style='background-color:#333;color:#FFF;border:none;') Approx. D Fee
+                span.input-group-addon(style='background-color:#333;color:#FFF;border:none;') Approx. INN Fee
           .form-group
             label.col-sm-3.control-label(for='total') Total with fees
             .col-sm-7
@@ -79,4 +79,4 @@ block content
             .col-sm-12
               button.btn.btn-default(type='button', id='sendDNR', onclick='clicked()', data-toggle='modal', data-target='#SubmitDisplayModal')
                 i.fa.fa-paper-plane
-                |  Send Denarius
+                |  Send Innova

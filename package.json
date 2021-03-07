@@ -1,10 +1,10 @@
 {
-  "name": "Kronos",
+  "name": "InnoVault",
   "version": "1.9.9-Beta",
-  "description": "A Dashboard Interface and Wallet for Denarius (D), Ethereum (ETH), and Denarii (ARI) built with NodeJS and Electron",
+  "description": "A Dashboard Interface and Wallet for Innova (INN), Ethereum (ETH), and USDT (USDT) built with NodeJS and Electron",
   "repository": {
     "type": "git",
-    "url": "https://github.com/carsenk/kronos.git"
+    "url": "https://github.com/carsenk/innovault.git"
   },
   "author": "Carsen Klock",
   "license": "MIT",
@@ -12,8 +12,8 @@
   "scripts": {
     "startmuon": "node setup.js",
     "postinstall": "electron-builder install-app-deps",
-    "kronos": "electron .",
-    "headless": "node -r esm ./bin/kronos",
+    "innovault": "electron .",
+    "headless": "node -r esm ./bin/innovault",
     "buildwin": "electron-builder build --win --publish never",
     "deploywin": "electron-builder build --win --publish always",
     "buildmac": "electron-builder build --mac --publish never",
@@ -48,7 +48,7 @@
     "csurf": "^1.11.0",
     "custom-electron-titlebar": "^3.2.4",
     "dat-swarm-defaults": "^1.0.2",
-    "denariusjs": "git://github.com/carsenk/denariusjs-lib.git",
+    "innovajs": "git://github.com/carsenk/innovajs-lib.git",
     "discovery-swarm": "^6.1.0",
     "dotenv": "^8.2.0",
     "electron-compile": "6.4.4",
@@ -128,8 +128,8 @@
     "utf-8-validate": "^5.0.3"
   },
   "build": {
-    "appId": "com.carsenk.kronos",
-    "productName": "Kronos",
+    "appId": "com.carsenk.innovault",
+    "productName": "InnoVault",
     "files": [
       "dist/src/**/*",
       "node_modules/**/*",
@@ -137,7 +137,7 @@
       "db.js",
       "notifies.txt",
       "restartnode.sh",
-      "installkronos.sh",
+      "installinnovault.sh",
       "start-electron.js",
       "compiler.sh",
       "public/notification.wav",
@@ -145,7 +145,7 @@
       "public/ding.wav",
       "views/**/*",
       "controllers/**/*",
-      "public/css/kronos.css",
+      "public/css/innovault.css",
       "public/css/main.css",
       "public/css/loading-bar.min.css",
       "public/css/lib/bootstrap-toggle.min.css",
@@ -155,7 +155,7 @@
       "public/js/*",
       "public/favicon.ico",
       "src/**/*",
-      "bin/kronos",
+      "bin/innovault",
       "package.json"
     ],
     "asar": false,
@@ -166,7 +166,7 @@
       "db.js",
       "compiler.sh",
       "views/**/*",
-      "public/css/kronos.css",
+      "public/css/innovault.css",
       "public/css/main.css",
       "public/css/loading-bar.min.css",
       "public/fonts/*",
@@ -211,23 +211,23 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "prerelease": false,
-            "repo": "carsenk/kronos",
+            "repo": "carsenk/innovault",
             "repository": {
               "owner": "carsenk",
-              "name": "kronos"
+              "name": "innovault"
             }
           }
         }
       ],
       "github_repository": {
         "owner": "carsenk",
-        "name": "kronos"
+        "name": "innovault"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Kronos"
+            "name": "InnoVault"
           }
         },
         {

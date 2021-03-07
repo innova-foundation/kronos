@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Core Mode Controller
+* InnoVault Core Mode Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -20,7 +20,7 @@ const cpuu = require('cputilization');
 const toastr = require('express-toastr');
 const exec = require('child_process').exec;
 const shell = require('shelljs');
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const bitcoinjs = require('bitcoinjs-lib');
 const CryptoJS = require("crypto-js");
 const bip39 = require("bip39");
@@ -69,7 +69,7 @@ if (currentOS === 'linux') {
     }
 
 } else {
-    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
     function shahash(key) {
         key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -194,7 +194,7 @@ exports.postprofile = (request, response) => {
     var decryptedmnemonic = decrypt(seedphrasedb);
     mnemonic = decryptedmnemonic;      
     // ETH and ARI
-    let ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our Kronos seed
+    let ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     let ethprivkey = ethwallet.privateKey;
 	
 	if (avatar) {

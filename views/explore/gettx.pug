@@ -28,14 +28,14 @@ block content
   #notify
   .mainDiv
   .container
-    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Denarius Transaction
+    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Innova Transaction
     p(align='center') 
-      | Detailed information about a Denarius transaction.
+      | Detailed information about a Innova transaction.
       br
       .div(style='margin-top:25px;')
         form.form-horizontal(action='/search', method='POST', id='explorer')
           input(type='hidden' name='_csrf' value=csrftoken)
-          input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search Kronos for Denarius Block # or Transaction Hash or D Address')
+          input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search InnoVault for Innova Block # or Transaction Hash or INN Address')
   .row.rowclass.container(id="menu", style='margin: 0 auto; margin-top:15px;width:90%;')
     if (txinfo)
       h3(align='center') Details on Transaction ID

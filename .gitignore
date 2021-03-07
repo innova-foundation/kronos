@@ -12,7 +12,7 @@ pids
 logs
 results
 tmp
-kronosleveldb
+innovaultleveldb
 data
 out
 package-lock.json
@@ -22,7 +22,7 @@ ipfs
 orbitdb
 electron-builder.yml
 dist
-kronos.log
+innovault.log
 
 # Dependency directory
 node_modules

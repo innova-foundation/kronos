@@ -10,12 +10,12 @@ block content
       //- .div(style='margin-top:25px;')
       //-   form.form-horizontal(action='/search', method='POST', id='explorer')
       //-     input(type='hidden', name='_csrf', value=_csrf)
-      //-     input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search Kronos for Denarius Block # or Transaction Hash or D Address')
+      //-     input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search InnoVault for Innova Block # or Transaction Hash or INN Address')
       .row(class='rowclass balancerow', style='margin-top:25px !important;padding: 0px !important; padding-top:25px !important;').animate__animated.animate__fadeIn
         .slickk
           div(style='text-align:center;margin-top:20px;')
             p
-              img.res(src='../img/denarius.png', alt='D', border='0', style='height:75px !important;width: 75px !important;margin:0 auto !important;')
+              img.res(src='../img/innova.png', alt='D', border='0', style='height:75px !important;width: 75px !important;margin:0 auto !important;')
             p 
             .bal(style='font-size:2.5em;') 
               span#totalbal.format #{totalbal || 0}
@@ -36,7 +36,7 @@ block content
                 .qrcode(align='center')
                     button.clip(data-clipboard-text=mainaddy, style='background-color: transparent;border: none;')
                       img(src='' + qrcode, style='border-radius:10px;')
-              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') DENARIUS 
+              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') INNOVA 
                 span#dblock
             .divider(style='background-color:#111 !important;height:2px;width:80%;margin:0 auto;', align='center')
             p
@@ -66,9 +66,9 @@ block content
                               td(align='center', data-label='TXID') 
                                 a.txid(href='https://chainz.cryptoid.info/d/tx.dws?'+tx.transactionHex.txid, target='_blank') #{tx.transactionHex.txid}
                 else
-                  h1(style='color:#666;', align='center') No D Transactions Available
+                  h1(style='color:#666;', align='center') No INN Transactions Available
               else
-                h1(style='color:#666;', align='center') No D Transactions Available
+                h1(style='color:#666;', align='center') No INN Transactions Available
           div(style='text-align:center;margin-top:20px;')
             p
               img.res(src='../img/bitcoin.png', alt='BTC', border='0', style='height:75px !important;width: 75px !important;margin:0 auto !important;')
@@ -244,7 +244,7 @@ block content
       //- .row(class='rowclass').animate__animated.animate__fadeIn
       //-   .col-sm-3
       //-     p(align='center')
-      //-       img(src='../img/denarius.png', height='128px;', align='center')
+      //-       img(src='../img/innova.png', height='128px;', align='center')
       //- .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       //- .row(class='rowclass', style='margin-bottom:50px;').animate__animated.animate__fadeIn
       //-   h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:30px;') 
@@ -540,7 +540,7 @@ block content
           //-   bal = parseFloat(bal.toFixed(8));
           //- }
           $('#totalbal').html(bal);
-          //$('#htotalbal').html(bal + '<img class="res" src="../img/denarius.png" alt="D" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">D</span>');
+          //$('#htotalbal').html(bal + '<img class="res" src="../img/innova.png" alt="D" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">D</span>');
           var updateddusd = bal * $('#currentprice').text();
           $('#usdbalance').html(updateddusd.toFixed(3));
           document.querySelectorAll(".format").forEach((e) => {
@@ -555,7 +555,7 @@ block content
           //-   bal = parseFloat(bal.toFixed(8));
           //- }
           $('#totalbal').html(bal);
-          //$('#htotalbal').html(bal + '<img class="res" src="../img/denarius.png" alt="D" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">D</span>');
+          //$('#htotalbal').html(bal + '<img class="res" src="../img/innova.png" alt="D" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">D</span>');
           var updateddusd = bal * $('#currentprice').text();
           $('#usdbalance').html(updateddusd.toFixed(3));
           document.querySelectorAll(".format").forEach((e) => {

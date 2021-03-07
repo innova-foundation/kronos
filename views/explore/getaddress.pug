@@ -28,14 +28,14 @@ block content
   #notify
   .mainDiv
   .container
-    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Denarius Address
+    h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Innova Address
     p(align='center') 
-      | Detailed information about a Denarius address.
+      | Detailed information about a Innova address.
       br
       .div(style='margin-top:25px;')
         form.form-horizontal(action='/search', method='POST', id='explorer')
           input(type='hidden' name='_csrf' value=csrftoken)
-          input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search Kronos for Denarius Block # or Transaction Hash or D Address')
+          input.form-control.blackinput4(type='text', align='center', name='explorersearch', id='explorersearch', placeholder='Search InnoVault for Innova Block # or Transaction Hash or INN Address')
   .row.rowclass.container(id="menu", style='margin: 0 auto; margin-top:15px;width:90%;')
     if (scripthasharray)
       h3(align='center') Details on Address
@@ -68,7 +68,7 @@ block content
               i.fas.fa-arrow-right(style='margin-left:10px;')
         .col-md-6(style='margin-top:10px;')
           p.qrcode(align='right')
-            a(href='denarius:' + scripthasharray[0].address)
+            a(href='innova:' + scripthasharray[0].address)
               img(src='' + scripthasharray[0].qr, style='border-radius:10px;width:175px;')
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='margin:15px;')
@@ -78,7 +78,7 @@ block content
           if (scripthasharray[0].txs)
             each tx in scripthasharray[0].txs            
               if (tx.scripthashtxhistory != null)
-                h4 P2PKH Denarius Transactions
+                h4 P2PKH Innova Transactions
                 each script in tx.scripthashtxhistory
                   .row(style='color:#eee;margin:15px!important;margin-right:40px!important;padding:10px!important;background-color:#222;border-radius:5px;')
                     .col-md-6
@@ -87,7 +87,7 @@ block content
                       | On Block 
                       a(href='/block/'+script.height) #{script.height}
               if (tx.p2pktxhistory != '')
-                h4 P2PK Denarius Transactions
+                h4 P2PK Innova Transactions
                 each script in tx.p2pktxhistory
                   .row(style='color:#eee;margin:15px!important;margin-right:40px!important;padding:10px!important;background-color:#222;border-radius:5px;')
                     .col-md-6
@@ -96,7 +96,7 @@ block content
                       | On Block 
                       a(href='/block/'+script.height) #{script.height}
               else
-                h3(align='center', style='color:#333;') P2PK Transactions (Typically PoS TX) are not available for addresses that Kronos does not own
+                h3(align='center', style='color:#333;') P2PK Transactions (Typically PoS TX) are not available for addresses that InnoVault does not own
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='margin:0 auto;width:90%;')
         h3 Raw Address Information

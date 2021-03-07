@@ -5,10 +5,10 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='theme-color' content='#4DA5F4')
-    title #{title} - Kronos
+    title #{title} - InnoVault
     link(rel='shortcut icon', href='/img/klogo.png')
     link(rel='stylesheet', href='/css/main.css')
-    link(rel='stylesheet', href='/css/kronos.css')
+    link(rel='stylesheet', href='/css/innovault.css')
     link(rel='stylesheet', href='/css/lib/bootstrap-toggle.min.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css')
@@ -76,7 +76,7 @@ html
             //console.log(profileimage);
             var boximage = '';
             if (typeof profileimage == 'undefined') {
-                boximage = '../img/avatar.png'; //IPFS Default Avatar Hash (https://ipfs.denarius.io/ipfs/QmaaXanRmNVdLRLscPR4NGhbdBh3EMnkc4HEbAL1VkEJRw)
+                boximage = '../img/avatar.png'; //IPFS Default Avatar Hash (https://ipfs.innova.io/ipfs/QmaaXanRmNVdLRLscPR4NGhbdBh3EMnkc4HEbAL1VkEJRw)
             } else {
                 profileimage = profile.image[0].contentUrl['/'];
                 boximage = 'https://cloudflare-ipfs.com/ipfs/' + profileimage;
@@ -205,7 +205,7 @@ html
         }
 
         const results = await ipfs.add([{
-          path: 'kronos',
+          path: 'innovault',
           content: buf,
         }], {
           recursive: true,
@@ -233,8 +233,8 @@ html
 
               //console.log(data.Pins);
         });
-        $("#profileavatar").html('<img src="https://ipfs.denarius.io/ipfs/'+hash+'" border="0" class="res profilebox"/>');
-        $('#AVATAR').val('https://ipfs.denarius.io/ipfs/'+hash);
+        $("#profileavatar").html('<img src="https://ipfs.innova.io/ipfs/'+hash+'" border="0" class="res profilebox"/>');
+        $('#AVATAR').val('https://ipfs.innova.io/ipfs/'+hash);
         progressIPFS.hide();
         audiofile.play();
       }

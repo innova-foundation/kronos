@@ -2,7 +2,7 @@
 **************************************
 **************************************
 **************************************
-* Kronos Auth Controller
+* InnoVault Auth Controller
 * Copyright (c) 2020 Carsen Klock
 **************************************
 **************************************
@@ -20,7 +20,7 @@ const cpuu = require('cputilization');
 const toastr = require('express-toastr');
 const exec = require('child_process').exec;
 const shell = require('shelljs');
-const denarius = require('denariusjs');
+const innova = require('innovajs');
 const dbitcoin = require('bitcoinjs-d-lib');
 const bitcoinjs = require('bitcoinjs-lib');
 const CryptoJS = require("crypto-js");
@@ -68,7 +68,7 @@ if (currentOS === 'linux') {
     }
 
 } else {
-    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('Kronos', 'localkey');
+    let SECRET_KEY = process.env.KEY; //keytar.getPasswordSync('InnoVault', 'localkey');
 
     function shahash(key) {
         key = CryptoJS.SHA256(key, SECRET_KEY);
@@ -100,7 +100,7 @@ if (typeof Storage.get("u2fdevices") == 'undefined') {
 	//devicearray = [];
 }
 
-//Connect to our D node 
+//Connect to our INN node 
 //process.env.DUSER
 // const client = new bitcoin.Client({
 // 	host: decrypt(Storage.get('rpchost')),
@@ -110,11 +110,11 @@ if (typeof Storage.get("u2fdevices") == 'undefined') {
 // 	timeout: 30000
 // });
 
-//ElectrumX Hosts for Denarius
-const delectrumxhost1 = 'electrumx1.denarius.pro';
-const delectrumxhost2 = 'electrumx2.denarius.pro';
-const delectrumxhost3 = 'electrumx3.denarius.pro';
-const delectrumxhost4 = 'electrumx4.denarius.pro';
+//ElectrumX Hosts for Innova
+const delectrumxhost1 = 'electrumx1.innova.pro';
+const delectrumxhost2 = 'electrumx2.innova.pro';
+const delectrumxhost3 = 'electrumx3.innova.pro';
+const delectrumxhost4 = 'electrumx4.innova.pro';
 
 //ElectrumX Hosts for Bitcoin
 const btcelectrumhost1 = 'bitcoin.lukechilds.co';
@@ -140,38 +140,38 @@ yub.init("60504", "nVVPQrJq2geFg3HQPpt5VLbF1RA=");
 
 /**
  * GET /login
- * Kronos Auth Login
+ * InnoVault Auth Login
  */
 exports.login = (req, res) => {
 	db.get('created', function (err, value) { //Change from rpcuser to created and give bool for when done with setup
 		if (err) {
 
 		// if (Storage.get('mode') != 'simple') {
-		// 	res.render('login', {title: 'Kronos Login'});
+		// 	res.render('login', {title: 'InnoVault Login'});
 		// } else if (Storage.get('mode') != 'advanced') {
-		// 	res.render('login', {title: 'Kronos Login'});
+		// 	res.render('login', {title: 'InnoVault Login'});
 		// }
 
-		res.render('select', {title: 'Setup Kronos'}); //Other Setup
+		res.render('select', {title: 'Setup InnoVault'}); //Other Setup
 		
 		// If rpcuser does not exist in levelDB then go to page to create one
-		//res.render('setup', {title: 'Setup Kronos'}); //Other Setup
+		//res.render('setup', {title: 'Setup InnoVault'}); //Other Setup
 
 		} else {
 		
-		// res.render('login', {title: 'Kronos Login'});
+		// res.render('login', {title: 'InnoVault Login'});
 
 		db.get('username', function (err, value) {
 			if (err) {
 			  
 			  // If username does not exist in levelDB then go to page to create one
-			  res.render('create', {title: 'Create Kronos Login'});
+			  res.render('create', {title: 'Create InnoVault Login'});
 	
 			} else {
 			  
 			  var twofaenable = Storage.get('2fa');
 			  var u2fdevices = Storage.get("u2fdevices");
-			  res.render('login', {title: 'Kronos Login', twofaenable: twofaenable, u2fdevices: u2fdevices});
+			  res.render('login', {title: 'InnoVault Login', twofaenable: twofaenable, u2fdevices: u2fdevices});
 	
 			}
 		});
@@ -182,14 +182,14 @@ exports.login = (req, res) => {
 
 /**
  * GET /auth
- * Kronos Auth Login
+ * InnoVault Auth Login
  */
 exports.auth = (req, res) => {
 	db.get('created', function (err, value) {
         if (err) {
           
           // If created does not exist in levelDB then go to page to create one
-          res.render('select', {title: 'Setup Kronos'});
+          res.render('select', {title: 'Setup InnoVault'});
 
         } else {
 		  
@@ -198,11 +198,11 @@ exports.auth = (req, res) => {
 			if (err) {
 			
 			// If username does not exist in levelDB then go to page to create one
-			res.render('create', {title: 'Create Kronos Login'});
+			res.render('create', {title: 'Create InnoVault Login'});
 
 			} else {
 			
-			res.render('auth', {title: 'Kronos Authorization'});
+			res.render('auth', {title: 'InnoVault Authorization'});
 
 			}
 		});
@@ -213,14 +213,14 @@ exports.auth = (req, res) => {
 
 /**
  * GET /autht
- * Kronos Terminal Auth Login
+ * InnoVault Terminal Auth Login
  */
 exports.autht = (req, res) => {
 	db.get('created', function (err, value) {
         if (err) {
           
           // If rpcuser does not exist in levelDB then go to page to create one
-          res.render('select', {title: 'Setup Kronos'});
+          res.render('select', {title: 'Setup InnoVault'});
 
         } else {
 		  
@@ -228,11 +228,11 @@ exports.autht = (req, res) => {
 				if (err) {
 				  
 				  // If username does not exist in levelDB then go to page to create one
-				  res.render('create', {title: 'Create Kronos Login'});
+				  res.render('create', {title: 'Create InnoVault Login'});
 		
 				} else {
 				  
-				  res.render('autht', {title: 'Kronos Authorization'});
+				  res.render('autht', {title: 'InnoVault Authorization'});
 		
 				}
 			});
@@ -244,14 +244,14 @@ exports.autht = (req, res) => {
 
 /**
  * GET /authk
- * Kronos Terminal Pop Auth Login
+ * InnoVault Terminal Pop Auth Login
  */
 exports.authk = (req, res) => {
 	db.get('created', function (err, value) {
         if (err) {
           
           // If rpcuser does not exist in levelDB then go to page to create one
-          res.render('select', {title: 'Setup Kronos'});
+          res.render('select', {title: 'Setup InnoVault'});
 
         } else {
 		  
@@ -259,11 +259,11 @@ exports.authk = (req, res) => {
 				if (err) {
 				  
 				  // If username does not exist in levelDB then go to page to create one
-				  res.render('create', {title: 'Create Kronos Login'});
+				  res.render('create', {title: 'Create InnoVault Login'});
 		
 				} else {
 				  
-				  res.render('authk', {title: 'Kronos Authorization'});
+				  res.render('authk', {title: 'InnoVault Authorization'});
 		
 				}
 			});
@@ -275,7 +275,7 @@ exports.authk = (req, res) => {
 
 /**
  * POST /setup 2/3
- * Kronos Setup Configuration Post
+ * InnoVault Setup Configuration Post
  */
 exports.setup = (request, response) => {
 	var rpcuser = request.body.USER;
@@ -297,17 +297,17 @@ exports.setup = (request, response) => {
 
 		newclient.getBalance(function(err, balance, resHeaders) {
 			if (err) {
-				// request.toastr.error('Connection to Denarius Failed, Retry configuration', 'Error!', { positionClass: 'toast-bottom-left' });
+				// request.toastr.error('Connection to Innova Failed, Retry configuration', 'Error!', { positionClass: 'toast-bottom-left' });
 				// response.redirect('/login');
 				// response.end();
-				console.log('Denarius Connection Error, Check your configuration...');
+				console.log('Innova Connection Error, Check your configuration...');
 			}
 
 			//console.log('Balance:', balance);
 
 			if (request.body && balance >= 0 && typeof balance != 'undefined') {
 
-				console.log('Denarius Connected Successfully!');
+				console.log('Innova Connected Successfully!');
 
 				db.get('rpcpass', function (err, value) {
 					if (err) {
@@ -360,14 +360,14 @@ exports.setup = (request, response) => {
 
 						//console.log(envfile.stringify(parsedFile));
 
-						request.toastr.success('Kronos Advanced Denarius Configuration Successful', 'Success!', { positionClass: 'toast-bottom-left' });
-						response.render('create', {title: 'Kronos Login Creation'});
+						request.toastr.success('InnoVault Advanced Innova Configuration Successful', 'Success!', { positionClass: 'toast-bottom-left' });
+						response.render('create', {title: 'InnoVault Login Creation'});
 						response.end();
 			
 					} else {
 	
 					  //Found rpcpass in DB so redirecting back to login
-					  response.render('login', {title: 'Kronos Login'});
+					  response.render('login', {title: 'InnoVault Login'});
 					  response.end();
 					}
 				});			
@@ -376,7 +376,7 @@ exports.setup = (request, response) => {
 				// request.toastr.error('Error!', 'Error!', { positionClass: 'toast-bottom-left' });
 				// response.redirect('/login');
 				// response.end();
-				request.toastr.error('Connection to Denarius Failed, Retry your configuration!', 'Error!', { positionClass: 'toast-bottom-left' });
+				request.toastr.error('Connection to Innova Failed, Retry your configuration!', 'Error!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/login');
 				response.end();
 			}
@@ -386,7 +386,7 @@ exports.setup = (request, response) => {
 	
 	} else {
 		//response.send('Please enter Username and Password!');
-		request.toastr.error('Please enter your Denarius RPC User, Pass, Host, and Port!', 'Error!', { positionClass: 'toast-bottom-left' });
+		request.toastr.error('Please enter your Innova RPC User, Pass, Host, and Port!', 'Error!', { positionClass: 'toast-bottom-left' });
 		response.redirect('/login');
 		response.end();
 	}
@@ -394,7 +394,7 @@ exports.setup = (request, response) => {
 
 /**
  * POST /create
- * Kronos Auth Creation
+ * InnoVault Auth Creation
  */
 exports.create = (request, response) => {
 	var username = request.body.PPU1;
@@ -438,7 +438,7 @@ exports.create = (request, response) => {
 					Storage.set('password', encryptedpass);
 
 					// var mnemonic;
-					// // Fetch the Kronos LevelDB Seedphrase
+					// // Fetch the InnoVault LevelDB Seedphrase
 					// db.get('seedphrase', function (err, value) {
 					// 	if (err) {
 							
@@ -465,14 +465,14 @@ exports.create = (request, response) => {
 					// //Stored User/Pass to DB successfully now setup the session
 					request.session.loggedin = false; //Make them sign in again after setup
 					request.session.username = username;
-					request.toastr.success('Created Kronos User, Setup Successful, Please login!', 'Success!', { positionClass: 'toast-bottom-left' });
+					request.toastr.success('Created InnoVault User, Setup Successful, Please login!', 'Success!', { positionClass: 'toast-bottom-left' });
 					response.redirect('/login');
 					response.end();
 		
 				} else {
 
 				  //Found password in DB so redirecting back to login
-				  response.render('login', {title: 'Kronos Login'});
+				  response.render('login', {title: 'InnoVault Login'});
 				  response.end();
 				}
 			});			
@@ -528,8 +528,8 @@ exports.simple = (request, response) => {
 
 						//console.log(envfile.stringify(parsedFile));
 
-						request.toastr.success('Kronos Simple Configuration Successful', 'Success!', { positionClass: 'toast-bottom-left' });
-						response.render('create', {title: 'Kronos Login Creation'});
+						request.toastr.success('InnoVault Simple Configuration Successful', 'Success!', { positionClass: 'toast-bottom-left' });
+						response.render('create', {title: 'InnoVault Login Creation'});
 						response.end();	
 	
 			} else {
@@ -556,7 +556,7 @@ exports.change = (req, res) => {
 }
 
 
-//POST Change Kronos Password
+//POST Change InnoVault Password
 exports.changepass = (request, response) => {
 	var lastpass = request.body.LPP;
 	var password = request.body.PPP1;
@@ -589,7 +589,7 @@ exports.changepass = (request, response) => {
 						// //Stored User/Pass to DB successfully now setup the session
 						request.session.loggedin = false; //Make them sign in again after setup
 						//request.session.username = username;
-						request.toastr.success('Changed Kronos Password, Please login!', 'Success!', { positionClass: 'toast-bottom-left' });
+						request.toastr.success('Changed InnoVault Password, Please login!', 'Success!', { positionClass: 'toast-bottom-left' });
 						response.redirect('/login');
 						response.end();
 
@@ -663,7 +663,7 @@ exports.importseed = (request, response) => {
 					}
 				});
 
-				request.toastr.success('Kronos Seed Import Successful!', 'Success!', { positionClass: 'toast-bottom-left' });
+				request.toastr.success('InnoVault Seed Import Successful!', 'Success!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/login');
 				response.end();	
 	
@@ -706,19 +706,19 @@ exports.getsetup = (req, res) => {
 
 /**
  * GET /logout
- * Kronos Auth Logout
+ * InnoVault Auth Logout
  */
 exports.logout = (req, res) => {
 	req.session.loggedin = false;
 	req.session.loggedin2 = false;
 	req.session.username = '';
-	req.toastr.error('Logged Out of Kronos', 'Logged Out!', { positionClass: 'toast-bottom-left' });
+	req.toastr.error('Logged Out of InnoVault', 'Logged Out!', { positionClass: 'toast-bottom-left' });
 	res.redirect('/login');
 };
 
 /**
  * POST /login
- * Kronos Auth Login
+ * InnoVault Auth Login
  */
 exports.postlogin = (request, response) => {
 	var username = request.body.PPU1;
@@ -733,7 +733,7 @@ exports.postlogin = (request, response) => {
 		db.get('username', function (err, value) {
 			if (err) {
 			  // If username does not exist in levelDB then go to page to create one
-			  //response.render('create', {title: 'Create Kronos Login'});
+			  //response.render('create', {title: 'Create InnoVault Login'});
 			  //request.toastr.error('Username does not exist!', 'Error!', { positionClass: 'toast-bottom-left' });
 			} else {
 				//If it does exist
@@ -764,7 +764,7 @@ exports.postlogin = (request, response) => {
 										if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 											request.session.loggedin = true;
 											request.session.username = username;
-											request.toastr.success('Logged into Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+											request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 			
 											if (Storage.get('mode') == 'simple') {
 												//Storage.set('mode', 'simple');
@@ -798,7 +798,7 @@ exports.postlogin = (request, response) => {
 										if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 											request.session.loggedin = true;
 											request.session.username = username;
-											request.toastr.success('Logged into Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+											request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 			
 											if (Storage.get('mode') == 'simple') {
 												//Storage.set('mode', 'simple');
@@ -845,7 +845,7 @@ exports.postlogin = (request, response) => {
 											if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 												request.session.loggedin = true;
 												request.session.username = username;
-												request.toastr.success('Logged into Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+												request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 				
 												if (Storage.get('mode') == 'simple') {
 													//Storage.set('mode', 'simple');
@@ -875,7 +875,7 @@ exports.postlogin = (request, response) => {
 								if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 									request.session.loggedin = true;
 									request.session.username = username;
-									request.toastr.success('Logged into Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+									request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 
 									if (Storage.get('mode') == 'simple') {
 										//Storage.set('mode', 'simple');
@@ -909,7 +909,7 @@ exports.postlogin = (request, response) => {
 
 /**
  * POST /auth
- * Kronos Auth Login
+ * InnoVault Auth Login
  */
 exports.postAuth = (request, response) => {
 	var username = request.body.PPU1;
@@ -920,7 +920,7 @@ exports.postAuth = (request, response) => {
 		db.get('username', function (err, value) {
 			if (err) {
 			  // If username does not exist in levelDB then go to page to create one
-			  //response.render('create', {title: 'Create Kronos Login'});
+			  //response.render('create', {title: 'Create InnoVault Login'});
 			  //request.toastr.error('Username does not exist!', 'Error!', { positionClass: 'toast-bottom-left' });
 			} else {
 				//If it does exist
@@ -939,7 +939,7 @@ exports.postAuth = (request, response) => {
 							request.session.loggedin = true;
 							request.session.loggedin2 = true;
 							request.session.username = username;
-							request.toastr.success('Authed Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+							request.toastr.success('Authed InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 							response.redirect('/sseed');
 							response.end();
 						} else {
@@ -968,7 +968,7 @@ exports.postAuth = (request, response) => {
 
 /**
  * POST /autht
- * Kronos Terminal Auth Login
+ * InnoVault Terminal Auth Login
  */
 exports.postAutht = (request, response) => {
 	var username = request.body.PPU1;
@@ -984,7 +984,7 @@ exports.postAutht = (request, response) => {
 		db.get('username', function (err, value) {
 			if (err) {
 			  // If username does not exist in levelDB then go to page to create one
-			  //response.render('create', {title: 'Create Kronos Login'});
+			  //response.render('create', {title: 'Create InnoVault Login'});
 			  //request.toastr.error('Username does not exist!', 'Error!', { positionClass: 'toast-bottom-left' });
 			} else {
 				//If it does exist
@@ -1003,7 +1003,7 @@ exports.postAutht = (request, response) => {
 							request.session.loggedin = true;
 							request.session.loggedin3 = true;
 							request.session.username = username;
-							request.toastr.success('Authed Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+							request.toastr.success('Authed InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 							response.redirect('http://'+ip.address()+':3300/terminal');
 							response.end();
 						} else {
@@ -1032,7 +1032,7 @@ exports.postAutht = (request, response) => {
 
 /**
  * POST /authk
- * Kronos Terminal Popout Auth Login
+ * InnoVault Terminal Popout Auth Login
  */
 exports.postAuthk = (request, response) => {
 	var username = request.body.PPU1;
@@ -1048,7 +1048,7 @@ exports.postAuthk = (request, response) => {
 		db.get('username', function (err, value) {
 			if (err) {
 			  // If username does not exist in levelDB then go to page to create one
-			  //response.render('create', {title: 'Create Kronos Login'});
+			  //response.render('create', {title: 'Create InnoVault Login'});
 			  //request.toastr.error('Username does not exist!', 'Error!', { positionClass: 'toast-bottom-left' });
 			} else {
 				//If it does exist
@@ -1067,7 +1067,7 @@ exports.postAuthk = (request, response) => {
 							request.session.loggedin = true;
 							request.session.loggedin4 = true;
 							request.session.username = username;
-							request.toastr.success('Authed Kronos', 'Success!', { positionClass: 'toast-bottom-left' });
+							request.toastr.success('Authed InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
 							response.redirect('http://'+ip.address()+':3300/termpop');
 							response.end();
 						} else {
@@ -1108,7 +1108,7 @@ exports.getsweep = (req, res) => {
     var ethaddress = Storage.get('ethaddy');
 
 	res.render('simple/sweep', {
-        title: 'Kronos Core Mode Sweep Private Key',
+        title: 'InnoVault Core Mode Sweep Private Key',
         totalethbal: totalethbal,
         totalbal: totalbal,
         totalaribal: totalaribal,
@@ -1133,9 +1133,9 @@ exports.sweepkey = (request, response) => {
 			if (verified) {
 				//Check if privkey is valid and if it is do the following and attempt an import
 
-				// Denarius Network Params Object
+				// Innova Network Params Object
 				const network = {
-					messagePrefix: '\x19Denarius Signed Message:\n',
+					messagePrefix: '\x19Innova Signed Message:\n',
 					bech32: 'd',
 					bip32: {
 						public: 0x0488b21e,
@@ -1155,8 +1155,8 @@ exports.sweepkey = (request, response) => {
 				const pubKey2 = key.publicKey;
 				//console.log('PUBKEY: ', pubKey);
 				const pubKeyHash = dbitcoin.crypto.hash160(pubKey);
-				const importaddress = denarius.payments.p2pkh({ pubkey: pubKey, network }).address;
-				const importp2pkaddress = denarius.payments.p2pkh({ pubkey: pubKey, network }).pubkey.toString('hex');
+				const importaddress = innova.payments.p2pkh({ pubkey: pubKey, network }).address;
+				const importp2pkaddress = innova.payments.p2pkh({ pubkey: pubKey, network }).pubkey.toString('hex');
 
 				//Convert P2PKH Address to Scripthash for ElectrumX Balance Fetching
 				const bytes = bs58.decode(importaddress);
@@ -1178,10 +1178,10 @@ exports.sweepkey = (request, response) => {
 
 				let promises2 = [];
 				let utxoarray = [];
-				//Grab UTXO Transaction History from D ElectrumX
+				//Grab UTXO Transaction History from INN ElectrumX
 				const utxohistory = async () => {
 					// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-					const electrum = new ElectrumCluster('Kronos Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+					const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 					
 					// Add some servers to the cluster.
 					electrum.addServer(delectrumxhost1);
@@ -1192,7 +1192,7 @@ exports.sweepkey = (request, response) => {
 					// Wait for enough connections to be available.
 					await electrum.ready();
 					
-					// Request the balance of the requested Scripthash D address
+					// Request the balance of the requested Scripthash INN address
 
 					//const utxos = [];
 
@@ -1228,8 +1228,8 @@ exports.sweepkey = (request, response) => {
 						return response.redirect('/sweep');
 					} else {
 
-						//CREATE A RAW TRANSACTION AND SIGN IT FOR DENARIUS!
-						var txb = new dbitcoin.TransactionBuilder(dbitcoin.networks.denarius);
+						//CREATE A RAW TRANSACTION AND SIGN IT FOR INNOVA!
+						var txb = new dbitcoin.TransactionBuilder(dbitcoin.networks.innova);
 
 						var totalVal = 0;
 						for(i=0; i<numutxo; i++) {  
@@ -1237,20 +1237,20 @@ exports.sweepkey = (request, response) => {
 							txb.addInput(utxos[i].tx_hash, parseInt(utxos[i].tx_pos));
 						}
 						//calc fee and add output address
-						var denariifees = numutxo * 10000;
-						var amountToSend = totalVal - denariifees;
+						var innovaifees = numutxo * 10000;
+						var amountToSend = totalVal - innovaifees;
 
 						//Add Raw TX Output to Sweep Privkey to and send funds
-						txb.addOutput(mainaddress, amountToSend, dbitcoin.networks.denarius);
-						//txb.addOutput(mainaddress, denariifees, dbitcoin.networks.denarius); //needs secondary output of the fees?
+						txb.addOutput(mainaddress, amountToSend, dbitcoin.networks.innova);
+						//txb.addOutput(mainaddress, innovaifees, dbitcoin.networks.innova); //needs secondary output of the fees?
 						
 						//Sign each of our privkey utxo inputs
 						for(i=0; i<numutxo; i++){  
-							txb.sign(dbitcoin.networks.denarius, i, key);
+							txb.sign(dbitcoin.networks.innova, i, key);
 						}
 				
 						// Print transaction serialized as hex
-						console.log('Denarius Raw Transaction Built and Broadcasting: ' + txb.build().toHex());
+						console.log('Innova Raw Transaction Built and Broadcasting: ' + txb.build().toHex());
 				
 						// => 020000000110fd2be85bba0e8a7a694158fa27819f898def003d2f63b668d9d19084b76820000000006b48304502210097897de69a0bd7a30c50a4b343b7471d1c9cd56aee613cf5abf52d62db1acf6202203866a719620273a4e550c30068fb297133bceee82c58f5f4501b55e6164292b30121022f0c09e8f639ae355c462d7a641897bd9022ae39b28e6ec621cea0a4bf35d66cffffffff0140420f000000000001d600000000
 						
@@ -1259,7 +1259,7 @@ exports.sweepkey = (request, response) => {
 				
 						const broadcastTX = async () => {
 							// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-							const electrum = new ElectrumCluster('Kronos Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+							const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 							
 							// Add some servers to the cluster.
 							electrum.addServer(delectrumxhost1);
@@ -1270,7 +1270,7 @@ exports.sweepkey = (request, response) => {
 							// Wait for enough connections to be available.
 							await electrum.ready();
 							
-							// Request the balance of the requested Scripthash D address
+							// Request the balance of the requested Scripthash INN address
 				
 							const broadcast = await electrum.request('blockchain.transaction.broadcast', txb.build().toHex());
 							
@@ -1296,7 +1296,7 @@ exports.sweepkey = (request, response) => {
 							console.log(broadcastarray[0].tx);
 				
 							if (!broadcasted.message) {
-								request.toastr.success(`Your ${amountToSend / 1e8} D was imported successfully! TXID: ${broadcasted}`, 'Sweep Success!', { positionClass: 'toast-bottom-left' });
+								request.toastr.success(`Your ${amountToSend / 1e8} INN was imported successfully! TXID: ${broadcasted}`, 'Sweep Success!', { positionClass: 'toast-bottom-left' });
 								request.flash('success', { msg: `Sweep Complete! Your <strong>${amountToSend / 1e8} D</strong> was imported successfully via your private key! TXID: <a href='https://chainz.cryptoid.info/d/tx.dws?${broadcasted}' target='_blank'>${broadcasted}</a>` });
 								return response.redirect('/sweep');
 							} else {
@@ -1337,7 +1337,7 @@ exports.getbtcsweep = (req, res) => {
     var ethaddress = Storage.get('ethaddy');
 
 	res.render('simple/btcsweep', {
-        title: 'Kronos Core Mode BTC Sweep Private Key',
+        title: 'InnoVault Core Mode BTC Sweep Private Key',
         totalethbal: totalethbal,
         totalbal: totalbal,
         totalaribal: totalaribal,
@@ -1443,7 +1443,7 @@ exports.btcsweepkey = (request, response) => {
 				//Grab UTXO Transaction History from BTC ElectrumX
 				const utxohistory = async () => {
 					// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-					const electrum = new ElectrumCluster('Kronos Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+					const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 					
 					// Add some servers to the cluster.
 					electrum.addServer(btcelectrumhost1);
@@ -1457,7 +1457,7 @@ exports.btcsweepkey = (request, response) => {
 					// Wait for enough connections to be available.
 					await electrum.ready();
 					
-					// Request the balance of the requested Scripthash D address
+					// Request the balance of the requested Scripthash INN address
 
 					//const utxos = [];
 
@@ -1617,7 +1617,7 @@ exports.btcsweepkey = (request, response) => {
 				
 						const broadcastTX = async () => {
 							// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
-							const electrum = new ElectrumCluster('Kronos Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
+							const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 							
 							// Add some servers to the cluster.
 							electrum.addServer(btcelectrumhost1);
@@ -1631,7 +1631,7 @@ exports.btcsweepkey = (request, response) => {
 							// Wait for enough connections to be available.
 							await electrum.ready();
 							
-							// Request the balance of the requested Scripthash D address
+							// Request the balance of the requested Scripthash INN address
 				
 							const broadcast = await electrum.request('blockchain.transaction.broadcast', psbt.extractTransaction().toHex());
 							
@@ -1787,7 +1787,7 @@ exports.u2fsetup = (req, res) => {
 
 /**
  * POST /u2fadd
- * Kronos U2F Device Adding
+ * InnoVault U2F Device Adding
  */
 exports.u2fadd = (request, response) => {
 	var devicename = request.body.U2FNAME;

@@ -10,7 +10,7 @@ block content
     socket.on('notifications', function (data) {
       console.log(data.notifydb);
       if (data.notifydb != '') {
-        $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Denarius TX Notification<br/><a href='/transactions' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
+        $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Innova TX Notification<br/><a href='/transactions' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
       }
     });   
     function closeNotify() {
@@ -29,9 +29,9 @@ block content
   #notify
   .txheader
     p
-      h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Denarius Transactions
+      h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Innova Transactions
       p(align='center') 
-        | This is your Denarius (D) wallet transaction activity information.
+        | This is your Innova (INN) wallet transaction activity information.
       br
       .div(align='center', style='margin: 0 auto;')
         label.switch(align='center')

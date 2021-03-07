@@ -20,7 +20,7 @@ script.
   //- socket.on('notifications', function (data) {
   //-     console.log('GOT NOTIFY', data);
   //-     if (data.notifydb != '') {
-  //-       $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Denarius TX Notification<br/><a href='/tx/"+ data.notifydb.toString() +"' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
+  //-       $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Innova TX Notification<br/><a href='/tx/"+ data.notifydb.toString() +"' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
   //-     }
   //- });
   function closeNotify() {
@@ -36,7 +36,7 @@ script.
         span.icon-bar
         span.icon-bar
       .navbar-brand
-        img.res(src='../img/klogo.svg', alt='Kronos', border='0')
+        img.res(src='../img/klogo.svg', alt='InnoVault', border='0')
     .collapse.navbar-collapse
       ul.nav.navbar-nav
           li(class=(title == 'Dashboard') ? 'active' : undefined)
@@ -50,7 +50,7 @@ script.
       ul.nav.navbar-nav.centerbal
           li.navmobile
             a(href='http://'+lanip+':3000/createtx', style='font-size:14px;color:#FFF;')
-              img.res(src='../img/denarius.png', alt='D', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
+              img.res(src='../img/innova.png', alt='D', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
               span(style='color:#888;') Send D
           li.navmobile
             a(href='http://'+lanip+':3000/sendbtc', style='font-size:14px;color:#FFF;') 
@@ -66,7 +66,7 @@ script.
               span(style='color:#888;') Send ARI
           li.navsend
             a(href='http://'+lanip+':3000/createtx', style='font-size:14px;color:#FFF;')
-              img.res(src='../img/denarius.png', alt='D', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
+              img.res(src='../img/innova.png', alt='D', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
               span(style='color:#888;') D
           li.navsend
             a(href='http://'+lanip+':3000/createtx', style='border-right:1px #444 solid;padding-left:0px !important;')
@@ -137,7 +137,7 @@ script.
               li
                 a(href='https://discord.gg/UPpQy3n', target='_blank')
                   i.fab.fa-discord 
-                  |   Denarius Discord
+                  |   Innova Discord
               li.divider
               li
                 a(href='http://'+lanip+':3000/logout', onclick="javascript:event.target.port=3000")
