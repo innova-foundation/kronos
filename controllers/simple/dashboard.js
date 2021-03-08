@@ -44,7 +44,7 @@ const main = require('progressbar.js');
 const ethers = require('ethers');
 
 
-var currentOS = os.platform();        
+var currentOS = os.platform();
 
 if (currentOS === 'linux') {
     let SECRET_KEY = process.env.KEY;
@@ -102,14 +102,14 @@ exports.simpleindex = (req, res) => {
 
     const ip = require('ip');
     const ipaddy = ip.address();
-    
+
     res.locals.lanip = ipaddy;
-    
+
     let scripthasharray = [];
     let ethereumarray = [];
     let promises = [];
     let promises2 = [];
-  
+
     //ElectrumX Hosts for Innova
     const delectrumxhost1 = 'electrumx1.innova.pro';
     const delectrumxhost2 = 'electrumx2.innova.pro';
@@ -124,7 +124,7 @@ exports.simpleindex = (req, res) => {
     const btcelectrumhost5 = 'alviss.coinjoined.com';
     const btcelectrumhost6 = 'hodlers.beer';
     const btcelectrumhost7 = 'electrum.blockstream.info'; //lol
-    
+
     let socket_id = [];
     let socket_id2 = [];
     let socket_id3 = [];
@@ -178,9 +178,9 @@ exports.simpleindex = (req, res) => {
     res.io.on('connection', function (socket) {
         socket_id33.push(socket.id);
         if (socket_id33[0] === socket.id) {
-        // remove the connection listener for any subsequent 
+        // remove the connection listener for any subsequent
         // connections with the same ID
-        res.io.removeAllListeners('connection'); 
+        res.io.removeAllListeners('connection');
         }
         try {
             provider2.on('block', (blockNumber) => {
@@ -205,16 +205,16 @@ exports.simpleindex = (req, res) => {
             console.log('Caught Error: ', e);
         }
         // ariContract.on(ethwalletp.address, (balance) => {
-        //     console.log('New ARI Balance: ' + balance);
+        //     console.log('New USDT Balance: ' + balance);
         //     socket.emit("newaribal", {aribal: balance});
         // });
     });
 
-    // Grab ETH and ARI balances in realtime (every 15s)
+    // Grab ETH and USDT balances in realtime (every 15s)
     res.io.on('connection', function (socket) {
         socket_id34.push(socket.id);
         if (socket_id34[0] === socket.id) {
-        res.io.removeAllListeners('connection'); 
+        res.io.removeAllListeners('connection');
         }
         const ethWalletBal = async () => {
             let ethbalance = await provider.getBalance(ethwalletp.address);
@@ -223,7 +223,7 @@ exports.simpleindex = (req, res) => {
             socket.emit("newethbal", {ethbal: JSON.parse(ethbalformatted)});
         }
         ethWalletBal();
-        setInterval(function(){ 
+        setInterval(function(){
             ethWalletBal();
         }, 15000);
     });
@@ -231,7 +231,7 @@ exports.simpleindex = (req, res) => {
     res.io.on('connection', function (socket) {
         socket_id5.push(socket.id);
         if (socket_id5[0] === socket.id) {
-        res.io.removeAllListeners('connection'); 
+        res.io.removeAllListeners('connection');
         }
         const ariWalletBal = async () => {
             let aribalance = await ariContract.balanceOf(ethwalletp.address);
@@ -240,24 +240,24 @@ exports.simpleindex = (req, res) => {
             socket.emit("newaribal", {aribal: parseFloat(aribalformatted)});
         }
         ariWalletBal();
-        setInterval(function(){ 
+        setInterval(function(){
             ariWalletBal();
         }, 15000);
     });
-    
+
     // si.cpuCurrentspeed(function (data2) {
-    
+
     //     var min = data2.min;
     //     var avg = data2.avg;
     //     var max = data2.max;
-    
+
     //     //Emit to our Socket.io Server
     //     res.io.on('connection', function (socket) {
     //         socket_id2.push(socket.id);
     //         if (socket_id2[0] === socket.id) {
-    //           // remove the connection listener for any subsequent 
+    //           // remove the connection listener for any subsequent
     //           // connections with the same ID
-    //           res.io.removeAllListeners('connection'); 
+    //           res.io.removeAllListeners('connection');
     //         }
     //         socket.emit("cpuspeed", {min: min, avg: avg, max: max});
     //         setInterval(() => {
@@ -265,114 +265,114 @@ exports.simpleindex = (req, res) => {
     //         }, 90000);
     //     });
     // });
-    
+
     // si.cpuTemperature(function (data3) {
     //     var tempp = data3.main;
     //     var temppp = tempp.toFixed(0);
-    
+
     //     if (temppp == -1) {
     //         var temp = 'N/A';
     //     } else {
     //         var temp = temppp;
     //     }
-    
+
     //     //Emit to our Socket.io Server
     //     res.io.on('connection', function (socket) {
     //         socket_id3.push(socket.id);
     //         if (socket_id3[0] === socket.id) {
-    //           // remove the connection listener for any subsequent 
+    //           // remove the connection listener for any subsequent
     //           // connections with the same ID
-    //           res.io.removeAllListeners('connection'); 
+    //           res.io.removeAllListeners('connection');
     //         }
     //         socket.emit("temp", {temp: temp, temppp: temppp});
     //         setInterval(() => {
     //             si.cpuTemperature(function (data3) {
     //                 var tempp = data3.main;
     //                 var temppp = tempp.toFixed(0);
-                
+
     //                 if (temppp == -1) {
     //                     var temp = 'N/A';
     //                 } else {
     //                     var temp = temppp;
     //                 }
-    
+
     //                 socket.emit("temp", {temp: temp, temppp: temppp});
     //             });
     //         }, 60000);
     //     });
     // });
-    
+
     // si.mem(function (data1) {
-    
+
     //     var bytes = 1073741824;
     //     var memtt = data1.total;
     //     var memuu = data1.active;
     //     var memff = data1.free;
     //     var mema = data1.available;
-    
+
     //     var memttt = memtt / bytes;
     //     var memt = memttt.toFixed(2);
-    
+
     //     var memffff = memtt - memuu;
     //     var memfff = memffff / bytes;
     //     var memf = memfff.toFixed(2);
-    
+
     //     var memuuu = memuu / bytes;
     //     var memu = memuuu.toFixed(2);
-    
-    
+
+
     //     var memp = memu / memt * 100;
     //     var memppp = memp / 100;
     //     var mempp = memppp;
-    
+
     //     //Emit to our Socket.io Server
     //     res.io.on('connection', function (socket) {
     //         socket_id4.push(socket.id);
     //         if (socket_id4[0] === socket.id) {
-    //           // remove the connection listener for any subsequent 
+    //           // remove the connection listener for any subsequent
     //           // connections with the same ID
-    //           res.io.removeAllListeners('connection'); 
+    //           res.io.removeAllListeners('connection');
     //         }
     //         socket.emit("memory", {mema: mema, memt: memt, memf: memf, memu: memu, memp: memp, mempp: mempp});
     //         setInterval(() => {
     //             si.mem(function (data1) {
-    
+
     //                 var bytes = 1073741824;
     //                 var memtt = data1.total;
     //                 var memuu = data1.active;
     //                 var memff = data1.free;
     //                 var mema = data1.available;
-                
+
     //                 var memttt = memtt / bytes;
     //                 var memt = memttt.toFixed(2);
-                
+
     //                 var memffff = memtt - memuu;
     //                 var memfff = memffff / bytes;
     //                 var memf = memfff.toFixed(2);
-                
+
     //                 var memuuu = memuu / bytes;
-    //                 var memu = memuuu.toFixed(2);			
-                
+    //                 var memu = memuuu.toFixed(2);
+
     //                 var memp = memu / memt * 100;
     //                 var memppp = memp / 100;
     //                 var mempp = memppp;
-    
+
     //                 socket.emit("memory", {mema: mema, memt: memt, memf: memf, memu: memu, memp: memp, mempp: mempp});
     //             });
     //         }, 5000);
     //     });
     // });
-    
-    
+
+
     // si.osInfo().then(data4 => {
-    
+
     //     var osname = data4.distro;
     //     var kernel = data4.kernel;
     //     var platform = data4.platform;
     //     var release = data4.release;
     //     var hostname = data4.hostname;
     //     var arch = data4.arch;
-    
+
     //     res.locals.osname = osname;
     //     res.locals.kernel = kernel;
     //     res.locals.platform = platform;
@@ -388,61 +388,61 @@ exports.simpleindex = (req, res) => {
     //     Storage.set('arch', arch);
 
     // });
-    
+
     // si.currentLoad().then(data6 => {
-    
+
     //     var avgload = data6.avgload;
     //     var currentload = data6.currentload;
-    
+
     //     var cpu = currentload / 100;
-    
+
     //     //Emit to our Socket.io Server
     //     res.io.on('connection', function (socket) {
     //         socket_id7.push(socket.id);
     //         if (socket_id7[0] === socket.id) {
-    //           // remove the connection listener for any subsequent 
+    //           // remove the connection listener for any subsequent
     //           // connections with the same ID
-    //           res.io.removeAllListeners('connection'); 
+    //           res.io.removeAllListeners('connection');
     //         }
     //         socket.emit("cpuload", {avgload: avgload, cpu: cpu});
     //         setInterval(() => {
     //             si.currentLoad().then(data6 => {
-    
+
     //                 var avgload = data6.avgload;
     //                 var currentload = data6.currentload;
-                
+
     //                 var cpu = currentload / 100;
-    
+
     //                 socket.emit("cpuload", {avgload: avgload, cpu: cpu});
-    
+
     //             });
     //         }, 5000);
     //     });
-    
+
     // });
-    
+
     //Testing out realtime Electrumx Block Header Subscribe
     //Emit to our Socket.io Server
     res.io.on('connection', function (socket) {
         socket_id.push(socket.id);
         if (socket_id[0] === socket.id) {
-        // remove the connection listener for any subsequent 
+        // remove the connection listener for any subsequent
         // connections with the same ID
-        res.io.removeAllListeners('connection'); 
+        res.io.removeAllListeners('connection');
         }
         const latestblocks = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
             electrum.addServer(delectrumxhost2);
             electrum.addServer(delectrumxhost3);
             electrum.addServer(delectrumxhost4);
-            
+
             // Wait for enough connections to be available.
             await electrum.ready();
-    
+
             // Set up a callback function to handle new blocks.
             const handleNewBlocks = function(data)
             {
@@ -455,7 +455,7 @@ exports.simpleindex = (req, res) => {
             await electrum.subscribe(handleNewBlocks, 'blockchain.headers.subscribe');
 
             //await electrum.disconnect();
-    
+
             //return handleNewBlocks();
         }
         latestblocks();
@@ -465,14 +465,14 @@ exports.simpleindex = (req, res) => {
     res.io.on('connection', function (socket) {
         socket_idbtc.push(socket.idbtc);
         if (socket_idbtc[0] === socket.id) {
-        // remove the connection listener for any subsequent 
+        // remove the connection listener for any subsequent
         // connections with the same ID
-        res.io.removeAllListeners('connection'); 
+        res.io.removeAllListeners('connection');
         }
         const latestBTCblocks = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
             electrum.addServer(btcelectrumhost2);
@@ -481,10 +481,10 @@ exports.simpleindex = (req, res) => {
             electrum.addServer(btcelectrumhost5);
             electrum.addServer(btcelectrumhost6);
             electrum.addServer(btcelectrumhost7);
-            
+
             // Wait for enough connections to be available.
             await electrum.ready();
-    
+
             // Set up a callback function to handle new blocks.
             const handleNewBlocks = function(data)
             {
@@ -497,7 +497,7 @@ exports.simpleindex = (req, res) => {
             await electrum.subscribe(handleNewBlocks, 'blockchain.headers.subscribe');
 
             //await electrum.disconnect();
-    
+
             //return handleNewBlocks();
         }
         latestBTCblocks();
@@ -510,9 +510,9 @@ exports.simpleindex = (req, res) => {
         mnemonic = decryptedmnemonic;
 
 
-        //Convert our mnemonic seed phrase to BIP39 Seed Buffer 
+        //Convert our mnemonic seed phrase to BIP39 Seed Buffer
         const seed = bip39.mnemonicToSeedSync(mnemonic); //No pass included to keep Coinomi styled seed
-        
+
         // BIP32 From BIP39 Seed
         const root = bip32.fromSeed(seed);
 
@@ -571,7 +571,7 @@ exports.simpleindex = (req, res) => {
         const btcsegwitbech32 = bitcoinjs.payments.p2wpkh({ pubkey: btcaddressKeypair0.publicKey, bitcoinnetwork }).address; //Segwit Bech32 bc1
 
         const btcsegwitp2shaddy = bitcoinjs.payments.p2sh({ redeem: bitcoinjs.payments.p2wpkh({ pubkey: btcaddressKeypair0.publicKey, bitcoinnetwork }), }).address; //Segwit P2SH 3
-        
+
         Storage.set('mainaddress', p2pkhaddy0);
         Storage.set('p2pkaddress', p2pkaddy);
 
@@ -622,12 +622,12 @@ exports.simpleindex = (req, res) => {
         res.io.on('connection', function (socket) {
             socket_id6.push(socket.id);
             if (socket_id6[0] === socket.id) {
-            res.io.removeAllListeners('connection'); 
+            res.io.removeAllListeners('connection');
             }
             const dWalletBal = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
                 const electrum = new ElectrumCluster('InnoVault Core Mode INN Balance', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-                
+
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
                 electrum.addServer(delectrumxhost2);
@@ -636,7 +636,7 @@ exports.simpleindex = (req, res) => {
                 try {
                     // Wait for enough connections to be available.
                     await electrum.ready();
-                    
+
                     // Request the balance of the requested Scripthash INN address
 
                     const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
@@ -665,7 +665,7 @@ exports.simpleindex = (req, res) => {
                 }
             }
             dWalletBal();
-            setInterval(function(){ 
+            setInterval(function(){
                 dWalletBal();
             }, 15000);
         });
@@ -674,12 +674,12 @@ exports.simpleindex = (req, res) => {
         res.io.on('connection', function (socket) {
             socket_idbtcb.push(socket.id);
             if (socket_idbtcb[0] === socket.id) {
-            res.io.removeAllListeners('connection'); 
+            res.io.removeAllListeners('connection');
             }
             const btcWalletBal = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
                 const electrum = new ElectrumCluster('InnoVault Core Mode BTC Balance', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-                
+
                 // Add some servers to the cluster.
                 electrum.addServer(btcelectrumhost1);
                 electrum.addServer(btcelectrumhost2);
@@ -690,7 +690,7 @@ exports.simpleindex = (req, res) => {
                 try {
                     // Wait for enough connections to be available.
                     await electrum.ready();
-                    
+
                     // Request the balance of the requested Scripthash BTC address
 
                     const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthashbtc);
@@ -720,7 +720,7 @@ exports.simpleindex = (req, res) => {
                 }
             }
             btcWalletBal();
-            setInterval(function(){ 
+            setInterval(function(){
                 btcWalletBal();
             }, 15000);
         });
@@ -743,7 +743,7 @@ exports.simpleindex = (req, res) => {
           //console.log(addressKeypair);
 
           const privatekey = addressKeypair.toWIF();
-        
+
           //New Array called seedaddresses that is filled with address and path data currently
           seedaddresses.push({ address: p2pkhaddy, privkey: privatekey, path: addressPath, p2pk: p2pkaddy });
         }
@@ -787,7 +787,7 @@ exports.simpleindex = (req, res) => {
         const btctxhistoryfull = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault Core Mode BTC TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
             electrum.addServer(btcelectrumhost2);
@@ -796,11 +796,11 @@ exports.simpleindex = (req, res) => {
             electrum.addServer(btcelectrumhost5);
             electrum.addServer(btcelectrumhost6);
             electrum.addServer(btcelectrumhost7);
-            
+
             try {
             // Wait for enough connections to be available.
             await electrum.ready();
-            
+
             // Request the balance of the requested Scripthash INN address
 
             //const txs = [];
@@ -837,7 +837,7 @@ exports.simpleindex = (req, res) => {
         const btcmemtxhistoryfull = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault Core Mode BTC TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
             electrum.addServer(btcelectrumhost2);
@@ -846,11 +846,11 @@ exports.simpleindex = (req, res) => {
             electrum.addServer(btcelectrumhost5);
             electrum.addServer(btcelectrumhost6);
             electrum.addServer(btcelectrumhost7);
-            
+
             try {
             // Wait for enough connections to be available.
             await electrum.ready();
-            
+
             // Request the balance of the requested Scripthash INN address
 
             //const txs = [];
@@ -887,7 +887,7 @@ exports.simpleindex = (req, res) => {
         const btcutxoHistory = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault Core Mode BTC UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(btcelectrumhost1);
             electrum.addServer(btcelectrumhost2);
@@ -896,11 +896,11 @@ exports.simpleindex = (req, res) => {
             electrum.addServer(btcelectrumhost5);
             electrum.addServer(btcelectrumhost6);
             electrum.addServer(btcelectrumhost7);
-            
+
             try {
             // Wait for enough connections to be available.
             await electrum.ready();
-            
+
             // Request the balance of the requested Scripthash INN address
 
             //const txs = [];
@@ -970,16 +970,16 @@ exports.simpleindex = (req, res) => {
             const scripthasha = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
                 const electrum = new ElectrumCluster('InnoVault Core Mode Balances', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-                
+
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
                 electrum.addServer(delectrumxhost2);
                 electrum.addServer(delectrumxhost3);
                 electrum.addServer(delectrumxhost4);
-                
+
                 // Wait for enough connections to be available.
                 await electrum.ready();
-                
+
                 // Request the balance of the requested Scripthash INN address
 
                 const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
@@ -1005,16 +1005,16 @@ exports.simpleindex = (req, res) => {
             const scripthashb = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
                 const electrum = new ElectrumCluster('InnoVault Core Mode Unconfirmed Balances', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-                
+
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
                 electrum.addServer(delectrumxhost2);
                 electrum.addServer(delectrumxhost3);
                 electrum.addServer(delectrumxhost4);
-                
+
                 // Wait for enough connections to be available.
                 await electrum.ready();
-                
+
                 // Request the balance of the requested Scripthash INN address
 
                 const balancescripthash = await electrum.request('blockchain.scripthash.get_balance', scripthash);
@@ -1041,17 +1041,17 @@ exports.simpleindex = (req, res) => {
             const txhistoryfull = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
                 const electrum = new ElectrumCluster('InnoVault Core Mode TX History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-                
+
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
                 electrum.addServer(delectrumxhost2);
                 electrum.addServer(delectrumxhost3);
                 electrum.addServer(delectrumxhost4);
-                
+
                 try {
                 // Wait for enough connections to be available.
                 await electrum.ready();
-                
+
                 // Request the balance of the requested Scripthash INN address
 
                 //const txs = [];
@@ -1088,7 +1088,7 @@ exports.simpleindex = (req, res) => {
             const utxohistory = async () => {
                 // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
                 const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-                
+
                 // Add some servers to the cluster.
                 electrum.addServer(delectrumxhost1);
                 electrum.addServer(delectrumxhost2);
@@ -1097,7 +1097,7 @@ exports.simpleindex = (req, res) => {
                 try {
                 // Wait for enough connections to be available.
                 await electrum.ready();
-                
+
                 // Request the balance of the requested Scripthash INN address
 
                 //const utxos = [];
@@ -1156,15 +1156,15 @@ exports.simpleindex = (req, res) => {
         //});
 
         //Grab USDT and Ethereum Data
-        const ethWalletBal = async () => {        
+        const ethWalletBal = async () => {
             //let signer = provider.getSigner(0);
-    
+
             const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
-    
+
             // provider.getBlockNumber().then((blockNumber) => {
             //     console.log("Current ETH block number: " + blockNumber);
             // });
-    
+
             let ethwalletp = ethwallet.connect(provider2); //Set wallet provider
 
             //Storage.set('ethaddy', ethwalletp.address);
@@ -1180,62 +1180,62 @@ exports.simpleindex = (req, res) => {
             return JSON.parse(ethbalformatted);
         }
 
-        const ariWalletBal = async () => {        
+        const ariWalletBal = async () => {
             //let signer = provider.getSigner(0);
-    
+
             const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
-    
+
             // provider.getBlockNumber().then((blockNumber) => {
             //     console.log("Current ETH block number: " + blockNumber);
             // });
-    
+
             let ethwalletp = ethwallet.connect(provider2); //Set wallet provider
 
             //let ethbalance = await provider.getBalance(ethwalletp.address);
-    
+
             // You can also use an ENS name for the contract address
             const ariAddress = "0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670"; // 0x8A8b5318d3A59fa6D1d0A83A1B0506f2796b5670 USDT (USDT)
             const ariAbi = [
             // Some details about the token
             "function name() view returns (string)",
             "function symbol() view returns (string)",
-    
+
             // Get the account balance
             "function balanceOf(address) view returns (uint)",
-    
+
             // Send some of your tokens to someone else
             "function transfer(address to, uint amount)",
-    
+
             // An event triggered whenever anyone transfers to someone else
             "event Transfer(address indexed from, address indexed to, uint amount)"
             ];
-    
+
             // The Contract object
             const ariContract = new ethers.Contract(ariAddress, ariAbi, provider2);
-    
+
             // // // Get the ERC-20 token name
             // ariContract.name().then((result) => {
             //     console.log("Name: " + result);
             // });
-    
+
             // // Get the ERC-20 token symbol (for tickers and UIs)
             // ariContract.symbol()
-    
+
             // Get the balance of an address
             let aribalance = await ariContract.balanceOf(ethwalletp.address)
-            // ethers.utils.formatUnits(aribalance, 8); // 8 decimals for ARI
+            // ethers.utils.formatUnits(aribalance, 8); // 8 decimals for USDT
 
             let aribalformatted = ethers.utils.formatUnits(aribalance, 8);
-    
+
             //console.log(formattedethbal);
-            //console.log("ARI Address: ", ethwalletp.address);
+            //console.log("USDT Address: ", ethwalletp.address);
 
             return parseFloat(aribalformatted);
         }
 
         // const ethWalletTX = async () => {
         //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
-    
+
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     let etherscanProvider = new ethers.providers.EtherscanProvider(ethnetworktype);
@@ -1252,7 +1252,7 @@ exports.simpleindex = (req, res) => {
 
         // const ariWalletTX = async () => {
         //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
-    
+
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     let etherscanProvider = new ethers.providers.EtherscanProvider(ethnetworktype);
@@ -1281,7 +1281,7 @@ exports.simpleindex = (req, res) => {
         // }
 
         // const BoxProfile = async () => {
-        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our InnoVault seed        
+        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our InnoVault seed
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     //3Box Profile
@@ -1321,7 +1321,7 @@ exports.simpleindex = (req, res) => {
         // }
 
         // const SetupBoxSpace = async () => {
-        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our InnoVault seed        
+        //     const ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Wallet from our InnoVault seed
         //     let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 
         //     var thebox = await ThreeBox.openBox(ethwalletp.address, provider);
@@ -1358,7 +1358,7 @@ exports.simpleindex = (req, res) => {
                 var totalbal = 0;
                 scripthasharray.forEach(function (item, index) {
                     totalbal += item.balance;
-                });                
+                });
                 Storage.set('totalbal', totalbal);
                 Storage.set('accountarray', scripthasharray);
                 let innovautxos = scripthasharray[0].utxos;
@@ -1405,11 +1405,11 @@ exports.simpleindex = (req, res) => {
                         socket_id9.push(socket.id);
                         //console.log(socket.id);
                         if (socket_id9[0] === socket.id) {
-                        // remove the connection listener for any subsequent 
+                        // remove the connection listener for any subsequent
                         // connections with the same ID
-                        res.io.removeAllListeners('connection'); 
+                        res.io.removeAllListeners('connection');
                         }
-                        //Get Current D/BTC and D/USD price from CoinGecko
+                        //Get Current INN/BTC and INN/USD price from CoinGecko
                         unirest.get("https://api.coingecko.com/api/v3/coins/innova?tickers=true&market_data=true&community_data=false&developer_data=true")
                         .headers({'Accept': 'application/json'})
                         .end(function (result) {
@@ -1419,12 +1419,12 @@ exports.simpleindex = (req, res) => {
                                 var currentprice = result.body['market_data']['current_price']['usd'];
 
                                 var usdformatted = usdbalance.toFixed(3);
-            
+
                                 socket.emit("usdinfo", {dbalance: totalbals, usdbalance: usdformatted, currentprice: currentprice});
 
                                 Storage.set('usdbal', usdformatted.toString());
                                 Storage.set('currentprice', currentprice.toString());
-                            } else { 
+                            } else {
                                 console.log("Error occured on price refresh before interval", result.error);
                                 var usdbalance = '~';
                                 var currentprice = '~';
@@ -1446,10 +1446,10 @@ exports.simpleindex = (req, res) => {
                                 var ethformatted = ethusdbalance.toFixed(3);
 
                                 socket.emit("ethinfo", {ethbalance: totaleth, ethusdbalance: ethformatted, currentprice: currentethprice});
-                                
+
                                 Storage.set('ethbal', ethformatted.toString());
                                 Storage.set('currentethprice', currentethprice.toString());
-                            } else { 
+                            } else {
                                 console.log("Error occured on price refresh before interval", result.error);
                                 var ethusdbalance = '~';
                                 var currentethprice = '~';
@@ -1470,10 +1470,10 @@ exports.simpleindex = (req, res) => {
                                 var btcformatted = btcusdbalance.toFixed(3);
 
                                 socket.emit("btcinfo", {btcbalance: totalbtc, btcusdbalance: btcformatted, currentprice: currentbtcprice});
-                                
+
                                 Storage.set('usdbtcbal', btcformatted.toString());
                                 Storage.set('currentbtcprice', currentbtcprice.toString());
-                            } else { 
+                            } else {
                                 console.log("Error occured on price refresh before interval for BTC price", result.error);
                                 var btcusdbalance = '~';
                                 var currentbtcprice = '~';
@@ -1482,7 +1482,7 @@ exports.simpleindex = (req, res) => {
                                 Storage.set('currentbtcprice', '~');
                             }
                         });
-                        //Get Current ARI/USD price from 0x Uniswap
+                        //Get Current USDT/USD price from 0x Uniswap
                         unirest.get("https://api.0x.org/swap/v1/quote?sellAmount=10000000&buyToken=USDC&sellToken=0x8a8b5318d3a59fa6d1d0a83a1b0506f2796b5670")
                         .headers({'Accept': 'application/json'})
                         .end(function (result) {
@@ -1494,11 +1494,11 @@ exports.simpleindex = (req, res) => {
                                 var ariformatted = ariusdbalance.toFixed(3);
 
                                 socket.emit("ariinfo", {aribalance: totalari, ariusdbalance: ariformatted, currentprice: currentariprice});
-                                
+
                                 Storage.set('aribal', ariformatted.toString());
                                 Storage.set('currentariprice', currentariprice.toString());
 
-                            } else { 
+                            } else {
                                 console.log("Error occured on price refresh before interval", result.error);
                                 var ariusdbalance = '~';
                                 var currentariprice = '~';
@@ -1519,7 +1519,7 @@ exports.simpleindex = (req, res) => {
                                 Storage.set('erctxs', erctxs);
                                 //Storage.set('currentariprice', currentariprice);
 
-                            } else { 
+                            } else {
                                 console.log("Error occured on fetching etherscan tx history", result.error);
                                 //var ariusdbalance = '~';
                                 //var currentariprice = '~';
@@ -1535,11 +1535,11 @@ exports.simpleindex = (req, res) => {
                             if (!result.error) {
                                 //var totalari = Storage.get('totalaribal');
                                 var ethtxs = result.body.result; //* balance;
-                                
+
                                 Storage.set('ethtxs', ethtxs);
                                 //Storage.set('currentariprice', currentariprice);
 
-                            } else { 
+                            } else {
                                 console.log("Error occured on fetching etherscan tx history", result.error);
                                 //var ariusdbalance = '~';
                                 //var currentariprice = '~';
@@ -1557,7 +1557,7 @@ exports.simpleindex = (req, res) => {
                         //         var info = result.body; // results
 
                         //         console.log(info);
-                                
+
                         //         //var bal = info['final_balance'] / 1e8; //total BTC bal
 
                         //         var txs = info['txs']; //tx history array
@@ -1565,7 +1565,7 @@ exports.simpleindex = (req, res) => {
                         //         //Storage.set('btctotalbal', bal);
                         //         Storage.set('btctxs', txs);
 
-                        //     } else { 
+                        //     } else {
                         //         console.log("Error occured on fetching Blockchain.info Address Data", result.error);
                         //     }
                         // });
@@ -1642,4 +1642,3 @@ exports.simpleindex = (req, res) => {
             });
         });
 };
-    

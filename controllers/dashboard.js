@@ -681,7 +681,7 @@ res.io.on('connection', function (socket) {
 		.end(function (result) {
 			var cryptoidblocks = result.body;
 
-		//Get Current D/BTC and D/USD price from CoinGecko
+		//Get Current INN/BTC and INN/USD price from CoinGecko
 		// unirest.get("https://api.coingecko.com/api/v3/coins/innova?tickers=true&market_data=true&community_data=false&developer_data=true")
 		// 	.headers({'Accept': 'application/json'})
 		// 	.end(function (result) {
@@ -709,7 +709,7 @@ res.io.on('connection', function (socket) {
 			  // connections with the same ID
 			  res.io.removeAllListeners('connection'); 
 			}
-			//Get Current D/BTC and D/USD price from CoinGecko
+			//Get Current INN/BTC and INN/USD price from CoinGecko
 			unirest.get("https://api.coingecko.com/api/v3/coins/innova?tickers=true&market_data=true&community_data=false&developer_data=true")
 			.headers({'Accept': 'application/json'})
 			.end(function (result) {

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  script(src='../js/lib/jquery-3.1.1.min.js') 
+  script(src='../js/lib/jquery-3.1.1.min.js')
   script(src='../js/jquery.sparkline.min.js')
   script.
     socket.on('cpuspeed', function (data) {
@@ -14,15 +14,15 @@ block content
         var height = data.block.height;
         var hexhash = data.block.hex.toString();
         //$('#blockheight').html(height);
-        $('#blockhash').html('<a href="/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;">BLOCK HEX: '+hexhash.substring(0,33)+'...</a>'); 
-        $('#link').html('<span class="blockcount"><a href="/block/'+height+'">'+height+'</a></span>'); 
+        $('#blockhash').html('<a href="/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;">BLOCK HEX: '+hexhash.substring(0,33)+'...</a>');
+        $('#link').html('<span class="blockcount"><a href="/block/'+height+'">'+height+'</a></span>');
 
       } else {
         var height = data.block[0].height;
         var hexhash = data.block[0].hex.toString();
         //$('#blockheight').html(height);
-        $('#blockhash').html('<a href="/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;">BLOCK HEX: '+hexhash.substring(0,33)+'...</a>'); 
-        $('#link').html('<span class="blockcount"><a href="/block/'+height+'">'+height+'</a>'); 
+        $('#blockhash').html('<a href="/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;">BLOCK HEX: '+hexhash.substring(0,33)+'...</a>');
+        $('#link').html('<span class="blockcount"><a href="/block/'+height+'">'+height+'</a>');
 
       }
     });
@@ -105,7 +105,7 @@ block content
     socket.on('memory', function (data2) {
       //console.log(data2.mempp);
       //$('.ldBar').attr('data-value', data2.mempp.toFixed(2) * 100);
-    
+
       ldbar = new ldBar("#rammy", {
                     "stroke-width": 8,
                     "preset": "circle",
@@ -137,7 +137,7 @@ block content
       //$('#rammy').html("data-value=" + data2.mempp.toFixed(2) + "")
     });
     //console.log(progarray);
-  script. 
+  script.
     function confirmedu() {
       $('#sendunlock').submit();
     }
@@ -152,7 +152,7 @@ block content
     }
     function displayus() {
       var y = document.getElementById("DisplayModalUnlock");
-      y.style.display = "none";      
+      y.style.display = "none";
     }
     function toggl() {
       var x = document.getElementById("pkey");
@@ -287,7 +287,7 @@ block content
               .cpumini
         .col-md-4.mobilerow2(align='center')
           h3(align='center', style='margin:35px;').animate__animated.animate__bounce
-            | Everything is 
+            | Everything is
             span(style='color: #42B905;') Great!
             br
             span.mobilerow2(style='font-size:12px;color:#999;') INNOVA IS SYNCED
@@ -312,13 +312,13 @@ block content
       //-       }, 60000); // 60 seconds for auto refresh enabled
       .row(class='rowclass balancerow').animate__animated.animate__fadeIn
         .col-sm-6
-          h3(style='font-size:48px;color: #393939;margin-top:0px;') 
-            i.fas.fa-wallet 
+          h3(style='font-size:48px;color: #393939;margin-top:0px;')
+            i.fas.fa-wallet
             |  Balance
-          p 
-          .bal(style='font-size:2.5em;') 
+          p
+          .bal(style='font-size:2.5em;')
             span#balance
-            small(style='font-size:16px;')  D
+            small(style='font-size:16px;')  INN
           p
           .bal(style='font-size:1.6em;color:#888;') $
             span#usdbalance
@@ -327,16 +327,16 @@ block content
               |  ea
         .col-sm-3
           h3(style='font-weight:light;font-size:28px;color: #393939;margin-top:15px;') Unconfirmed
-          p 
+          p
           .bal(style='font-size:1.7em;')
             span#unbalance
-            small(style='font-size:16px;')  D
+            small(style='font-size:16px;')  INN
         .col-sm-3
           h3(style='font-weight:light;font-size:28px;color: #393939;margin-top:15px;') In Stake
-          p 
-          .bal(style='font-size:1.7em;') 
+          p
+          .bal(style='font-size:1.7em;')
             span#instake
-            small(style='font-size:16px;')  D
+            small(style='font-size:16px;')  INN
       .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       .row(class='rowclass').animate__animated.animate__fadeIn
         .col-md-6
@@ -374,25 +374,25 @@ block content
       .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       .row(class='rowclass').animate__animated.animate__fadeIn
           .col-md-3
-            h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:15px;') 
-              i.fas.fa-hdd 
+            h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:15px;')
+              i.fas.fa-hdd
               |  Stats
-            p Block Height: 
+            p Block Height:
               strong #{blockheight}
               p Innova Version #{version}
               p Protocol v#{protocol}
               p Is Syncing: #{syncing}
-              p Peer Connections: 
+              p Peer Connections:
                 strong #{peers}
           .col-md-3
             p(style='margin-top:62px;') Node IP Address: #{ip}:33369
-              p LAN IP: 
+              p LAN IP:
                 span#lanip(data-value=lanip) #{lanip}
-              p FortunaStakes Online: 
+              p FortunaStakes Online:
                 strong #{fscount}
               p Fortunastake Node: #{fs}
               p Native Tor Enabled: #{tor}
-              p Data Directory Location: 
+              p Data Directory Location:
                 br
                 small(style='color:#777;') #{datadir}
           .col-md-6
@@ -400,95 +400,95 @@ block content
               .col-sm-6(align='center')
                 #rammy.label-center(style='width:250px;height:250px;')
                 span(style='color:#777;') RAM Usage
-              .col-sm-6(align='center')              
+              .col-sm-6(align='center')
                 #cpuy.label-center(style='width:250px;height:250px;')
                 span(style='color:#777;') CPU Usage
       .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       .row(class='rowclass').animate__animated.animate__fadeIn
         .col-sm-3
           p
-            | PoW Mining Hashrate 
-            br 
-            h4 
+            | PoW Mining Hashrate
+            br
+            h4
               strong#nethash
               small  MH/sec
             br
-            | Tribus PoW Difficulty 
+            | Tribus PoW Difficulty
             strong#diff
             br
-            | Staking PoS Difficulty 
+            | Staking PoS Difficulty
             strong#stakediff
         .col-sm-3
-          p 
-            | Staking is 
+          p
+            | Staking is
             span(class=enabletoggle)
-              | #{enabletoggle} 
-            | and 
-            span(class=staketoggle) 
+              | #{enabletoggle}
+            | and
+            span(class=staketoggle)
               | #{staketoggle}
           p
-            | Network Stake Weight 
-            strong#netweight        
+            | Network Stake Weight
+            strong#netweight
           p
-            | Your Stake Weight 
+            | Your Stake Weight
             strong#yourweight
           p
-            | Network Stake Rate is 6% APR of D
+            | Network Stake Rate is 6% APR of INN
         .col-sm-3
           p(align='center')
             img(src='../img/innova.png', height='128px;', align='center')
         .col-sm-3
           p
-            i.fa.fa-arrow-up 
-            |  Data Sent 
+            i.fa.fa-arrow-up
+            |  Data Sent
             strong#datasent
           p
-            i.fa.fa-arrow-down 
-            |  Data Received 
+            i.fa.fa-arrow-down
+            |  Data Received
             strong#datareceived
           p
-            i.fas.fa-stopwatch 
-            |  Target Timeframe 
+            i.fas.fa-stopwatch
+            |  Target Timeframe
             strong #{timeframe}
           p
-            i.fas.fa-hourglass-half 
-            |  Upload Target Limit 
-            strong #{target} 
+            i.fas.fa-hourglass-half
+            |  Upload Target Limit
+            strong #{target}
       .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       .row(class='rowclass', style='margin-bottom:50px;').animate__animated.animate__fadeIn
-        h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:30px;') 
-          i.fas.fa-microchip 
+        h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:30px;')
+          i.fas.fa-microchip
           |  System Info
         .col-sm-6
-          p Core Clock Speed: 
+          p Core Clock Speed:
             span#avg
-            |  GHz - CPU Load: 
-            span#avgload 
+            |  GHz - CPU Load:
+            span#avgload
             | %
-          p CPU Tempature: 
-            span#temp 
+          p CPU Tempature:
+            span#temp
             |  °C
-          p Memory Usage:  
+          p Memory Usage:
             span#memu
-            |  GB Used / 
+            |  GB Used /
             span#memf
-            |  GB Free / 
-            span#memt 
+            |  GB Free /
+            span#memt
             |  GB Total
-          p Architecture: 
+          p Architecture:
             span #{arch}
           #ram(data-value=mempp)
           #cpu(data-value=cpu)
         .col-sm-4
-          p OS Name: 
+          p OS Name:
             span #{osname}
-          p Platform: 
+          p Platform:
             span #{platform}
-          p Release: 
+          p Release:
             span #{release}
-          p Kernel: 
+          p Kernel:
             span #{kernel}
-          p Hostname: 
+          p Hostname:
             span #{hostname}
         .col-sm-2
           .row

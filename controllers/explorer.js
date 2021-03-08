@@ -36,7 +36,7 @@ var sendJSONResponse = function (res, status, content) {
     res.json(content);
 };
 
-var currentOS = os.platform(); 
+var currentOS = os.platform();
 
 if (currentOS === 'linux') {
   let SECRET_KEY = process.env.KEY;
@@ -91,7 +91,7 @@ exports.getaddress = function (req, res) {
   var urladdy = req.params.addr;
   //console.log('PASSED ADDRESS: ', urladdy);
 
-  //Connect to our INN node 
+  //Connect to our INN node
 //process.env.DUSER
 const client = new bitcoin.Client({
 	host: decrypt(Storage.get('rpchost')),
@@ -153,7 +153,7 @@ const client = new bitcoin.Client({
 
       var walletstatuss = ws.wallet_status;
       var sendicon;
-      
+
       if (walletstatuss == 'stakingonly') {
         sendicon = 'display: none !important';
       } else if (walletstatuss == 'unlocked') {
@@ -174,13 +174,13 @@ const client = new bitcoin.Client({
           var netweight = 'Node Offline';
           var expected = 'Node Offline';
           var stakediff = 'Node Offline';
-    
+
           var offline = 'offlineoverlay';
-    
+
           var offlinebtn = 'offlinebutton';
-    
+
           console.log(error);
-    
+
         } else {
           var enabled = stakeinfo.enabled;
           var staking = stakeinfo.staking;
@@ -188,19 +188,19 @@ const client = new bitcoin.Client({
           var netweight = stakeinfo.netstakeweight;
           var expected = stakeinfo.expectedtime;
           var stakediff = stakeinfo.difficulty;
-    
+
           var offline = 'onlineoverlay';
           var offlinebtn = 'onlinebutton';
-    
+
           var staketoggle;
           var enabletoggle;
-    
+
           if (enabled == true) {
             enabletoggle = 'Configured';
           } else {
             enabletoggle = 'Disabled';
           }
-    
+
           if (staking == true) {
             staketoggle = 'Staking';
           } else {
@@ -218,14 +218,14 @@ const client = new bitcoin.Client({
             var offline = 'onlineoverlay';
             var offlinebtn = 'onlinebutton';
           }
-      
+
           var chaindl = 'nooverlay';
           var chaindlbtn = 'nobtn';
-      
+
           var validationdata = returnedaddi.ismine;
 
           if (validationdata == true) {
-            urladdy = returnedaddi.address;              
+            urladdy = returnedaddi.address;
             var compressedpubkey = returnedaddi.pubkey;
           } else {
             //urladdy = '';
@@ -262,7 +262,7 @@ const client = new bitcoin.Client({
             var p2pkraw = "21  "+compressedpubkey.toUpperCase()+"  OP_CHECKSIG";
             var p2pkhraw = "OP_DUP OP_HASH160  "+removechecksum.toUpperCase()+"  OP_EQUALVERIFY OP_CHECKSIG";
           } else {
-            var p2pkraw = "";       
+            var p2pkraw = "";
             var p2pkhraw = "OP_DUP OP_HASH160  "+removechecksum.toUpperCase()+"  OP_EQUALVERIFY OP_CHECKSIG";
           }
 
@@ -273,13 +273,13 @@ const client = new bitcoin.Client({
           const scripthashf = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
             electrum.addServer(delectrumxhost2);
             electrum.addServer(delectrumxhost3);
             electrum.addServer(delectrumxhost4);
-            
+
             // Wait for enough connections to be available.
             await electrum.ready();
 
@@ -304,7 +304,7 @@ const client = new bitcoin.Client({
 
             //await electrum.disconnect();
             await electrum.shutdown();
-    
+
             return addedbalance1;
           }
 
@@ -316,23 +316,23 @@ const client = new bitcoin.Client({
                 res.locals.explorerbalance = result.body;
                 var eebalance = result.body;
 
-              } else { 
+              } else {
 
                 res.locals.explorerbalance = '~';
                 var eebalance = '~';
 
-              }      
+              }
 
           const scripthashtx = async () => {
             // Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
             const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-            
+
             // Add some servers to the cluster.
             electrum.addServer(delectrumxhost1);
             electrum.addServer(delectrumxhost2);
             electrum.addServer(delectrumxhost3);
             electrum.addServer(delectrumxhost4);
-            
+
             // Wait for enough connections to be available.
             await electrum.ready();
 
@@ -350,11 +350,11 @@ const client = new bitcoin.Client({
 
             txhistoryarray.push({scripthashtxhistory: scripthashhistory, p2pktxhistory: p2pkhistory});
 
-            //console.log(txhistoryarray)            
+            //console.log(txhistoryarray)
 
             //await electrum.disconnect();
             await electrum.shutdown();
-    
+
             return txhistoryarray;
           }
 
@@ -383,32 +383,32 @@ const client = new bitcoin.Client({
                     p2pkscripthash = "";
                     globalData1 = ebalance;
                   }
-              
+
               scripthasharray.push({address: urladdy, qr: qrcodedata1, ismine: validationdata, p2pkhscripthash: scripthash, p2pkhraw: p2pkhraw, p2pkscripthash: p2pkscripthash, p2pkraw: p2pkraw, balance: globalData1, txs: txData});
-              
+
               res({urladdy, qrcodedata1, scripthash, globalData1, txData});
 
             }).catch(function(err) {
               console.log("Error", err);
           });
-            });  
+            });
           });
           }) );
 
           Promise.all(promises).then((values) => {
 
           //console.log(scripthasharray);
-        
+
 
     res.render('explore/getaddress', { title: 'Address View', scripthasharray: scripthasharray, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
     });
 
   });
   });
-  });      
   });
-});    
-  //}); 
+  });
+});
+  //});
 };
 
 //GET Get Transaction Information
@@ -416,7 +416,7 @@ exports.gettx = function (req, res) {
       var urltx = req.params.tx;
       //console.log('PASSED TXID: ', urltx);
 
-      //Connect to our INN node 
+      //Connect to our INN node
       //process.env.DUSER
       const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -441,16 +441,16 @@ exports.gettx = function (req, res) {
           var offline = 'onlineoverlay';
           var offlinebtn = 'onlinebutton';
         }
-    
+
         var chaindl = 'nooverlay';
         var chaindlbtn = 'nobtn';
-    
+
         var balance = info;
-    
+
         if (balance <= 0) {
           balance = 0;
         }
-    
+
       client.getTransaction(`${urltx}`, function (err, txinfo, resHeaders) {
         if (err) {
           console.log(err);
@@ -461,7 +461,7 @@ exports.gettx = function (req, res) {
         } else {
           var offline = 'onlineoverlay';
           var offlinebtn = 'onlinebutton';
-          
+
           blockhash = txinfo.blockhash;
 
         }
@@ -476,10 +476,10 @@ exports.gettx = function (req, res) {
             var blockinfo = '';
           } else {
             var offline = 'onlineoverlay';
-            var offlinebtn = 'onlinebutton';        
-          }  
+            var offlinebtn = 'onlinebutton';
+          }
 
-    
+
       client.walletStatus(function (err, ws, resHeaders) {
         if (err) {
           console.log(err);
@@ -491,10 +491,10 @@ exports.gettx = function (req, res) {
         } else {
           var offline = 'onlineoverlay';
           var offlinebtn = 'onlinebutton';
-    
+
           var walletstatuss = ws.wallet_status;
           var sendicon;
-          
+
           if (walletstatuss == 'stakingonly') {
             sendicon = 'display: none !important';
           } else if (walletstatuss == 'unlocked') {
@@ -505,9 +505,9 @@ exports.gettx = function (req, res) {
             sendicon = 'display: none !important';
           }
         }
-    
+
       client.getStakingInfo(function (error, stakeinfo, resHeaders) {
-    
+
             if (error) {
               var enabled = 'Node Offline';
               var staking = 'Node Offline';
@@ -515,13 +515,13 @@ exports.gettx = function (req, res) {
               var netweight = 'Node Offline';
               var expected = 'Node Offline';
               var stakediff = 'Node Offline';
-        
+
               var offline = 'offlineoverlay';
-        
+
               var offlinebtn = 'offlinebutton';
-        
+
               console.log(error);
-        
+
             } else {
               var enabled = stakeinfo.enabled;
               var staking = stakeinfo.staking;
@@ -529,32 +529,32 @@ exports.gettx = function (req, res) {
               var netweight = stakeinfo.netstakeweight;
               var expected = stakeinfo.expectedtime;
               var stakediff = stakeinfo.difficulty;
-        
+
               var offline = 'onlineoverlay';
               var offlinebtn = 'onlinebutton';
-        
+
               var staketoggle;
               var enabletoggle;
-        
+
               if (enabled == true) {
                 enabletoggle = 'Configured';
               } else {
                 enabletoggle = 'Disabled';
               }
-        
+
               if (staking == true) {
                 staketoggle = 'Staking';
               } else {
                 staketoggle = 'Not Yet Staking';
               }
             }
-    
+
         res.render('explore/gettx', { title: 'Transaction View', txinfo: txinfo, blockinfo: blockinfo, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
         });
-    
+
       });
       });
-      }); 
+      });
     });
 };
 
@@ -564,7 +564,7 @@ exports.getblock = function (req, res) {
   const ip = require('ip');
   const ipaddy = ip.address();
 
-  //Connect to our INN node 
+  //Connect to our INN node
   //process.env.DUSER
   const client = new bitcoin.Client({
     host: decrypt(Storage.get('rpchost')),
@@ -609,8 +609,8 @@ exports.getblock = function (req, res) {
         var blockinfo = '';
       } else {
         var offline = 'onlineoverlay';
-        var offlinebtn = 'onlinebutton';        
-      } 
+        var offlinebtn = 'onlinebutton';
+      }
 
   client.walletStatus(function (err, ws, resHeaders) {
     if (err) {
@@ -626,7 +626,7 @@ exports.getblock = function (req, res) {
 
       var walletstatuss = ws.wallet_status;
       var sendicon;
-      
+
       if (walletstatuss == 'stakingonly') {
         sendicon = 'display: none !important';
       } else if (walletstatuss == 'unlocked') {
@@ -647,13 +647,13 @@ exports.getblock = function (req, res) {
           var netweight = 'Node Offline';
           var expected = 'Node Offline';
           var stakediff = 'Node Offline';
-    
+
           var offline = 'offlineoverlay';
-    
+
           var offlinebtn = 'offlinebutton';
-    
+
           console.log(error);
-    
+
         } else {
           var enabled = stakeinfo.enabled;
           var staking = stakeinfo.staking;
@@ -661,19 +661,19 @@ exports.getblock = function (req, res) {
           var netweight = stakeinfo.netstakeweight;
           var expected = stakeinfo.expectedtime;
           var stakediff = stakeinfo.difficulty;
-    
+
           var offline = 'onlineoverlay';
           var offlinebtn = 'onlinebutton';
-    
+
           var staketoggle;
           var enabletoggle;
-    
+
           if (enabled == true) {
             enabletoggle = 'Configured';
           } else {
             enabletoggle = 'Disabled';
           }
-    
+
           if (staking == true) {
             staketoggle = 'Staking';
           } else {
@@ -687,7 +687,7 @@ exports.getblock = function (req, res) {
   });
   });
   });
-    
+
   } else {
     var blockhash = req.params.block;
     //console.log('GOT BLOCK: ', blockhash);
@@ -702,16 +702,16 @@ exports.getblock = function (req, res) {
         var offline = 'onlineoverlay';
         var offlinebtn = 'onlinebutton';
       }
-  
+
       var chaindl = 'nooverlay';
       var chaindlbtn = 'nobtn';
-  
+
       var balance = info;
-  
+
       if (balance <= 0) {
         balance = 0;
       }
-  
+
       client.getBlock(`${blockhash}`, function (err, blockinfo, resHeaders) {
         if (err) {
           console.log(err);
@@ -720,10 +720,10 @@ exports.getblock = function (req, res) {
           var blockinfo = '';
         } else {
           var offline = 'onlineoverlay';
-          var offlinebtn = 'onlinebutton';        
-        }  
-  
-  
+          var offlinebtn = 'onlinebutton';
+        }
+
+
     client.walletStatus(function (err, ws, resHeaders) {
       if (err) {
         console.log(err);
@@ -735,10 +735,10 @@ exports.getblock = function (req, res) {
       } else {
         var offline = 'onlineoverlay';
         var offlinebtn = 'onlinebutton';
-  
+
         var walletstatuss = ws.wallet_status;
         var sendicon;
-        
+
         if (walletstatuss == 'stakingonly') {
           sendicon = 'display: none !important';
         } else if (walletstatuss == 'unlocked') {
@@ -749,9 +749,9 @@ exports.getblock = function (req, res) {
           sendicon = 'display: none !important';
         }
       }
-  
+
     client.getStakingInfo(function (error, stakeinfo, resHeaders) {
-  
+
           if (error) {
             var enabled = 'Node Offline';
             var staking = 'Node Offline';
@@ -759,13 +759,13 @@ exports.getblock = function (req, res) {
             var netweight = 'Node Offline';
             var expected = 'Node Offline';
             var stakediff = 'Node Offline';
-      
+
             var offline = 'offlineoverlay';
-      
+
             var offlinebtn = 'offlinebutton';
-      
+
             console.log(error);
-      
+
           } else {
             var enabled = stakeinfo.enabled;
             var staking = stakeinfo.staking;
@@ -773,29 +773,29 @@ exports.getblock = function (req, res) {
             var netweight = stakeinfo.netstakeweight;
             var expected = stakeinfo.expectedtime;
             var stakediff = stakeinfo.difficulty;
-      
+
             var offline = 'onlineoverlay';
             var offlinebtn = 'onlinebutton';
-      
+
             var staketoggle;
             var enabletoggle;
-      
+
             if (enabled == true) {
               enabletoggle = 'Configured';
             } else {
               enabletoggle = 'Disabled';
             }
-      
+
             if (staking == true) {
               staketoggle = 'Staking';
             } else {
               staketoggle = 'Not Yet Staking';
             }
           }
-  
+
       res.render('explore/block', { title: 'Block View', blockinfo: blockinfo, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offline: offline, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn });
       });
-  
+
     });
     });
     });
@@ -813,7 +813,7 @@ exports.search = (req, res, next) => {
   console.log('Search Request', searchreq)
 
   var regexpTx = new RegExp('[0-9a-zA-Z]{64}?');
-  var regexpAddr = new RegExp('^(INN)?[0-9a-zA-Z]{34}$'); //D Regular Expression for Addresses
+  var regexpAddr = new RegExp('^(INN)?[0-9a-zA-Z]{34}$'); //INN Regular Expression for Addresses
   var scripthashregex = new RegExp('^(d)?[0-9a-zA-Z]{34}$'); // d Scripthash Addresses
   var regexpBlockNum = new RegExp('[0-9]{1,7}?'); // Blocks have same hash regex as TX...hmmm
   var regexpBlock = new RegExp('^[0][0-9a-zA-Z]{64}?'); // Blocks have same hash regex as TX...hmmm

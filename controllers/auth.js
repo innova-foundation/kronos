@@ -45,7 +45,7 @@ const speakeasy = require('speakeasy');
 const yub = require('yubikey-client');
 const { forEach } = require('lodash');
 
-var currentOS = os.platform(); 
+var currentOS = os.platform();
 
 if (currentOS === 'linux') {
     let SECRET_KEY = process.env.KEY;
@@ -100,7 +100,7 @@ if (typeof Storage.get("u2fdevices") == 'undefined') {
 	//devicearray = [];
 }
 
-//Connect to our INN node 
+//Connect to our INN node
 //process.env.DUSER
 // const client = new bitcoin.Client({
 // 	host: decrypt(Storage.get('rpchost')),
@@ -134,7 +134,7 @@ const changeEndianness = (string) => {
     }
     return result.join('');
 }
- 
+
 // Initialise the Yub Yubikey U2F library
 yub.init("60504", "nVVPQrJq2geFg3HQPpt5VLbF1RA=");
 
@@ -153,26 +153,26 @@ exports.login = (req, res) => {
 		// }
 
 		res.render('select', {title: 'Setup InnoVault'}); //Other Setup
-		
+
 		// If rpcuser does not exist in levelDB then go to page to create one
 		//res.render('setup', {title: 'Setup InnoVault'}); //Other Setup
 
 		} else {
-		
+
 		// res.render('login', {title: 'InnoVault Login'});
 
 		db.get('username', function (err, value) {
 			if (err) {
-			  
+
 			  // If username does not exist in levelDB then go to page to create one
 			  res.render('create', {title: 'Create InnoVault Login'});
-	
+
 			} else {
-			  
+
 			  var twofaenable = Storage.get('2fa');
 			  var u2fdevices = Storage.get("u2fdevices");
 			  res.render('login', {title: 'InnoVault Login', twofaenable: twofaenable, u2fdevices: u2fdevices});
-	
+
 			}
 		});
 
@@ -187,21 +187,21 @@ exports.login = (req, res) => {
 exports.auth = (req, res) => {
 	db.get('created', function (err, value) {
         if (err) {
-          
+
           // If created does not exist in levelDB then go to page to create one
           res.render('select', {title: 'Setup InnoVault'});
 
         } else {
-		  
-		  
+
+
 		db.get('username', function (err, value) {
 			if (err) {
-			
+
 			// If username does not exist in levelDB then go to page to create one
 			res.render('create', {title: 'Create InnoVault Login'});
 
 			} else {
-			
+
 			res.render('auth', {title: 'InnoVault Authorization'});
 
 			}
@@ -218,22 +218,22 @@ exports.auth = (req, res) => {
 exports.autht = (req, res) => {
 	db.get('created', function (err, value) {
         if (err) {
-          
+
           // If rpcuser does not exist in levelDB then go to page to create one
           res.render('select', {title: 'Setup InnoVault'});
 
         } else {
-		  
+
 			db.get('username', function (err, value) {
 				if (err) {
-				  
+
 				  // If username does not exist in levelDB then go to page to create one
 				  res.render('create', {title: 'Create InnoVault Login'});
-		
+
 				} else {
-				  
+
 				  res.render('autht', {title: 'InnoVault Authorization'});
-		
+
 				}
 			});
 
@@ -249,22 +249,22 @@ exports.autht = (req, res) => {
 exports.authk = (req, res) => {
 	db.get('created', function (err, value) {
         if (err) {
-          
+
           // If rpcuser does not exist in levelDB then go to page to create one
           res.render('select', {title: 'Setup InnoVault'});
 
         } else {
-		  
+
 			db.get('username', function (err, value) {
 				if (err) {
-				  
+
 				  // If username does not exist in levelDB then go to page to create one
 				  res.render('create', {title: 'Create InnoVault Login'});
-		
+
 				} else {
-				  
+
 				  res.render('authk', {title: 'InnoVault Authorization'});
-		
+
 				}
 			});
 
@@ -284,7 +284,7 @@ exports.setup = (request, response) => {
 	var rpcport = request.body.PORT;
 
 	//var secretkey = request.body.SECRET;
-	
+
 	if (rpcuser && rpcpass && rpchost && rpcport) {
 
 		const newclient = new bitcoin.Client({
@@ -311,7 +311,7 @@ exports.setup = (request, response) => {
 
 				db.get('rpcpass', function (err, value) {
 					if (err) {
-					  
+
 						// If rpc password does not exist in levelDB then go to page to create one
 						// Encrypt the rpc user and pass for storing in the DB
 						var encryptedrpcpass = encrypt(rpcpass);
@@ -326,25 +326,25 @@ exports.setup = (request, response) => {
 						// 	if (err) console.log('Ooops!', err) // some kind of I/O error if so
 						// 	console.log('New Setup: True');
 						// });
-	
+
 						// Put the encrypted rpc username in the DB
 						db.put('rpcuser', encryptedrpcuser, function (err) {
 							if (err) console.log('Ooops!', err) // some kind of I/O error if so
 							console.log('Encrypted RPC Username to DB');
 						});
-				
+
 						// Put the encrypted rpc password in the DB
 						db.put('rpcpass', encryptedrpcpass, function (err) {
 							if (err) console.log('Ooops!', err) // some kind of I/O error if so
 							console.log('Encrypted RPC Password to DB');
 						});
-	
+
 						// Put the encrypted rpc host in the DB
 						db.put('rpchost', encryptedrpchost, function (err) {
 							if (err) console.log('Ooops!', err) // some kind of I/O error if so
 							console.log('Encrypted RPC Host to DB');
 						});
-	
+
 						// Put the encrypted rpc port in the DB
 						db.put('rpcport', encryptedrpcport, function (err) {
 							if (err) console.log('Ooops!', err) // some kind of I/O error if so
@@ -363,15 +363,15 @@ exports.setup = (request, response) => {
 						request.toastr.success('InnoVault Advanced Innova Configuration Successful', 'Success!', { positionClass: 'toast-bottom-left' });
 						response.render('create', {title: 'InnoVault Login Creation'});
 						response.end();
-			
+
 					} else {
-	
+
 					  //Found rpcpass in DB so redirecting back to login
 					  response.render('login', {title: 'InnoVault Login'});
 					  response.end();
 					}
-				});			
-	
+				});
+
 			} else {
 				// request.toastr.error('Error!', 'Error!', { positionClass: 'toast-bottom-left' });
 				// response.redirect('/login');
@@ -381,9 +381,9 @@ exports.setup = (request, response) => {
 				response.end();
 			}
 		});
-		
+
 		//response.end();
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter your Innova RPC User, Pass, Host, and Port!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -400,14 +400,14 @@ exports.create = (request, response) => {
 	var username = request.body.PPU1;
 	var password = request.body.PPP1;
 	var password2 = request.body.PPP2;
-	
+
 	if (username && password) {
 
 		if (request.body && password == password2) {
 
 			db.get('password', function (err, value) {
 				if (err) {
-				  
+
 					// If password does not exist in levelDB then go to page to create one
 					// Encrypt the user and pass for storing in the DB
 					var encryptedpass = encrypt(password);
@@ -426,7 +426,7 @@ exports.create = (request, response) => {
 						if (err) console.log('Ooops!', err) // some kind of I/O error if so
 						console.log('Encrypted Username to DB');
 					});
-			
+
 					// Put the encrypted password in the DB
 					db.put('password', encryptedpass, function (err) {
 						if (err) console.log('Ooops!', err) // some kind of I/O error if so
@@ -441,7 +441,7 @@ exports.create = (request, response) => {
 					// // Fetch the InnoVault LevelDB Seedphrase
 					// db.get('seedphrase', function (err, value) {
 					// 	if (err) {
-							
+
 					// 		// If seedphrase does not exist in levelDB then generate one with the password
 					// 		mnemonic = bip39.generateMnemonic(256);
 
@@ -461,30 +461,30 @@ exports.create = (request, response) => {
 					// 	}
 
 					// });
-					
+
 					// //Stored User/Pass to DB successfully now setup the session
 					request.session.loggedin = false; //Make them sign in again after setup
 					request.session.username = username;
 					request.toastr.success('Created InnoVault User, Setup Successful, Please login!', 'Success!', { positionClass: 'toast-bottom-left' });
 					response.redirect('/login');
 					response.end();
-		
+
 				} else {
 
 				  //Found password in DB so redirecting back to login
 				  response.render('login', {title: 'InnoVault Login'});
 				  response.end();
 				}
-			});			
+			});
 
 		} else {
 			request.toastr.error('Passwords do not match!', 'Error!', { positionClass: 'toast-bottom-left' });
 			response.redirect('/login');
 			response.end();
 		}
-		
+
 		//response.end();
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter Username and Password!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -498,7 +498,7 @@ exports.simple = (request, response) => {
 	var seedphrase = request.body.SEED;
 
 	//var secretkey = request.body.SECRET;
-	
+
 	if (seedphrase) {
 			//console.log('Balance:', balance);
 
@@ -530,14 +530,14 @@ exports.simple = (request, response) => {
 
 						request.toastr.success('InnoVault Simple Configuration Successful', 'Success!', { positionClass: 'toast-bottom-left' });
 						response.render('create', {title: 'InnoVault Login Creation'});
-						response.end();	
-	
+						response.end();
+
 			} else {
 				request.toastr.error('Failed!', 'Error!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/login');
 				response.end();
 			}
-	
+
 	} else {
 		request.toastr.error('Please select a seed phrase!', 'Error!', { positionClass: 'toast-bottom-left' });
 		response.redirect('/login');
@@ -561,23 +561,23 @@ exports.changepass = (request, response) => {
 	var lastpass = request.body.LPP;
 	var password = request.body.PPP1;
 	var password2 = request.body.PPP2;
-	
+
 	if (lastpass && password) {
 
 		if (request.body && password == password2) {
 
 			db.get('password', function (err, value) {
 				if (err) {
-		
+
 				} else {
 					var previouspass = decrypt(value);
 
 					if (lastpass == previouspass) {
-				  
+
 						// If password does not exist in levelDB then go to page to create one
 						// Encrypt the user and pass for storing in the DB
 						var encryptedpass = encrypt(password);
-				
+
 						// Put the encrypted password in the DB
 						db.put('password', encryptedpass, function (err) {
 							if (err) console.log('Ooops!', err) // some kind of I/O error if so
@@ -585,7 +585,7 @@ exports.changepass = (request, response) => {
 						});
 
 						Storage.set('password', encryptedpass);
-						
+
 						// //Stored User/Pass to DB successfully now setup the session
 						request.session.loggedin = false; //Make them sign in again after setup
 						//request.session.username = username;
@@ -599,16 +599,16 @@ exports.changepass = (request, response) => {
 						response.end();
 					}
 				}
-			});			
+			});
 
 		} else {
 			request.toastr.error('Passwords do not match!', 'Error!', { positionClass: 'toast-bottom-left' });
 			response.redirect('/passchange');
 			response.end();
 		}
-		
+
 		//response.end();
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter a new password!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -632,7 +632,7 @@ exports.getimport = (req, res) => {
 //POST IMPORT SEED
 exports.importseed = (request, response) => {
 	var seedphrase = request.body.SEEDPHRASE;
-	
+
 	if (seedphrase && request.body) {
 
 			if (ethers.utils.isValidMnemonic(seedphrase)) {
@@ -665,14 +665,14 @@ exports.importseed = (request, response) => {
 
 				request.toastr.success('InnoVault Seed Import Successful!', 'Success!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/login');
-				response.end();	
-	
+				response.end();
+
 			} else {
 				request.toastr.error('Invalid seed phrase! Try something else!', 'Error!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/import');
 				response.end();
 			}
-	
+
 	} else {
 		request.toastr.error('Please enter a seed phrase!', 'Error!', { positionClass: 'toast-bottom-left' });
 		response.redirect('/import');
@@ -684,7 +684,7 @@ exports.importseed = (request, response) => {
 exports.getsimple = (req, res) => {
 
 	var mnemonic;
-			
+
 	// Generate Seed Phrase and pass it to our rendered view
 	mnemonic = bip39.generateMnemonic(256);
 
@@ -727,7 +727,7 @@ exports.postlogin = (request, response) => {
 	var otptoken = request.body.OTP;
 	var twofaenable = Storage.get('2fa');
 	var u2fdevices = Storage.get("u2fdevices");
-	
+
 	if (username && password) {
 
 		db.get('username', function (err, value) {
@@ -756,16 +756,16 @@ exports.postlogin = (request, response) => {
 										if (decrypt(item.id) == data.identity) {
 											console.log('2FA Enabled w Found matched Device IDs');
 											return true;
-										}											
+										}
 										console.log('2FA Enabled w No matched Device IDs');
 										return false;
 									});
-									if (data.valid == true && filterarray != '') {									
+									if (data.valid == true && filterarray != '') {
 										if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 											request.session.loggedin = true;
 											request.session.username = username;
 											request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
-			
+
 											if (Storage.get('mode') == 'simple') {
 												//Storage.set('mode', 'simple');
 												response.redirect('/dashsimple');
@@ -784,7 +784,7 @@ exports.postlogin = (request, response) => {
 										response.redirect('/login');
 										response.end();
 									}
-								});																
+								});
 							}
 							if (twofatoken) {
 								var secretkey = Storage.get('2fasecretkey');
@@ -799,7 +799,7 @@ exports.postlogin = (request, response) => {
 											request.session.loggedin = true;
 											request.session.username = username;
 											request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
-			
+
 											if (Storage.get('mode') == 'simple') {
 												//Storage.set('mode', 'simple');
 												response.redirect('/dashsimple');
@@ -835,18 +835,18 @@ exports.postlogin = (request, response) => {
 										if (decrypt(item.id) == data.identity) {
 											console.log('Found matched Device IDs');
 											return true;
-										}											
+										}
 										console.log('No matched Device IDs');
 										return false;
 									});
 									//console.log(filterarray);
 									if (filterarray != '') {
-										if (data.valid == true) {									
+										if (data.valid == true) {
 											if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 												request.session.loggedin = true;
 												request.session.username = username;
 												request.toastr.success('Logged into InnoVault', 'Success!', { positionClass: 'toast-bottom-left' });
-				
+
 												if (Storage.get('mode') == 'simple') {
 													//Storage.set('mode', 'simple');
 													response.redirect('/dashsimple');
@@ -870,7 +870,7 @@ exports.postlogin = (request, response) => {
 										response.redirect('/login');
 										response.end();
 									}
-								});																
+								});
 							} else {
 								if (request.body && (username == decrypteduser) && (password == decryptedpass)) {
 									request.session.loggedin = true;
@@ -893,12 +893,12 @@ exports.postlogin = (request, response) => {
 									response.end();
 								}
 							}
-						}				
+						}
 					}
-				});	
+				});
 			}
 		});
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter a Username and Password!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -914,7 +914,7 @@ exports.postlogin = (request, response) => {
 exports.postAuth = (request, response) => {
 	var username = request.body.PPU1;
 	var password = request.body.PPP1;
-	
+
 	if (username && password) {
 
 		db.get('username', function (err, value) {
@@ -952,12 +952,12 @@ exports.postAuth = (request, response) => {
 					}
 
 				});
-	
+
 			}
 		});
-		
+
 		//response.end();
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter a Username and Password!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -976,9 +976,9 @@ exports.postAutht = (request, response) => {
 
 	const ip = require('ip');
 	const ipaddy = ip.address();
-  
+
 	response.locals.lanip = ipaddy;
-	
+
 	if (username && password) {
 
 		db.get('username', function (err, value) {
@@ -1016,12 +1016,12 @@ exports.postAutht = (request, response) => {
 					}
 
 				});
-	
+
 			}
 		});
-		
+
 		//response.end();
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter a Username and Password!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -1040,9 +1040,9 @@ exports.postAuthk = (request, response) => {
 
 	const ip = require('ip');
 	const ipaddy = ip.address();
-  
+
 	response.locals.lanip = ipaddy;
-	
+
 	if (username && password) {
 
 		db.get('username', function (err, value) {
@@ -1080,12 +1080,12 @@ exports.postAuthk = (request, response) => {
 					}
 
 				});
-	
+
 			}
 		});
-		
+
 		//response.end();
-	
+
 	} else {
 		//response.send('Please enter Username and Password!');
 		request.toastr.error('Please enter a Username and Password!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -1099,7 +1099,7 @@ exports.postAuthk = (request, response) => {
 exports.getsweep = (req, res) => {
 	const ip = require('ip');
     const ipaddy = ip.address();
-  
+
     res.locals.lanip = ipaddy;
 
     var totalethbal = Storage.get('totaleth');
@@ -1119,7 +1119,7 @@ exports.getsweep = (req, res) => {
 //POST Sweeping privkey
 exports.sweepkey = (request, response) => {
 	const privkey = request.body.PRIVATEKEY;
-	
+
 	if (privkey && request.body) {
 
 			let verified;
@@ -1145,10 +1145,10 @@ exports.sweepkey = (request, response) => {
 					scriptHash: 0x5a,
 					wif: 0x9e
 				};
-		
+
 				// Get our current address to send funds to
 				const mainaddress = Storage.get('mainaddress');
-		
+
 				// Load up the privkey we are importing
 				const key = dbitcoin.ECPair.fromWIF(privkey);
 				const pubKey = key.getPublicKeyBuffer();
@@ -1182,16 +1182,16 @@ exports.sweepkey = (request, response) => {
 				const utxohistory = async () => {
 					// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
 					const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-					
+
 					// Add some servers to the cluster.
 					electrum.addServer(delectrumxhost1);
 					electrum.addServer(delectrumxhost2);
 					electrum.addServer(delectrumxhost3);
 					electrum.addServer(delectrumxhost4);
-					
+
 					// Wait for enough connections to be available.
 					await electrum.ready();
-					
+
 					// Request the balance of the requested Scripthash INN address
 
 					//const utxos = [];
@@ -1214,7 +1214,7 @@ exports.sweepkey = (request, response) => {
 						res({utxohistory});
 					});
 				}));
-					
+
 				Promise.all(promises2).then((values) => {
 					var utxos = utxoarray[0].utxos;
 					console.log(utxoarray[0].utxos);
@@ -1224,7 +1224,7 @@ exports.sweepkey = (request, response) => {
 					console.log('UTXO Count: ', numutxo);
 
 					if (numutxo == 0) {
-						request.toastr.error(`Error sweeping D! No UTXOs with a balance`, 'Error!', { positionClass: 'toast-bottom-left' });
+						request.toastr.error(`Error sweeping INN! No UTXOs with a balance`, 'Error!', { positionClass: 'toast-bottom-left' });
 						return response.redirect('/sweep');
 					} else {
 
@@ -1232,7 +1232,7 @@ exports.sweepkey = (request, response) => {
 						var txb = new dbitcoin.TransactionBuilder(dbitcoin.networks.innova);
 
 						var totalVal = 0;
-						for(i=0; i<numutxo; i++) {  
+						for(i=0; i<numutxo; i++) {
 							totalVal += utxos[i].value;
 							txb.addInput(utxos[i].tx_hash, parseInt(utxos[i].tx_pos));
 						}
@@ -1243,80 +1243,80 @@ exports.sweepkey = (request, response) => {
 						//Add Raw TX Output to Sweep Privkey to and send funds
 						txb.addOutput(mainaddress, amountToSend, dbitcoin.networks.innova);
 						//txb.addOutput(mainaddress, innovaifees, dbitcoin.networks.innova); //needs secondary output of the fees?
-						
+
 						//Sign each of our privkey utxo inputs
-						for(i=0; i<numutxo; i++){  
+						for(i=0; i<numutxo; i++){
 							txb.sign(dbitcoin.networks.innova, i, key);
 						}
-				
+
 						// Print transaction serialized as hex
 						console.log('Innova Raw Transaction Built and Broadcasting: ' + txb.build().toHex());
-				
+
 						// => 020000000110fd2be85bba0e8a7a694158fa27819f898def003d2f63b668d9d19084b76820000000006b48304502210097897de69a0bd7a30c50a4b343b7471d1c9cd56aee613cf5abf52d62db1acf6202203866a719620273a4e550c30068fb297133bceee82c58f5f4501b55e6164292b30121022f0c09e8f639ae355c462d7a641897bd9022ae39b28e6ec621cea0a4bf35d66cffffffff0140420f000000000001d600000000
-						
+
 						let promises = [];
 						let broadcastarray = [];
-				
+
 						const broadcastTX = async () => {
 							// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
 							const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-							
+
 							// Add some servers to the cluster.
 							electrum.addServer(delectrumxhost1);
 							electrum.addServer(delectrumxhost2);
 							electrum.addServer(delectrumxhost3);
 							electrum.addServer(delectrumxhost4);
-							
+
 							// Wait for enough connections to be available.
 							await electrum.ready();
-							
+
 							// Request the balance of the requested Scripthash INN address
-				
+
 							const broadcast = await electrum.request('blockchain.transaction.broadcast', txb.build().toHex());
-							
+
 							//console.log(broadcast);
-				
+
 							//await electrum.disconnect();
 							await electrum.shutdown();
-				
+
 							return broadcast;
 						};
-				
+
 						//var broadcasted = broadcastTX();
-				
+
 						promises.push(new Promise((res, rej) => {
 							broadcastTX().then(broadcastedTX => {
 								broadcastarray.push({tx: broadcastedTX});
 								res({broadcastedTX});
 							});
 						}));
-							
+
 						Promise.all(promises).then((values) => {
 							var broadcasted = broadcastarray[0].tx;
 							console.log(broadcastarray[0].tx);
-				
+
 							if (!broadcasted.message) {
 								request.toastr.success(`Your ${amountToSend / 1e8} INN was imported successfully! TXID: ${broadcasted}`, 'Sweep Success!', { positionClass: 'toast-bottom-left' });
-								request.flash('success', { msg: `Sweep Complete! Your <strong>${amountToSend / 1e8} D</strong> was imported successfully via your private key! TXID: <a href='https://chainz.cryptoid.info/d/tx.dws?${broadcasted}' target='_blank'>${broadcasted}</a>` });
+								request.flash('success', { msg: `Sweep Complete! Your <strong>${amountToSend / 1e8} INN</strong> was imported successfully via your private key! TXID: <a href='https://chainz.cryptoid.info/d/tx.dws?${broadcasted}' target='_blank'>${broadcasted}</a>` });
 								return response.redirect('/sweep');
 							} else {
-								request.toastr.error(`Error importing D! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
-								//req.flash('errors', { msg: `Error sending D! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
+								request.toastr.error(`Error importing INN! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
+								//req.flash('errors', { msg: `Error sending INN! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
 								return response.redirect('/sweep');
 							}
-				
-						});	
+
+						});
 
 					}
-		
+
 				});
-	
+
 			} else {
 				request.toastr.error('Invalid private key! Try again, double check!', 'Error!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/sweep');
 				response.end();
 			}
-	
+
 	} else {
 		request.toastr.error('Please enter a private key!', 'Error!', { positionClass: 'toast-bottom-left' });
 		response.redirect('/sweep');
@@ -1328,7 +1328,7 @@ exports.sweepkey = (request, response) => {
 exports.getbtcsweep = (req, res) => {
 	const ip = require('ip');
     const ipaddy = ip.address();
-  
+
     res.locals.lanip = ipaddy;
 
     var totalethbal = Storage.get('totaleth');
@@ -1348,7 +1348,7 @@ exports.getbtcsweep = (req, res) => {
 //POST BTC Sweeping privkey
 exports.btcsweepkey = (request, response) => {
 	const privkey = request.body.PRIVATEKEY;
-	
+
 	if (privkey && request.body) {
 
 			let verified;
@@ -1374,10 +1374,10 @@ exports.btcsweepkey = (request, response) => {
 					scriptHash: 0x05,
 					wif: 0x80
 				};
-		
+
 				// Get our current address to send funds to
 				const mainaddress = Storage.get('btcsegwitaddy');
-		
+
 				// Load up the privkey we are importing
 				const key = bitcoinjs.ECPair.fromWIF(privkey);
 				//const pubKey = key.getPublicKeyBuffer();
@@ -1444,7 +1444,7 @@ exports.btcsweepkey = (request, response) => {
 				const utxohistory = async () => {
 					// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
 					const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-					
+
 					// Add some servers to the cluster.
 					electrum.addServer(btcelectrumhost1);
 					electrum.addServer(btcelectrumhost2);
@@ -1453,10 +1453,10 @@ exports.btcsweepkey = (request, response) => {
 					electrum.addServer(btcelectrumhost5);
 					electrum.addServer(btcelectrumhost6);
 					electrum.addServer(btcelectrumhost7);
-					
+
 					// Wait for enough connections to be available.
 					await electrum.ready();
-					
+
 					// Request the balance of the requested Scripthash INN address
 
 					//const utxos = [];
@@ -1506,7 +1506,7 @@ exports.btcsweepkey = (request, response) => {
 						res({utxohistory});
 					});
 				}));
-					
+
 				Promise.all(promises2).then((values) => {
 					var utxos = utxoarray[0].utxos;
 					console.log(utxoarray[0].utxos);
@@ -1527,18 +1527,18 @@ exports.btcsweepkey = (request, response) => {
 						const psbt = new bitcoinjs.Psbt();
 
 						var totalVal = 0;
-						for(i=0; i<numutxo; i++) {  
+						for(i=0; i<numutxo; i++) {
 							totalVal += utxos[i].value;
 							if (segwit == true) {
-								psbt.addInput({hash: utxos[i].tx_hash, index: parseInt(utxos[i].tx_pos),       
+								psbt.addInput({hash: utxos[i].tx_hash, index: parseInt(utxos[i].tx_pos),
 									// // If this input was segwit, instead of nonWitnessUtxo, you would add
 									// // a witnessUtxo as follows. The scriptPubkey and the value only are needed.
 									witnessUtxo: {
 										script: Buffer.from(HASH160,'hex'), value: parseInt(utxos[i].value),
 									},
-						
+
 									redeemScript: p2wpkhredeem.output
-								
+
 									// Not featured here:
 									//   redeemScript. A Buffer of the redeemScript for P2SH
 									//   witnessScript. A Buffer of the witnessScript for P2WSH
@@ -1552,7 +1552,7 @@ exports.btcsweepkey = (request, response) => {
 								.end(function (result) {
 									if (!result.error) {
 										var rawhex = result.body;
-										psbt.addInput({hash: utxos[i].tx_hash, index: parseInt(utxos[i].tx_pos),       
+										psbt.addInput({hash: utxos[i].tx_hash, index: parseInt(utxos[i].tx_pos),
 											// // If this input was segwit, instead of nonWitnessUtxo, you would add
 											// // a witnessUtxo as follows. The scriptPubkey and the value only are needed.
 											// witnessUtxo: {
@@ -1561,31 +1561,31 @@ exports.btcsweepkey = (request, response) => {
 											// non-segwit inputs now require passing the whole previous tx as Buffer
 											nonWitnessUtxo: Buffer.from(rawhex, 'hex',
 											),
-								
+
 											//redeemScript: p2wpkhredeem.output
-										
+
 											// Not featured here:
 											//   redeemScript. A Buffer of the redeemScript for P2SH
 											//   witnessScript. A Buffer of the witnessScript for P2WSH
 										});
 
-				
-									} else { 
-										console.log("Error occured trying to fetch legacy raw tx hex", result.error);	
+
+									} else {
+										console.log("Error occured trying to fetch legacy raw tx hex", result.error);
 									}
-								});								
+								});
 							}
 
 							if (bech32 == true) {
-								psbt.addInput({hash: utxos[i].tx_hash, index: parseInt(utxos[i].tx_pos),       
+								psbt.addInput({hash: utxos[i].tx_hash, index: parseInt(utxos[i].tx_pos),
 									// // If this input was segwit, instead of nonWitnessUtxo, you would add
 									// // a witnessUtxo as follows. The scriptPubkey and the value only are needed.
 									witnessUtxo: {
 										script: Buffer.from(p2wpkhoutput,'hex'), value: parseInt(utxos[i].value),
 									},
-						
+
 									//redeemScript: p2wpkhredeem.output
-								
+
 									// Not featured here:
 									//   redeemScript. A Buffer of the redeemScript for P2SH
 									//   witnessScript. A Buffer of the witnessScript for P2WSH
@@ -1595,30 +1595,30 @@ exports.btcsweepkey = (request, response) => {
 						//calc fee and add output address
 						var btcfees = numutxo * 10000; //10000;
 						var amountToSend = totalVal - btcfees; // 100 BTC total inputs - 30 BTC converted amount - 70 BTC to be sent back to change address
-				
+
 						psbt.addOutput({address: mainaddress, value: amountToSend,  });
 						//psbt.addOutput({address: btcaddy, value: changeAmnt,  });
-				
+
 						//Sign each of our privkey utxo inputs
-						for(i=0; i<numutxo; i++){  
+						for(i=0; i<numutxo; i++){
 							psbt.signInput(i, key);
 							psbt.validateSignaturesOfInput(i);
 						}
 						//psbt.validateSignaturesOfInput(0);
 						psbt.finalizeAllInputs();
-				
+
 						// Print transaction serialized as hex
 						console.log('BTC Raw Transaction Built and Broadcast: ' + psbt.extractTransaction().toHex());
-				
+
 						// => 020000000110fd2be85bba0e8a7a694158fa27819f898def003d2f63b668d9d19084b76820000000006b48304502210097897de69a0bd7a30c50a4b343b7471d1c9cd56aee613cf5abf52d62db1acf6202203866a719620273a4e550c30068fb297133bceee82c58f5f4501b55e6164292b30121022f0c09e8f639ae355c462d7a641897bd9022ae39b28e6ec621cea0a4bf35d66cffffffff0140420f000000000001d600000000
-						
+
 						let promises = [];
 						let broadcastarray = [];
-				
+
 						const broadcastTX = async () => {
 							// Initialize an electrum cluster where 1 out of 2 out of the 4 needs to be consistent, polled randomly with fail-over.
 							const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
-							
+
 							// Add some servers to the cluster.
 							electrum.addServer(btcelectrumhost1);
 							electrum.addServer(btcelectrumhost2);
@@ -1627,35 +1627,35 @@ exports.btcsweepkey = (request, response) => {
 							electrum.addServer(btcelectrumhost5);
 							electrum.addServer(btcelectrumhost6);
 							electrum.addServer(btcelectrumhost7);
-							
+
 							// Wait for enough connections to be available.
 							await electrum.ready();
-							
+
 							// Request the balance of the requested Scripthash INN address
-				
+
 							const broadcast = await electrum.request('blockchain.transaction.broadcast', psbt.extractTransaction().toHex());
-							
+
 							//console.log(broadcast);
-				
+
 							//await electrum.disconnect();
 							await electrum.shutdown();
-				
+
 							return broadcast;
 						};
-				
+
 						//var broadcasted = broadcastTX();
-				
+
 						promises.push(new Promise((res, rej) => {
 							broadcastTX().then(broadcastedTX => {
 								broadcastarray.push({tx: broadcastedTX});
 								res({broadcastedTX});
 							});
 						}));
-							
+
 						Promise.all(promises).then((values) => {
 							var broadcasted = broadcastarray[0].tx;
 							console.log(broadcastarray[0].tx);
-				
+
 							if (!broadcasted.message) {
 								request.toastr.success(`Your ${amountToSend / 1e8} BTC was imported successfully! TXID: ${broadcasted}`, 'Sweep Success!', { positionClass: 'toast-bottom-left' });
 								request.flash('success', { msg: `Sweep Complete! Your <strong>${amountToSend / 1e8} BTC</strong> was imported successfully via your private key! TXID: <a href='https://chainz.cryptoid.info/btc/tx.dws?${broadcasted}' target='_blank'>${broadcasted}</a>` });
@@ -1665,18 +1665,18 @@ exports.btcsweepkey = (request, response) => {
 								//req.flash('errors', { msg: `Error sending BTC! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
 								return response.redirect('/sweepbtc');
 							}
-				
-						});	
+
+						});
 					}
-		
+
 				});
-	
+
 			} else {
 				request.toastr.error('Invalid private key! Try again, double check!', 'Error!', { positionClass: 'toast-bottom-left' });
 				response.redirect('/sweepbtc');
 				response.end();
 			}
-	
+
 	} else {
 		request.toastr.error('Please enter a private key!', 'Error!', { positionClass: 'toast-bottom-left' });
 		response.redirect('/sweepbtc');
@@ -1759,13 +1759,13 @@ exports.u2fremove = (request, response) => {
 			arr_length = array ? array.length : 0,
 			resIndex = -1,
 			result = [];
-	
+
 		while (++index < arr_length) {
-			var value = array[index];	
+			var value = array[index];
 			if (value) {
 				result[++resIndex] = value;
 			}
-		}	
+		}
 		return result;
 	}
 
@@ -1801,7 +1801,7 @@ exports.u2fadd = (request, response) => {
 	} else {
 		devicearray = Storage.get("u2fdevices");
 	}
-	
+
 	if (devicename && otp) {
 
 		if (request.body) {
@@ -1841,7 +1841,7 @@ exports.u2fadd = (request, response) => {
 						request.toastr.error('U2F Device Adding Failed!', 'Error!', { positionClass: 'toast-bottom-left' });
 						response.redirect('/u2f');
 						response.end();
-					}	
+					}
 				});
 			} else {
 				request.toastr.error('Device Name already used!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -1853,7 +1853,7 @@ exports.u2fadd = (request, response) => {
 			response.redirect('/u2f');
 			response.end();
 		}
-	
+
 	} else {
 		request.toastr.error('Please enter a device name and press the button on your device!', 'Error!', { positionClass: 'toast-bottom-left' });
 		response.redirect('/u2f');

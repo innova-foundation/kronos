@@ -1,6 +1,6 @@
 div(class=offline)
   div(class=offlinebtn)
-    p 
+    p
       h1 Innova Node Offline
     p
       #rebooter
@@ -21,7 +21,7 @@ div(class=chaindl)
     //-   }
     img(src="https://user-images.githubusercontent.com/10162347/85637883-9fe5fa00-b641-11ea-9f4b-22901d7911c4.png", height="200px", width="221px", align="center")
     br
-    br 
+    br
     div(align='center', style='background-color:#141414; width:500px; margin: 0 auto; padding:30px;border-radius:15px;')
       h1 Innova Node Syncing...
       p
@@ -29,22 +29,22 @@ div(class=chaindl)
           h1(style='margin:0;padding:0;')
             strong #{blockperc} %
       p(style='font-size:18px;')
-        | On Block 
-        strong #{blockheight} 
-        | out of 
+        | On Block
+        strong #{blockheight}
+        | out of
         strong #{cryptoidblocks}
         br
         #blockpp
       img(src='../img/syncing.svg', alt='Syncing Blocks...', border='0', style='height:75px;')
-      p(style='font-size:18px;') Peer Connections: 
+      p(style='font-size:18px;') Peer Connections:
         strong #{peers}
       p
         i.fa.fa-arrow-up
-        |  Data Sent 
+        |  Data Sent
         strong #{datasent}
       p
         i.fa.fa-arrow-down
-        |  Data Received 
+        |  Data Received
         strong #{datareceived}
       hr(style='border-top: 1px solid #222;')
       p(style='color:#666;')
@@ -92,98 +92,98 @@ script.
     .collapse.navbar-collapse
       ul.nav.navbar-nav
           li(class=(title == 'Dashboard') ? 'active' : undefined)
-            a(href='http://'+lanip+':3000/', onclick="javascript:event.target.port=3000") 
-              i.fas.fa-tachometer-alt  
+            a(href='http://'+lanip+':3000/', onclick="javascript:event.target.port=3000")
+              i.fas.fa-tachometer-alt
               |   Dashboard
           li(class=(title == 'FortunaStakes') ? 'active' : undefined)
-            a(href='http://'+lanip+':3000/fs', onclick="javascript:event.target.port=3000") 
-              i.fas.fa-th   
-              |   FS
+            a(href='http://'+lanip+':3000/fs', onclick="javascript:event.target.port=3000")
+              i.fas.fa-th
+              |   CN
           li(class=(title == 'Chat') ? 'active' : undefined)
-            a(href='http://'+lanip+':3000/advchat', onclick="javascript:event.target.port=3000") 
-              i.fas.fa-comment-dots   
+            a(href='http://'+lanip+':3000/advchat', onclick="javascript:event.target.port=3000")
+              i.fas.fa-comment-dots
               |   Chat
           li(class=(title == 'Peers') ? 'active' : undefined)
-            a(href='http://'+lanip+':3000/peers', onclick="javascript:event.target.port=3000") 
-              i.fas.fa-network-wired    
+            a(href='http://'+lanip+':3000/peers', onclick="javascript:event.target.port=3000")
+              i.fas.fa-network-wired
               |   Peers
           li.dropdown(class=(title == 'Wallet') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              span 
-              i.fa.fa-wallet  
+              span
+              i.fa.fa-wallet
               |   Wallet
               i.caret
             ul.dropdown-menu
               li
-                a(href='http://'+lanip+':3000/transactions', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-exchange-alt  
+                a(href='http://'+lanip+':3000/transactions', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-exchange-alt
                   |   Transactions
               li.divider
               li
-                a(href='http://'+lanip+':3000/addresses', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-at  
+                a(href='http://'+lanip+':3000/addresses', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-at
                   |   Addresses
               li.divider
               li
-                a(href='http://'+lanip+':3000/backup', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-server  
+                a(href='http://'+lanip+':3000/backup', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-server
                   |   Backup Wallet
               li.divider(style=sendicon)
               li(style=sendicon)
-                a(href='http://'+lanip+':3000/import', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-key   
+                a(href='http://'+lanip+':3000/import', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-key
                   |   Import a private key
           li.dropdown(class=(title == 'Tools') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              span 
-              i.fas.fa-tools  
-              |   Tools 
+              span
+              i.fas.fa-tools
+              |   Tools
               i.caret
             ul.dropdown-menu
               li
-                a(href='http://'+lanip+':3000/ddebug', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-bug  
+                a(href='http://'+lanip+':3000/ddebug', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-bug
                   |   Innova Debug Log
               li.divider
               li
-                a(href='http://'+lanip+':3000/sign', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-signature  
+                a(href='http://'+lanip+':3000/sign', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-signature
                   |   Sign a message
               li
-                a(href='http://'+lanip+':3000/verify', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-certificate  
+                a(href='http://'+lanip+':3000/verify', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-certificate
                   |   Verify a message
               li.divider(style=sendicon)
               li(style=sendicon)
-                a(href='http://'+lanip+':3000/rawtx', onclick="javascript:event.target.port=3000") 
-                  i.far.fa-paper-plane  
+                a(href='http://'+lanip+':3000/rawtx', onclick="javascript:event.target.port=3000")
+                  i.far.fa-paper-plane
                   |   Send Raw Transaction
               li.divider
               li
-                a(href='http://'+lanip+':3000/genmini', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-plus   
+                a(href='http://'+lanip+':3000/genmini', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-plus
                   |   Generate Minikey
               li
-                a(href='http://'+lanip+':3000/convertmini', onclick="javascript:event.target.port=3000") 
-                  i.fas.fa-sync-alt    
+                a(href='http://'+lanip+':3000/convertmini', onclick="javascript:event.target.port=3000")
+                  i.fas.fa-sync-alt
                   |   Convert Minikey
               li.divider
               li
-                a(href='http://127.0.0.1:3000/keepkey', onclick="javascript:event.target.port=3000") 
-                  i.fab.fa-usb  
+                a(href='http://127.0.0.1:3000/keepkey', onclick="javascript:event.target.port=3000")
+                  i.fab.fa-usb
                   |   KeepKey Client
           li
-            a(href='#', style='font-size:14px;color:#FFF;background-color: rgba(0, 0, 0, 0.2);') #{balance} D
+            a(href='#', style='font-size:14px;color:#FFF;background-color: rgba(0, 0, 0, 0.2);') #{balance} INN
           if (staketoggle == 'Staking')
             li.animate__animated.animate__pulse.animate__infinite
               a(style='padding-top:18px !important;')
-                .label.label-success(style='background-color:#41B805;')  
-                  i.fas.fa-coins  
+                .label.label-success(style='background-color:#41B805;')
+                  i.fas.fa-coins
                   |  #{staketoggle}
       ul.nav.navbar-nav.navbar-right
-          li(style=sendicon,class=(title == 'Send D') ? 'active' : undefined)
+          li(style=sendicon,class=(title == 'Send INN') ? 'active' : undefined)
             a(href='http://'+lanip+':3000/withdraw')
-              i.fa.fa-paper-plane 
+              i.fa.fa-paper-plane
               |   SEND
           li
             #searchinput.animate__animated.animate__fadeInRight(style='margin-top:8px;display:none;')
@@ -195,30 +195,30 @@ script.
               i.fas.fa-search
           li.dropdown(class=(title == 'Community') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              span 
+              span
                 i.fas.fa-cog
               i.caret
             ul.dropdown-menu
               li
                 a(href='http://'+lanip+':3000/settings', onclick="javascript:event.target.port=3000")
-                  i.fas.fa-wrench  
+                  i.fas.fa-wrench
                   |    Settings
               li.divider
               li
                 a(href='http://'+lanip+':3300/terminal', onclick="javascript:event.target.port=3300" disabled)
-                  i.fas.fa-terminal  
-                  |   Terminal 
+                  i.fas.fa-terminal
+                  |   Terminal
               li.divider
               li
-                a(href='https://blockforums.org', target='_blank') 
-                  i.fas.fa-bold 
+                a(href='https://blockforums.org', target='_blank')
+                  i.fas.fa-bold
                   |   BlockForums
               li
                 a(href='https://discord.gg/UPpQy3n', target='_blank')
-                  i.fab.fa-discord 
+                  i.fab.fa-discord
                   |   Innova Discord
               li.divider
               li
                 a(href='http://'+lanip+':3000/logout', onclick="javascript:event.target.port=3000")
-                  i.fas.fa-sign-out-alt  
+                  i.fas.fa-sign-out-alt
                   |   Logout

@@ -29,7 +29,7 @@ block content
   .mainDiv
   .container
     h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Innova Address
-    p(align='center') 
+    p(align='center')
       | Detailed information about a Innova address.
       br
       .div(style='margin-top:25px;')
@@ -39,16 +39,16 @@ block content
   .row.rowclass.container(id="menu", style='margin: 0 auto; margin-top:15px;width:90%;')
     if (scripthasharray)
       h3(align='center') Details on Address
-      .div(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;', align='center') 
+      .div(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;', align='center')
         span.hashm(style='font-size:22px;') #{scripthasharray[0].address}
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;')
         .col-md-6
-          p(style='font-size:21px;') Balance: 
+          p(style='font-size:21px;') Balance:
             if (scripthasharray[0].ismine == true)
-              strong #{scripthasharray[0].balance} D
+              strong #{scripthasharray[0].balance} INN
             else
-              strong #{explorerbalance} D
+              strong #{explorerbalance} INN
           if (scripthasharray[0].ismine == true)
             p
               span.label.label-success(style='background-color:#41B805;') OWNED ADDRESS
@@ -56,15 +56,15 @@ block content
             p
               span.label.label-danger NOT AN OWNED ADDRESS
           if (scripthasharray[0].ismine == true)
-            p.hashm Total Transactions with Address: 
+            p.hashm Total Transactions with Address:
               strong #{numTx}
           p.hashm P2PKH ScriptHash: #{scripthasharray[0].p2pkhscripthash}
           if (scripthasharray[0].ismine == false)
-            a.btn.btn-sm.btn-default(href='https://chainz.cryptoid.info/d/address.dws?'+scripthasharray[0].address, target='_blank') View on Chainz Explorer  
+            a.btn.btn-sm.btn-default(href='https://chainz.cryptoid.info/d/address.dws?'+scripthasharray[0].address, target='_blank') View on Chainz Explorer
               i.fas.fa-arrow-right(style='margin-left:10px;')
           if (scripthasharray[0].ismine == true)
             p.hashm P2PK ScriptHash: #{scripthasharray[0].p2pkscripthash}
-            a.btn.btn-sm.btn-default(href='https://chainz.cryptoid.info/d/address.dws?'+scripthasharray[0].address, target='_blank') View on Chainz Explorer  
+            a.btn.btn-sm.btn-default(href='https://chainz.cryptoid.info/d/address.dws?'+scripthasharray[0].address, target='_blank') View on Chainz Explorer
               i.fas.fa-arrow-right(style='margin-left:10px;')
         .col-md-6(style='margin-top:10px;')
           p.qrcode(align='right')
@@ -76,7 +76,7 @@ block content
           h2(style='font-weight:100;font-size:64px;') Address Transactions
           br
           if (scripthasharray[0].txs)
-            each tx in scripthasharray[0].txs            
+            each tx in scripthasharray[0].txs
               if (tx.scripthashtxhistory != null)
                 h4 P2PKH Innova Transactions
                 each script in tx.scripthashtxhistory
@@ -84,7 +84,7 @@ block content
                     .col-md-6
                       a.hashm(href='/tx/'+script.tx_hash) #{script.tx_hash}
                     .col-md-6(align='right')
-                      | On Block 
+                      | On Block
                       a(href='/block/'+script.height) #{script.height}
               if (tx.p2pktxhistory != '')
                 h4 P2PK Innova Transactions
@@ -93,7 +93,7 @@ block content
                     .col-md-6
                       a.hashm(href='/tx/'+script.tx_hash) #{script.tx_hash}
                     .col-md-6(align='right')
-                      | On Block 
+                      | On Block
                       a(href='/block/'+script.height) #{script.height}
               else
                 h3(align='center', style='color:#333;') P2PK Transactions (Typically PoS TX) are not available for addresses that InnoVault does not own
@@ -107,4 +107,4 @@ block content
       br
   br
   p(align='center')
-    a.btn.btn-default(href='/', role='button') Go back to the Dashboard     
+    a.btn.btn-default(href='/', role='button') Go back to the Dashboard

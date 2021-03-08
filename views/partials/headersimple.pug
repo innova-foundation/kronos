@@ -40,40 +40,40 @@ script.
     .collapse.navbar-collapse
       ul.nav.navbar-nav
           li(class=(title == 'Dashboard') ? 'active' : undefined)
-            a(href='http://'+lanip+':3000/dashsimple', onclick="javascript:event.target.port=3000") 
-              i.fas.fa-tachometer-alt  
+            a(href='http://'+lanip+':3000/dashsimple', onclick="javascript:event.target.port=3000")
+              i.fas.fa-tachometer-alt
               |   Dashboard
           li(class=(title == 'Chat') ? 'active' : undefined)
-            a(href='http://'+lanip+':3000/chat', onclick="javascript:event.target.port=3000") 
-              i.fas.fa-comment-dots   
+            a(href='http://'+lanip+':3000/chat', onclick="javascript:event.target.port=3000")
+              i.fas.fa-comment-dots
               |   Chat
       ul.nav.navbar-nav.centerbal
           li.navmobile
             a(href='http://'+lanip+':3000/createtx', style='font-size:14px;color:#FFF;')
-              img.res(src='../img/innova.png', alt='D', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
-              span(style='color:#888;') Send D
+              img.res(src='../img/innova.png', alt='INN', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
+              span(style='color:#888;') Send INN
           li.navmobile
-            a(href='http://'+lanip+':3000/sendbtc', style='font-size:14px;color:#FFF;') 
+            a(href='http://'+lanip+':3000/sendbtc', style='font-size:14px;color:#FFF;')
               img.res(src='../img/bitcoin.png', alt='BTC', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
               span(style='color:#888;') Send BTC
           li.navmobile
-            a(href='http://'+lanip+':3000/sendeth', style='font-size:14px;color:#FFF;') 
+            a(href='http://'+lanip+':3000/sendeth', style='font-size:14px;color:#FFF;')
               img.res(src='../img/eth.png', alt='ETH', border='0', style='height:24px !important;width: 24px !important;margin:-15px 0px -12px !important;')
               span(style='color:#888;') Send ETH
           li.navmobile
             a(href='http://'+lanip+':3000/sendari', style='font-size:14px;color:#FFF;')
-              img.res(src='../img/ari.png', alt='ARI', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
-              span(style='color:#888;') Send ARI
+              img.res(src='../img/ari.png', alt='USDT', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
+              span(style='color:#888;') Send USDT
           li.navsend
             a(href='http://'+lanip+':3000/createtx', style='font-size:14px;color:#FFF;')
-              img.res(src='../img/innova.png', alt='D', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
-              span(style='color:#888;') D
+              img.res(src='../img/innova.png', alt='INN', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
+              span(style='color:#888;') INN
           li.navsend
             a(href='http://'+lanip+':3000/createtx', style='border-right:1px #444 solid;padding-left:0px !important;')
               div(style='background-color:#4f4f4f;border-radius:15px;padding-right:8px;padding-left:8px;font-size:12px;color:#fff;')
                 i.fas.fa-arrow-right
           li.navsend
-            a(href='http://'+lanip+':3000/sendbtc', style='font-size:14px;color:#FFF;') 
+            a(href='http://'+lanip+':3000/sendbtc', style='font-size:14px;color:#FFF;')
               img.res(src='../img/bitcoin.png', alt='BTC', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
               span(style='color:#888;') BTC
           li.navsend
@@ -81,7 +81,7 @@ script.
               div(style='background-color:#514e39;border-radius:15px;padding-right:8px;padding-left:8px;font-size:12px;color:#fff;')
                 i.fas.fa-arrow-right
           li.navsend
-            a(href='http://'+lanip+':3000/sendeth', style='font-size:14px;color:#FFF;') 
+            a(href='http://'+lanip+':3000/sendeth', style='font-size:14px;color:#FFF;')
               img.res(src='../img/eth.png', alt='ETH', border='0', style='height:24px !important;width: 24px !important;margin:-15px 0px -12px !important;')
               span(style='color:#888;') ETH
           li.navsend
@@ -90,8 +90,8 @@ script.
                 i.fas.fa-arrow-right
           li.navsend
             a(href='http://'+lanip+':3000/sendari', style='font-size:14px;color:#FFF;')
-              img.res(src='../img/ari.png', alt='ARI', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
-              span(style='color:#888;') ARI
+              img.res(src='../img/ari.png', alt='USDT', border='0', style='height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;')
+              span(style='color:#888;') USDT
           li.navsend
             a(href='http://'+lanip+':3000/sendari', style='padding-left:0px !important;')
               div(style='background-color:#3d1f56;border-radius:15px;padding-right:8px;padding-left:8px;font-size:12px;color:#fff;')
@@ -99,47 +99,47 @@ script.
           //- if (staketoggle == 'Staking')
           //-   li.animate__animated.animate__pulse.animate__infinite
           //-     a(style='padding-top:18px !important;')
-          //-       .label.label-success(style='background-color:#41B805;')  
-          //-         i.fas.fa-coins  
+          //-       .label.label-success(style='background-color:#41B805;')
+          //-         i.fas.fa-coins
           //-         |  #{staketoggle}
       ul.nav.navbar-nav.navbar-right
           li.navsend
-                a 
-                  .label(style='color: #0c50ff; cursor: default; font-size:16px; background: linear-gradient(317deg, rgba(221,76,76,1) 0%, rgba(208,170,57,1) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;') CORE 
+                a
+                  .label(style='color: #0c50ff; cursor: default; font-size:16px; background: linear-gradient(317deg, rgba(221,76,76,1) 0%, rgba(208,170,57,1) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;') CORE
           li.navsend
             a(onClick='window.location.href = window.location.href;')
                 i.fa.fa-sync.animate__animated.animate__rotateIn(style='cursor:pointer;')
           li.dropdown(class=(title == 'Community') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              span 
+              span
                 i.fas.fa-cog
               i.caret
               #threebox(style='display: inline-block;')
             ul.dropdown-menu
               //- li
               //-   a(href='http://'+lanip+':3000/settings', onclick="javascript:event.target.port=3000")
-              //-     i.fas.fa-wrench  
+              //-     i.fas.fa-wrench
               //-     |    Settings
               //- li.divider
               //- li
               //-   a(href='http://'+lanip+':3300/terminal', onclick="javascript:event.target.port=3300")
-              //-     i.fas.fa-terminal  
-              //-     |   Terminal 
+              //-     i.fas.fa-terminal
+              //-     |   Terminal
               li
                 a(href='http://'+lanip+':3000/core', onclick="javascript:event.target.port=3000")
-                  i.fa.fa-cog     
+                  i.fa.fa-cog
                   |   Settings
               li.divider
               li
-                a(href='https://blockforums.org', target='_blank') 
-                  i.fas.fa-bold 
+                a(href='https://blockforums.org', target='_blank')
+                  i.fas.fa-bold
                   |   BlockForums
               li
                 a(href='https://discord.gg/UPpQy3n', target='_blank')
-                  i.fab.fa-discord 
+                  i.fab.fa-discord
                   |   Innova Discord
               li.divider
               li
                 a(href='http://'+lanip+':3000/logout', onclick="javascript:event.target.port=3000")
-                  i.fas.fa-sign-out-alt  
+                  i.fas.fa-sign-out-alt
                   |   Logout

@@ -193,7 +193,7 @@ exports.postprofile = (request, response) => {
     
     var decryptedmnemonic = decrypt(seedphrasedb);
     mnemonic = decryptedmnemonic;      
-    // ETH and ARI
+    // ETH and USDT
     let ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
     let ethprivkey = ethwallet.privateKey;
 	

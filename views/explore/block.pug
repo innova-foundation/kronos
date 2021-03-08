@@ -29,7 +29,7 @@ block content
   .mainDiv
   .container
     h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Innova Block
-    p(align='center') 
+    p(align='center')
       | Detailed information about a Innova block.
       br
       .div(style='margin-top:25px;')
@@ -40,7 +40,7 @@ block content
     if (blockinfo)
       p(style='font-size:32px;margin-top:15px;', align='center')
         i.fas.fa-cube
-        |  Block 
+        |  Block
         strong #{blockinfo.height}
       .row(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;', align='center')
         .col-md-2(align='left')
@@ -54,14 +54,14 @@ block content
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;')
         .col-md-6
-          p Time: 
+          p Time:
             span= new Date(blockinfo.time*1000).toUTCString()
-          p Block Hash: 
+          p Block Hash:
             a.hashm(href='/block/'+blockinfo.hash) #{blockinfo.hash}
           p Number of Transactions Included in Block: 
             strong #{blockinfo.tx.length}
-          p Innova Emissions: 
-            strong #{blockinfo.mint} D
+          p Innova Emissions:
+            strong #{blockinfo.mint} INN
         .col-md-6(align='right')
           p Block Size: #{(blockinfo.size / 1000).toFixed(2)} kB
           p Block Diff: #{blockinfo.difficulty}
@@ -97,4 +97,4 @@ block content
       br
   br
   p(align='center')
-    a.btn.btn-default(href='/', role='button') Go back to the Dashboard     
+    a.btn.btn-default(href='/', role='button') Go back to the Dashboard

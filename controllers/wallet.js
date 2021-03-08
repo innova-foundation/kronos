@@ -1529,7 +1529,7 @@ exports.address = function (req, res) {
 };
 
 
-//POST GET FS GEN KEY
+//POST GET CN GEN KEY
 
 exports.genkey = function (req, res) {
   //var username = req.user.email;
@@ -1656,7 +1656,7 @@ exports.genkey = function (req, res) {
 
       QRCode.toDataURL(qr, function(err, data_url) {
 
-      res.render('account/genkey', { title: 'New INN FS Key', user: req.user, offline: offline, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn, genkey: genkey, data_url: data_url });
+      res.render('account/genkey', { title: 'New INN CN Key', user: req.user, offline: offline, staketoggle: staketoggle, sendicon: sendicon, balance: balance, offlinebtn: offlinebtn, chaindl: chaindl, chaindlbtn: chaindlbtn, genkey: genkey, data_url: data_url });
   });
 });
 });
@@ -1859,7 +1859,7 @@ exports.transactions = function (req, res) {
 };
 
 
-//POST for Starting FS from FS Page
+//POST for Starting CN from CN Page
 exports.startfs = (req, res, next) => {
 
     var alias = req.body.alias;
@@ -1878,7 +1878,7 @@ exports.startfs = (req, res, next) => {
       //if (error) return console.log(error);
 
       if (error) {
-        req.toastr.error(`Something went wrong trying to start the FS ${alias} - ${error}`, 'Error!', { positionClass: 'toast-bottom-left' });
+        req.toastr.error(`Something went wrong trying to start the CN ${alias} - ${error}`, 'Error!', { positionClass: 'toast-bottom-left' });
         return res.redirect('/fs');
       } else {
 
@@ -1889,8 +1889,8 @@ exports.startfs = (req, res, next) => {
           var resultfinal = 'SUCCEEDED'
         }
 
-        req.flash('success', { msg: `Ran start-alias on FS <strong>${alias}</strong> and it ${resultfinal}` });
-        req.toastr.success(`Ran start-alias on FS ${alias} and it ${resultfinal}`, 'Ran start-alias on FS', { positionClass: 'toast-bottom-left' });
+        req.flash('success', { msg: `Ran start-alias on CN <strong>${alias}</strong> and it ${resultfinal}` });
+        req.toastr.success(`Ran start-alias on CN ${alias} and it ${resultfinal}`, 'Ran start-alias on CN', { positionClass: 'toast-bottom-left' });
         return res.redirect('/fs');
 
       }
@@ -1899,7 +1899,7 @@ exports.startfs = (req, res, next) => {
   
 };
 
-//GET for FS Page
+//GET for CN Page
 exports.fs = function (req, res) {
   //var username = req.user.email;
 

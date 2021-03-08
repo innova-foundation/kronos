@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   span#lanip(data-value=lanip)
-  script(src='../js/lib/jquery-3.1.1.min.js')  
+  script(src='../js/lib/jquery-3.1.1.min.js')
   script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js")
   script.
     var lanip = document.getElementById("lanip").getAttribute("data-value");
@@ -12,7 +12,7 @@ block content
       if (data.notifydb != '') {
         $('#notify').html("<div class='notifytx animate__animated animate__zoomInRight' id='notificationtx' style='background-color:#000000e8;border:3px solid #ffffff3d;border-radius:15px;padding:30px;font-size:13px;width:600px;position:fixed;right:0;bottom:5px;z-index:9999999;display:visible;' align='center'>Innova TX Notification<br/><a href='/transactions' style='color:#999;font-size:0.85rem;'>"+ data.notifydb.toString() +"</a><div id='buttonfloat' style='top:36px;position:absolute;right:15px;' onclick='closeNotify()'><button type='submit' style='background-color:transparent;color:#666;border:none;' onclick='closeNotify()'>X</button></div></div>");
       }
-    });   
+    });
     function closeNotify() {
       var c = document.getElementById("notificationtx")
       c.style.display = "none";
@@ -30,7 +30,7 @@ block content
   .txheader
     p
       h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;') Innova Transactions
-      p(align='center') 
+      p(align='center')
         | This is your Innova (INN) wallet transaction activity information.
       br
       .div(align='center', style='margin: 0 auto;')
@@ -52,11 +52,11 @@ block content
               .panel-body(style='background-color: #333;')
                 p(align='center')
                   strong.txamount !{transaction.amount.toFixed(8)}
-                    small(style='color:#777;')  D
+                    small(style='color:#777;')  INN
                 p(align='center')
                   .txaddress !{transaction.address}
-                p(align='center') 
-                  | TX ID: 
+                p(align='center')
+                  | TX ID:
                   a.txid(href="/tx/" + transaction.txid, target='_blank') !{transaction.txid.substring(0,30)}
             else if (transaction.category == 'send')
               .panel-heading.txsent.mb
@@ -68,35 +68,35 @@ block content
               .panel-body(style='background-color: #333;')
                 p(align='center')
                   strong.txamount !{transaction.amount.toFixed(8)}
-                    small(style='color:#777;')  D
+                    small(style='color:#777;')  INN
                 p(align='center')
                   .txaddress !{transaction.address}
-                p(align='center') 
-                  | TX ID: 
+                p(align='center')
+                  | TX ID:
                   a.txid(href="/tx/" + transaction.txid, target='_blank') !{transaction.txid.substring(0,30)}
             else
               .panel-heading.txreceive.mb
                 .pull-left
-                  | Staked, Mined, or FS
+                  | Staked, Mined, or CN
                   .date= new Date(transaction.time*1000).toUTCString()
                 .pull-right
                   strong Confirmations !{transaction.confirmations}
               .panel-body(style='background-color: #333;')
                 p(align='center')
                   if (transaction.reward)
-                    strong.txamount Rewarded +!{transaction.reward.toFixed(8)} 
-                      small(style='color:#777;')  D
+                    strong.txamount Rewarded +!{transaction.reward.toFixed(8)}
+                      small(style='color:#777;')  INN
                   if (transaction.amount)
                     p(align='center')
-                      strong.txamount !{transaction.amount.toFixed(8)} 
-                        small(style='color:#777;')  D
+                      strong.txamount !{transaction.amount.toFixed(8)}
+                        small(style='color:#777;')  INN
                   if (!transaction.amount && !transaction.reward)
                     strong.txamount No reward 0.00000000
-                      small(style='color:#777;')  D
+                      small(style='color:#777;')  INN
                 p(align='center')
                   .txaddress !{transaction.address}
-                p(align='center') 
-                  | TX ID: 
+                p(align='center')
+                  | TX ID:
                   a.txid(href="/tx/" + transaction.txid, target='_blank') !{transaction.txid.substring(0,30)}
     else
       br
@@ -123,22 +123,22 @@ block content
                     else if (transaction.category == 'send')
                       .label.label-danger Sent
                     else
-                      .label.label-primary Staked, Mined, or FS
-                  td(align='center') 
+                      .label.label-primary Staked, Mined, or CN
+                  td(align='center')
                     .date= new Date(transaction.time*1000).toUTCString().replace('GMT','')
-                  td(align='center') 
+                  td(align='center')
                     .label.label-success(style='background: none;') !{transaction.confirmations}
                   td(align='center') !{transaction.address}
-                  td(align='center') 
+                  td(align='center')
                     a.txid(href="/tx/" + transaction.txid, target='_blank') !{transaction.txid}
-                  td(align='center') 
+                  td(align='center')
                     if (transaction.reward)
-                      .label.label-primary !{transaction.reward.toFixed(8)} D
+                      .label.label-primary !{transaction.reward.toFixed(8)} INN
                     else
                       if (transaction.category == 'receive')
-                         .label.label-success(style='background-color: #3E730E;') !{transaction.amount.toFixed(8)} D
+                         .label.label-success(style='background-color: #3E730E;') !{transaction.amount.toFixed(8)} INN
                       else if (transaction.category == 'send')
-                        .label.label-danger !{transaction.amount.toFixed(8)} D
+                        .label.label-danger !{transaction.amount.toFixed(8)} INN
               else if (transaction.category == 'send')
                 tr(style='background-color: rgba(217, 83, 79, 0.2);')
                   td(align='center')
@@ -147,22 +147,22 @@ block content
                     else if (transaction.category == 'send')
                       .label.label-danger Sent
                     else
-                      .label.label-primary Staked, Mined, or FS
-                  td(align='center') 
+                      .label.label-primary Staked, Mined, or CN
+                  td(align='center')
                     .date= new Date(transaction.time*1000).toUTCString().replace('GMT','')
-                  td(align='center') 
+                  td(align='center')
                     .label.label-success(style='background: none;') !{transaction.confirmations}
                   td(align='center') !{transaction.address}
-                  td(align='center') 
+                  td(align='center')
                     a.txid(href="/tx/" + transaction.txid, target='_blank') !{transaction.txid}
-                  td(align='center') 
+                  td(align='center')
                     if (transaction.reward)
-                      .label.label-primary !{transaction.reward.toFixed(8)} D
+                      .label.label-primary !{transaction.reward.toFixed(8)} INN
                     else
                       if (transaction.category == 'receive')
-                         .label.label-success(style='background-color: #3E730E;') !{transaction.amount.toFixed(8)} D
+                         .label.label-success(style='background-color: #3E730E;') !{transaction.amount.toFixed(8)} INN
                       else if (transaction.category == 'send')
-                        .label.label-danger !{transaction.amount.toFixed(8)} D
+                        .label.label-danger !{transaction.amount.toFixed(8)} INN
               else
                 tr(style='background-color: rgba(50, 93, 136, 0.2);')
                   td(align='center')
@@ -171,22 +171,22 @@ block content
                     else if (transaction.category == 'send')
                       .label.label-danger Sent
                     else
-                      .label.label-primary Staked, Mined, or FS
-                  td(align='center') 
+                      .label.label-primary Staked, Mined, or CN
+                  td(align='center')
                     .date= new Date(transaction.time*1000).toUTCString().replace('GMT','')
-                  td(align='center') 
+                  td(align='center')
                     .label.label-success(style='background: none;') !{transaction.confirmations}
                   td(align='center') !{transaction.address}
-                  td(align='center') 
+                  td(align='center')
                     a.txid(href="/tx/" + transaction.txid, target='_blank') !{transaction.txid}
-                  td(align='center') 
+                  td(align='center')
                     if (transaction.reward)
-                      .label.label-primary !{transaction.reward.toFixed(8)} D
+                      .label.label-primary !{transaction.reward.toFixed(8)} INN
                     else
                       if (transaction.category == 'receive')
-                         .label.label-success(style='background-color: #3E730E;') !{transaction.amount.toFixed(8)} D
+                         .label.label-success(style='background-color: #3E730E;') !{transaction.amount.toFixed(8)} INN
                       else if (transaction.category == 'send')
-                        .label.label-danger !{transaction.amount.toFixed(8)} D
+                        .label.label-danger !{transaction.amount.toFixed(8)} INN
     else
       br
       h3(align='center', style='color: #bbb;') No Transactions Available

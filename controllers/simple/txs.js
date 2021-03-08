@@ -139,7 +139,7 @@ exports.getethsend = (req, res) => {
 
 };
 
-//Get Send ARI
+//Get Send USDT
 exports.getarisend = (req, res) => {
 
     const ip = require('ip');
@@ -556,7 +556,7 @@ exports.postapisend = (req, res) => {
             //calc fee and add output address
             var thefees = numutxo * parseInt(fee * 1e8); //10000;
             var amountTo = totaluVal - thefees; // 100 INN total inputs - 30 INN converted amount - 70 INN to be sent back to change address
-            var changeTotal = amountTo - convertedamount; // 70 D
+            var changeTotal = amountTo - convertedamount; // 70 INN
 
             if (changeTotal < 0 || changeTotal == 0) {
                 changeTotal = '';
@@ -639,7 +639,7 @@ exports.postapisend = (req, res) => {
                 //calc fee and add output address
                 var innovaifees = numutxo * parseInt(fee * 1e8); //10000;
                 var amountToSend = totalVal - innovaifees; // 100 INN total inputs - 30 INN converted amount - 70 INN to be sent back to change address
-                var changeAmnt = amountToSend - convertedamount; // 70 D
+                var changeAmnt = amountToSend - convertedamount; // 70 INN
 
                 //Add Raw TX Outputs (One for the actual TX and one for the change address of remaining funds) 15000 need to take amount * 100000000
                 txb.addOutput(sendtoaddress, convertedamount, dbitcoin.networks.innova);
@@ -702,10 +702,10 @@ exports.postapisend = (req, res) => {
                         // return res.redirect('/createtx');
                         return res.send('Your Innova (INN) was sent successfully! TXID: '+broadcasted);
                     } else {
-                        // req.toastr.error(`Error sending D! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
-                        // //req.flash('errors', { msg: `Error sending D! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
+                        // req.toastr.error(`Error sending INN! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
+                        // //req.flash('errors', { msg: `Error sending INN! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
                         // return res.redirect('/createtx');
-                        return res.send('Error Sending D! Broadcasting Error: '+broadcasted.message);
+                        return res.send('Error Sending INN! Broadcasting Error: '+broadcasted.message);
                     }
 
                 });
@@ -876,8 +876,8 @@ exports.postcreate = (req, res) => {
                 req.flash('success', { msg: `Your <strong>${amount} D</strong> was sent successfully! TXID: <a href='https://chainz.cryptoid.info/d/tx.dws?${broadcasted}' target='_blank'>${broadcasted}</a>` });
                 return res.redirect('/createtx');
             } else {
-                req.toastr.error(`Error sending D! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
-                //req.flash('errors', { msg: `Error sending D! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
+                req.toastr.error(`Error sending INN! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
+                //req.flash('errors', { msg: `Error sending INN! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
                 return res.redirect('/createtx');
             }
 
@@ -917,7 +917,7 @@ exports.postauto = (req, res) => {
     //calc fee and add output address
     var thefees = numutxo * parseInt(fee * 1e8); //10000;
     var amountTo = totaluVal - thefees; // 100 INN total inputs - 30 INN converted amount - 70 INN to be sent back to change address
-    var changeTotal = amountTo - convertedamount; // 70 D
+    var changeTotal = amountTo - convertedamount; // 70 INN
 
     if (changeTotal < 0 || changeTotal == 0) {
         changeTotal = '';
@@ -998,7 +998,7 @@ exports.postauto = (req, res) => {
         //calc fee and add output address
         var innovaifees = numutxo * parseInt(fee * 1e8); //10000;
         var amountToSend = totalVal - innovaifees; // 100 INN total inputs - 30 INN converted amount - 70 INN to be sent back to change address
-        var changeAmnt = amountToSend - convertedamount; // 70 D
+        var changeAmnt = amountToSend - convertedamount; // 70 INN
 
         //Add Raw TX Outputs (One for the actual TX and one for the change address of remaining funds) 15000 need to take amount * 100000000
         txb.addOutput(sendtoaddress, convertedamount, dbitcoin.networks.innova);
@@ -1060,8 +1060,8 @@ exports.postauto = (req, res) => {
                 req.flash('success', { msg: `Your <strong>${amount} D</strong> was sent successfully! TXID: <a href='https://chainz.cryptoid.info/d/tx.dws?${broadcasted}' target='_blank'>${broadcasted}</a>` });
                 return res.redirect('/createtx');
             } else {
-                req.toastr.error(`Error sending D! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
-                //req.flash('errors', { msg: `Error sending D! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
+                req.toastr.error(`Error sending INN! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
+                //req.flash('errors', { msg: `Error sending INN! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
                 return res.redirect('/createtx');
             }
 
@@ -1277,7 +1277,7 @@ exports.postbtcsend = (req, res) => {
                 return res.redirect('/sendbtc');
             } else {
                 req.toastr.error(`Error sending BTC! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
-                //req.flash('errors', { msg: `Error sending D! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
+                //req.flash('errors', { msg: `Error sending INN! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
                 return res.redirect('/sendbtc');
             }
 
@@ -1317,7 +1317,7 @@ exports.postbtcauto = (req, res) => {
     //calc fee and add output address
     var thefees = numutxo * parseInt(fee * 1e8); //10000;
     var amountTo = totaluVal - thefees; // 100 INN total inputs - 30 INN converted amount - 70 INN to be sent back to change address
-    var changeTotal = amountTo - convertedamount; // 70 D
+    var changeTotal = amountTo - convertedamount; // 70 INN
 
     if (changeTotal < 0 || changeTotal == 0) {
         changeTotal = '';
@@ -1488,7 +1488,7 @@ exports.postbtcauto = (req, res) => {
                 return res.redirect('/sendbtc');
             } else {
                 req.toastr.error(`Error sending BTC! Broadcast Error: ${broadcasted.message}`, 'Error!', { positionClass: 'toast-bottom-left' });
-                //req.flash('errors', { msg: `Error sending D! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
+                //req.flash('errors', { msg: `Error sending INN! Broadcast - Error: Something went wrong, please go to your dashboard and refresh.` });
                 return res.redirect('/sendbtc');
             }
 
@@ -1597,7 +1597,7 @@ exports.postarisend = (req, res) => {
 
     } else if (parseFloat(amount) > parseFloat(totalaribal)) {
 
-        req.toastr.error(`Withdrawal amount (`+amount+` ARI) exceeds your ARI balance!`, 'Balance Error!', { positionClass: 'toast-bottom-left' });
+        req.toastr.error(`Withdrawal amount (`+amount+` USDT) exceeds your USDT balance!`, 'Balance Error!', { positionClass: 'toast-bottom-left' });
         return res.redirect('/sendari');
 
     } else {
@@ -1641,8 +1641,8 @@ exports.postarisend = (req, res) => {
             console.log(values);
             console.log(txarray);
 
-            req.toastr.success(`${amount} ARI was sent successfully! ${txarray[0].aritx.hash}`, 'Success!', { positionClass: 'toast-bottom-left' });
-            req.flash('success', { msg: `Your <strong>${amount} ARI</strong> was sent successfully! (${gasfee} ETH gas fee) <a href="https://etherscan.io/tx/${txarray[0].aritx.hash}" target="_blank"><strong>${txarray[0].aritx.hash}</strong></a>` });
+            req.toastr.success(`${amount} USDT was sent successfully! ${txarray[0].aritx.hash}`, 'Success!', { positionClass: 'toast-bottom-left' });
+            req.flash('success', { msg: `Your <strong>${amount} USDT</strong> was sent successfully! (${gasfee} ETH gas fee) <a href="https://etherscan.io/tx/${txarray[0].aritx.hash}" target="_blank"><strong>${txarray[0].aritx.hash}</strong></a>` });
             Storage.set('totalaribal', totalcalcbal);
             Storage.set('totaleth', totalcalcgas);
             return res.redirect('/sendari'); // ????
@@ -1696,7 +1696,7 @@ exports.getSimpleSeed = (req, res) => {
           mnemonic = decryptedmnemonic;
         }
 
-        // ETH and ARI
+        // ETH and USDT
         let ethwallet = ethers.Wallet.fromMnemonic(mnemonic); //Generate wallet from our InnoVault seed
         let ethwalletp = ethwallet.connect(provider); //Set wallet provider
 

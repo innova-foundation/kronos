@@ -18,7 +18,7 @@ This is a massive project with active development in progress and this repo will
 
 InnoVault is a Dashboard Interface and Wallet for Innova (INN), Bitcoin (BTC), Ethereum (ETH), and USDT (USDT) as an app written in NodeJS and Electron. The InnoVault Wallet is also now available on Windows, macOS, and Linux platforms. (You can also access it on mobile from your local network).
 
-Send and Receive D, BTC, ETH, and ARI Funds, create new addresses, view transactions, unlock/lock wallet, stake D, reboot your node, import private keys, encrypt your wallet, broadcast raw transactions, sign and verify Innova messages, and much more!
+Send and Receive INN, BTC, ETH, and USDT Funds, create new addresses, view transactions, unlock/lock wallet, stake INN, reboot your node, import private keys, encrypt your wallet, broadcast raw transactions, sign and verify Innova messages, and much more!
 
 This was built for the Raspberry Pi in mind and one with at least 2GB of RAM. 4GB and 8GB models are recommended! InnoVault will run on any Linux distro with a minimal amount of 2GB of RAM.
 
@@ -43,10 +43,10 @@ Features
 --------
 
 -----This list needs some updating soon...
-- Send and Receive D, BTC, ETH, and ARI in Core Mode (Multi Crypto Wallets)
+- Send and Receive INN, BTC, ETH, and USDT in Core Mode (Multi Crypto Wallets)
 - Decentralized Chat with private encrypted messaging
 - Core Mode and Advanced Mode
-- Send and Receive D
+- Send and Receive INN
 - Wallet Addresses
 - Address Balances Powered by Scripthash and ElectrumX (innova.pro)
 - View all transactions
@@ -61,7 +61,7 @@ Features
 - Export Private Keys
 - Broadcast Raw Transaction
 - View FortunaStake Nodes
-- Generate FS Key
+- Generate CN Key
 - KeepKey Client (View Innova Address and Balance and TX History) (No TX Signing Yet)
 - Easy to install
 - Auto Updates for Innova via Snap
@@ -80,7 +80,7 @@ As of v1.5.0 Beta of InnoVault it is now built with Electron for Windows, macOS,
 
 As of v1.5.5 Beta of InnoVault it now features multi modes "Core" which only relays on ElectrumX SPV Servers and a more "Pro" mode where you can configure the RPC details to your Innova node.
 
-As of v1.6.0 Beta of InnoVault it now features ETH and ARI support fully, you can send and receive ARI or ETH in Core Mode in InnoVault
+As of v1.6.0 Beta of InnoVault it now features ETH and USDT support fully, you can send and receive USDT or ETH in Core Mode in InnoVault
 
 As of v1.6.3 Beta of InnoVault it now features using OS built keychain security for storing randomly generated secret keys for use with InnoVault encryption.
 
@@ -110,4 +110,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, USDTSING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

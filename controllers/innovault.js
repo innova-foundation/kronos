@@ -39,7 +39,7 @@ const randomstring = require("randomstring");
 const Storage = require('json-storage-fs');
 
 
-var currentOS = os.platform(); 
+var currentOS = os.platform();
 
 if (currentOS === 'linux') {
     let SECRET_KEY = process.env.KEY;
@@ -95,7 +95,7 @@ exports.unlock = (req, res, next) => {
   //var sendtoaddress = req.body.sendaddress;
   //var amount = req.body.amount;
 
-  	//Connect to our INN node 
+  	//Connect to our INN node
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -127,7 +127,7 @@ exports.unlockstaking = (req, res, next) => {
 	//var sendtoaddress = req.body.sendaddress;
 	//var amount = req.body.amount;
 
-	//Connect to our INN node 
+	//Connect to our INN node
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -136,10 +136,10 @@ exports.unlockstaking = (req, res, next) => {
 		pass: decrypt(Storage.get('rpcpass')),
 		timeout: 30000
 	});
-  
+
 	client.walletPassphrase(`${password}`, 9999999, true, function (error, unlocked, resHeaders) {
 	  //if (error) return console.log(error);
-  
+
 	  if (error) {
 		  //req.flash('errors', { msg: 'Incorrect password!'});
 		  req.toastr.error('Wallet Unlock Error', 'Incorrect Password!', { positionClass: 'toast-bottom-left' });
@@ -149,7 +149,7 @@ exports.unlockstaking = (req, res, next) => {
 		  req.toastr.success('Success!', 'Wallet Unlocked for Staking Only', { positionClass: 'toast-bottom-left' });
 		  return res.redirect('/');
 	  }
-  
+
   });
   };
 
@@ -159,7 +159,7 @@ exports.lock = (req, res, next) => {
 	//var sendtoaddress = req.body.sendaddress;
 	//var amount = req.body.amount;
 
-	//Connect to our INN node 
+	//Connect to our INN node
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -168,10 +168,10 @@ exports.lock = (req, res, next) => {
 		pass: decrypt(Storage.get('rpcpass')),
 		timeout: 30000
 	});
-  
+
 	client.walletLock(function (error, lock, resHeaders) {
 	  //if (error) return console.log(error);
-  
+
 	  if (error) {
 		  //req.flash('errors', { msg: 'Incorrect password!'});
 		  req.toastr.error('Wallet Lock Error', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -181,7 +181,7 @@ exports.lock = (req, res, next) => {
 		  req.toastr.success('Success!', 'Wallet Locked', { positionClass: 'toast-bottom-left' });
 		  return res.redirect('/');
 	  }
-  
+
   });
   };
 
@@ -193,7 +193,7 @@ exports.lock = (req, res, next) => {
 	//var amount = req.body.amount;
 
 	//req.assert('password2', 'Passwords do not match').equals(req.body.passphrase);
-	//Connect to our INN node 
+	//Connect to our INN node
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -209,10 +209,10 @@ exports.lock = (req, res, next) => {
 		req.toastr.error('Passwords do not match', 'Passphrase Error!', { positionClass: 'toast-bottom-left' });
 		return res.redirect('/');
 	}
-  
+
 	client.encryptWallet(`${passworded}`, function (error, encrypt, resHeaders) {
 	  //if (error) return console.log(error);
-  
+
 	  if (error) {
 		  req.toastr.error('Wallet Encryption Error', 'Encryption Error!', { positionClass: 'toast-bottom-left' });
 		  return res.redirect('/');
@@ -220,7 +220,7 @@ exports.lock = (req, res, next) => {
 		  req.toastr.success('Success!', 'Wallet Encrypted', { positionClass: 'toast-bottom-left' });
 		  return res.redirect('/');
 	  }
-  
+
   });
   };
 
@@ -256,7 +256,7 @@ exports.lock = (req, res, next) => {
 	//var sendtoaddress = req.body.sendaddress;
 	//var amount = req.body.amount;
 
-	//Connect to our INN node 
+	//Connect to our INN node
 	//process.env.DUSER
 	const client = new bitcoin.Client({
 		host: decrypt(Storage.get('rpchost')),
@@ -266,13 +266,13 @@ exports.lock = (req, res, next) => {
 		timeout: 30000
 	});
 
-	var valid = WAValidator.validate(`${addi}`, 'DNR'); //Need to update to INN still
+	var valid = WAValidator.validate(`${addi}`, 'INN'); //Need to update to INN still
 
 	if (valid) {
 
 		client.dumpPrivKey(`${addi}`, function (error, unlocked, resHeaders) {
 			//if (error) return console.log(error);
-		
+
 			if (error) {
 				//req.flash('errors', { msg: 'Incorrect password!'});
 				req.toastr.error('Your wallet is locked or you do not own that address!', 'Error!', { positionClass: 'toast-bottom-left' });
@@ -293,9 +293,9 @@ exports.lock = (req, res, next) => {
         req.toastr.error('You entered an invalid Innova (INN) Address!', 'Invalid Address!', { positionClass: 'toast-bottom-left' });
         //req.flash('errors', { msg: 'You entered an invalid Innova (INN) Address!' });
 		return res.redirect('/addresses');
-		
+
     }
-  
+
 };
 
 //POST Wallet Notify
@@ -320,8 +320,8 @@ exports.getchat = (req, res) => {
 	const ipaddy = ip.address();
 
     res.locals.lanip = ipaddy;
-        
-    //Connect to our INN node 
+
+    //Connect to our INN node
     //process.env.DUSER
     const client = new bitcoin.Client({
         host: decrypt(Storage.get('rpchost')),
@@ -342,10 +342,10 @@ exports.getchat = (req, res) => {
 			} else {
 			  var offline = 'onlineoverlay';
 			  var offlinebtn = 'onlinebutton';
-		
+
 			  var walletstatuss = ws.wallet_status;
 			  var sendicon;
-			  
+
 			  if (walletstatuss == 'stakingonly') {
 						sendicon = 'display: none !important';
 					} else if (walletstatuss == 'unlocked') {
@@ -366,12 +366,12 @@ exports.getchat = (req, res) => {
 				var offline = 'onlineoverlay';
 						var offlinebtn = 'onlinebutton';
 			  }
-		
+
 			  var chaindl = 'nooverlay';
 			  var chaindlbtn = 'nobtn';
-		
+
 			  var balance = info;
-		
+
 			  if (balance <= 0) {
 				balance = 0;
 			  }
@@ -385,13 +385,13 @@ exports.getchat = (req, res) => {
 					var netweight = 'Node Offline';
 					var expected = 'Node Offline';
 					var stakediff = 'Node Offline';
-		
+
 					var offline = 'offlineoverlay';
-		
+
 					var offlinebtn = 'offlinebutton';
-		
+
 					console.log(error);
-		
+
 				} else {
 					var enabled = stakeinfo.enabled;
 					var staking = stakeinfo.staking;
@@ -399,19 +399,19 @@ exports.getchat = (req, res) => {
 					var netweight = stakeinfo.netstakeweight;
 					var expected = stakeinfo.expectedtime;
 					var stakediff = stakeinfo.difficulty;
-		
+
 					var offline = 'onlineoverlay';
 					var offlinebtn = 'onlinebutton';
-		
+
 					var staketoggle;
 					var enabletoggle;
-		
+
 					if (enabled == true) {
 						enabletoggle = 'Configured';
 					} else {
 						enabletoggle = 'Disabled';
 					}
-		
+
 					if (staking == true) {
 						staketoggle = 'Staking';
 					} else {
@@ -422,16 +422,16 @@ exports.getchat = (req, res) => {
 				var account = '333D'; //Needs work
 				client.getAddressesByAccount(`dpi(${account})`, function (err, addresses, resHeaders) {
 					if (err) {
-			
+
 						console.log(err);
 						var address = 'Node Offline';
 						var qrcode = 'Node Offline';
 						var qr = 'Offline';
-			
+
 					} else {
-			
+
 						var address = addresses.slice(-1)[0];
-			
+
 						if (typeof address == 'undefined') {
 							client.getNewAddress(`dpi(${account})`, function (error, addr, resHeaders) {
 							if (error) {
@@ -440,11 +440,11 @@ exports.getchat = (req, res) => {
 							address = addr;
 							});
 						}
-			
+
 						var qr = 'innova:'+address;
-			
+
 					}
-		
+
 		res.render('advchat', {title: 'InnoVault Chat', mainaddress: address, staketoggle: staketoggle, balance: balance, chaindl: chaindl, chaindlbtn: chaindlbtn, offline: offline, offlinebtn: offlinebtn, sendicon: sendicon});
 	});
 });

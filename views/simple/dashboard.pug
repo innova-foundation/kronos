@@ -16,10 +16,10 @@ block content
           div(style='text-align:center;margin-top:20px;')
             p
               img.res(src='../img/innova.png', alt='D', border='0', style='height:75px !important;width: 75px !important;margin:0 auto !important;')
-            p 
-            .bal(style='font-size:2.5em;') 
+            p
+            .bal(style='font-size:2.5em;')
               span#totalbal.format #{totalbal || 0}
-              small(style='font-size:16px;')  D
+              small(style='font-size:16px;')  INN
             p
             .bal(style='font-size:1.6em;color:#888;') $
               span#usdbalance #{usdbalance || 0}
@@ -36,13 +36,13 @@ block content
                 .qrcode(align='center')
                     button.clip(data-clipboard-text=mainaddy, style='background-color: transparent;border: none;')
                       img(src='' + qrcode, style='border-radius:10px;')
-              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') INNOVA 
+              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') INNOVA
                 span#dblock
             .divider(style='background-color:#111 !important;height:2px;width:80%;margin:0 auto;', align='center')
             p
               if (typeof dtxs != 'undefined')
                 if (typeof dtxs[0] != 'undefined')
-                  .row(style='color:#eee;margin:5px !important;padding:20px;padding-right: 20px !important;border-radius:5px;') 
+                  .row(style='color:#eee;margin:5px !important;padding:20px;padding-right: 20px !important;border-radius:5px;')
                     .tablewrapper
                       table.sortable#fst
                         thead
@@ -55,15 +55,15 @@ block content
                         tbody
                           each tx in dtxs
                             tr
-                              td(align='center', data-label='Type') 
+                              td(align='center', data-label='Type')
                                 | TX
-                              td(align='center', data-label='D Block Height') 
+                              td(align='center', data-label='D Block Height')
                                 a.txid(href='https://chainz.cryptoid.info/d/tx.dws?'+tx.transactionBlock, target='_blank') #{tx.transactionBlock}
-                              td(align='center', data-label='Timestamp') 
+                              td(align='center', data-label='Timestamp')
                                 .date= new Date(tx.transactionHex.time*1000).toUTCString().replace('GMT','')
-                              td(align='center', data-label='Confirmations') 
+                              td(align='center', data-label='Confirmations')
                                 | #{tx.transactionHex.confirmations}
-                              td(align='center', data-label='TXID') 
+                              td(align='center', data-label='TXID')
                                 a.txid(href='https://chainz.cryptoid.info/d/tx.dws?'+tx.transactionHex.txid, target='_blank') #{tx.transactionHex.txid}
                 else
                   h1(style='color:#666;', align='center') No INN Transactions Available
@@ -72,8 +72,8 @@ block content
           div(style='text-align:center;margin-top:20px;')
             p
               img.res(src='../img/bitcoin.png', alt='BTC', border='0', style='height:75px !important;width: 75px !important;margin:0 auto !important;')
-            p 
-            .bal(style='font-size:2.5em;') 
+            p
+            .bal(style='font-size:2.5em;')
               span#totalbtcbal.format #{totalbtcbal || 0}
               small(style='font-size:16px;')  BTC
             p
@@ -92,13 +92,13 @@ block content
                 .qrcode(align='center')
                     button.clip(data-clipboard-text=btcaddress, style='background-color: transparent;border: none;')
                       img(src='' + btcqrcode, style='border-radius:10px;')
-              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') BITCOIN 
+              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') BITCOIN
                 span#btcblock
             .divider(style='background-color:#111 !important;height:2px;width:80%;margin:0 auto;', align='center')
             p
               if (typeof btctxs != 'undefined')
                 if (typeof btctxs[0] != 'undefined')
-                  .row(style='color:#eee;margin:5px !important;padding:20px;padding-right: 20px !important;border-radius:5px;') 
+                  .row(style='color:#eee;margin:5px !important;padding:20px;padding-right: 20px !important;border-radius:5px;')
                     .tablewrapper
                       table.sortable#fst
                         thead
@@ -112,27 +112,27 @@ block content
                           each tx in btctxs
                             if (tx.transactionBlock > 0)
                               tr
-                                td(align='center', data-label='Type') 
+                                td(align='center', data-label='Type')
                                   | TX
-                                td(align='center', data-label='BTC Block Height') 
+                                td(align='center', data-label='BTC Block Height')
                                   a.txid(href='https://chainz.cryptoid.info/btc/tx.dws?'+tx.transactionBlock, target='_blank') #{tx.transactionBlock}
-                                td(align='center', data-label='Timestamp') 
+                                td(align='center', data-label='Timestamp')
                                   .date= new Date(tx.transactionHex.time*1000).toUTCString().replace('GMT','')
-                                td(align='center', data-label='Confirmations') 
+                                td(align='center', data-label='Confirmations')
                                   | #{tx.transactionHex.confirmations}
-                                td(align='center', data-label='TXID') 
+                                td(align='center', data-label='TXID')
                                   a.txid(href='https://chainz.cryptoid.info/btc/tx.dws?'+tx.transactionHex.txid, target='_blank') #{tx.transactionHex.txid}
                           each tx in btcmemtxs
                             tr
-                              td(align='center', data-label='Type') 
+                              td(align='center', data-label='Type')
                                 | Mempool
-                              td(align='center', data-label='BTC Block Height') 
+                              td(align='center', data-label='BTC Block Height')
                                 a.txid(href='https://chainz.cryptoid.info/btc/tx.dws?'+tx.transactionBlock, target='_blank') MEM #{tx.transactionBlock}
-                              td(align='center', data-label='Timestamp') 
+                              td(align='center', data-label='Timestamp')
                                 .date Waiting
-                              td(align='center', data-label='Confirmations') 
+                              td(align='center', data-label='Confirmations')
                                 | Mempool
-                              td(align='center', data-label='TXID') 
+                              td(align='center', data-label='TXID')
                                 a.txid(href='https://chainz.cryptoid.info/btc/tx.dws?'+tx.transactionHex.txid, target='_blank') #{tx.transactionHex.txid}
                 else
                   h1(style='color:#666;', align='center') No BTC Transactions Available
@@ -141,8 +141,8 @@ block content
           div(style='text-align:center;margin-top:20px;')
             p
               img.res(src='../img/eth.png', alt='ETH', border='0', style='height:75px !important;width:75px !important;margin:0 auto !important;')
-            p 
-            .bal(style='font-size:2.5em;') 
+            p
+            .bal(style='font-size:2.5em;')
               span#totalethbal.format #{totalethbal || 0}
               small(style='font-size:16px;')  ETH
             p
@@ -161,10 +161,10 @@ block content
                 .qrcode(align='center')
                     button.clip(data-clipboard-text=ethaddy, style='background-color: transparent;border: none;')
                       img(src='' + ethqrcode, style='border-radius:10px;')
-              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') ETHEREUM 
+              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') ETHEREUM
                 span#ethhblock
             .divider(style='background-color:#111 !important;height:2px;width:80%;margin:0 auto;', align='center')
-            p              
+            p
               if (typeof ethtxs != 'undefined')
                 if (typeof ethtxs[0] != 'undefined')
                   .row(style='color:#eee;margin:5px !important;padding:20px;padding-right: 20px !important;border-radius:5px;')
@@ -180,22 +180,22 @@ block content
                           each tx in ethtxs
                             tr
                               td(align='center', data-label='ETH Block Height') !{tx.blockNumber}
-                              td(align='center', data-label='Timestamp') 
+                              td(align='center', data-label='Timestamp')
                                 if (typeof tx.timeStamp != 'undefined')
                                   .date= new Date(tx.timeStamp*1000).toUTCString().replace('GMT','')
-                              td(align='center', data-label='Confirmations') 
+                              td(align='center', data-label='Confirmations')
                                 .label.label-success(style='background: none;') !{tx.confirmations}
-                              td(align='center', data-label='TXID') 
+                              td(align='center', data-label='TXID')
                                 a.txid(href=`https://etherscan.io/tx/${tx.hash}`, target='_blank') !{tx.hash}
                 else
                   h1(style='color:#666;', align='center') No ETH Transactions Available
           div(style='text-align:center;margin-top:20px;')
             p
-              img.res(src='../img/ari.png', alt='ARI', border='0', style='height:75px !important;width:75px !important;margin:0 auto !important;')
-            p 
-            .bal(style='font-size:2.5em;') 
+              img.res(src='../img/ari.png', alt='USDT', border='0', style='height:75px !important;width:75px !important;margin:0 auto !important;')
+            p
+            .bal(style='font-size:2.5em;')
               span#totalaribal.format #{totalaribal || 0}
-              small(style='font-size:16px;')  ARI
+              small(style='font-size:16px;')  USDT
             p
             .bal(style='font-size:1.6em;color:#888;') $
               span#ariusdbalance #{aribalance || 0}
@@ -212,7 +212,7 @@ block content
                 .qrcode(align='center')
                     button.clip(data-clipboard-text=ethaddy, style='background-color: transparent;border: none;')
                       img(src='' + ethqrcode, style='border-radius:10px;')
-              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') DENARII 
+              .bal(style='font-size:1.3vw;font-weight:400;text-align:center;margin-top:10px;', align='center') INNOVAI
                 span#aribblock
             .divider(style='background-color:#111 !important;height:2px;width:80%;margin:0 auto;', align='center')
             p
@@ -230,16 +230,16 @@ block content
                         tbody
                           each tx in erctxs
                             tr
-                              td(align='center', data-label='ARI Block Height') !{tx.blockNumber}
-                              td(align='center', data-label='Timestamp') 
+                              td(align='center', data-label='USDT Block Height') !{tx.blockNumber}
+                              td(align='center', data-label='Timestamp')
                                 if (typeof tx.timeStamp != 'undefined')
                                   .date= new Date(tx.timeStamp*1000).toUTCString().replace('GMT','')
-                              td(align='center', data-label='Confirmations') 
+                              td(align='center', data-label='Confirmations')
                                 .label.label-success(style='background: none;') !{tx.confirmations}
-                              td(align='center', data-label='TXID') 
+                              td(align='center', data-label='TXID')
                                 a.txid(href=`https://etherscan.io/tx/${tx.hash}`, target='_blank') !{tx.hash}
                 else
-                  h1(style='color:#666;', align='center') No ARI Transactions Available
+                  h1(style='color:#666;', align='center') No USDT Transactions Available
       //- .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       //- .row(class='rowclass').animate__animated.animate__fadeIn
       //-   .col-sm-3
@@ -247,41 +247,41 @@ block content
       //-       img(src='../img/innova.png', height='128px;', align='center')
       //- .divider(style='background-color:#2b2b2b !important;height:2px;width:60%;margin:0 auto;', align='center')
       //- .row(class='rowclass', style='margin-bottom:50px;').animate__animated.animate__fadeIn
-      //-   h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:30px;') 
-      //-     i.fas.fa-microchip 
+      //-   h3(style='font-weight:light;font-size:48px;color: #393939;margin-top:0px;margin-bottom:30px;')
+      //-     i.fas.fa-microchip
       //-     |  System Info
       //-   .col-sm-6
-      //-     p LAN IP: 
+      //-     p LAN IP:
       //-       span#lanip(data-value=lanip) #{lanip}
-      //-     p Core Clock Speed: 
+      //-     p Core Clock Speed:
       //-       span#avg
-      //-       |  GHz - CPU Load: 
-      //-       span#avgload 
+      //-       |  GHz - CPU Load:
+      //-       span#avgload
       //-       | %
-      //-     p CPU Tempature: 
-      //-       span#temp 
+      //-     p CPU Tempature:
+      //-       span#temp
       //-       |  °C
-      //-     p Memory Usage:  
+      //-     p Memory Usage:
       //-       span#memu
-      //-       |  GB Used / 
+      //-       |  GB Used /
       //-       span#memf
-      //-       |  GB Free / 
-      //-       span#memt 
+      //-       |  GB Free /
+      //-       span#memt
       //-       |  GB Total
-      //-     p Architecture: 
+      //-     p Architecture:
       //-       span #{arch}
       //-     #ram(data-value=mempp)
       //-     #cpu(data-value=cpu)
       //-   .col-sm-4
-      //-     p OS Name: 
+      //-     p OS Name:
       //-       span #{osname}
-      //-     p Platform: 
+      //-     p Platform:
       //-       span #{platform}
-      //-     p Release: 
+      //-     p Release:
       //-       span #{release}
-      //-     p Kernel: 
+      //-     p Kernel:
       //-       span #{kernel}
-      //-     p Hostname: 
+      //-     p Hostname:
       //-       span #{hostname}
       //-   .col-sm-2
       //-     .row
@@ -300,7 +300,7 @@ block content
       //-       .col-sm-6(align='center')
       //-         #rammy.label-center(style='width:250px;height:250px;')
       //-         span(style='color:#777;') RAM Usage
-      //-       .col-sm-6(align='center')              
+      //-       .col-sm-6(align='center')
       //-         #cpuy.label-center(style='width:250px;height:250px;')
       //-         span(style='color:#777;') CPU Usage
     script(src='../js/lib/jquery-3.1.1.min.js')
@@ -360,15 +360,15 @@ block content
           var height = data.block.height;
           var hexhash = data.block.hex.toString();
           //$('#blockheight').html(height);
-          //$('#blockhash').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">D BLOCK HEX: '+hexhash.substring(0,33)+'...</a>'); 
+          //$('#blockhash').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">D BLOCK HEX: '+hexhash.substring(0,33)+'...</a>');
           //$('#dblock').html('<span class="blockcount"><a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" target="_blank">'+height+'</a></span>');
-          $('#dblock').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>'); 
+          $('#dblock').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
         } else {
           var height = data.block[0].height;
           var hexhash = data.block[0].hex.toString();
           //$('#blockheight').html(height);
-          //$('#blockhash').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">D BLOCK HEX: '+hexhash.substring(0,33)+'...</a>'); 
-          $('#dblock').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>'); 
+          //$('#blockhash').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">D BLOCK HEX: '+hexhash.substring(0,33)+'...</a>');
+          $('#dblock').html('<a href="https://chainz.cryptoid.info/d/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
         }
       });
       socket.on('newbtcblock', function (dataz) {
@@ -376,11 +376,11 @@ block content
         if (!dataz.block[0] && !dataz.error) {
           var height = dataz.block.height;
           var hexhash = dataz.block.hex.toString();
-          $('#btcblock').html('<a href="https://chainz.cryptoid.info/btc/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>'); 
+          $('#btcblock').html('<a href="https://chainz.cryptoid.info/btc/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
         } else {
           var height = dataz.block[0].height;
           var hexhash = dataz.block[0].hex.toString();
-          $('#btcblock').html('<a href="https://chainz.cryptoid.info/btc/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>'); 
+          $('#btcblock').html('<a href="https://chainz.cryptoid.info/btc/block.dws?'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
         }
       });
       socket.on('newblocketh', function (data9) {
@@ -388,14 +388,14 @@ block content
           var height = data9.ethblock;
           //var hexhash = data9.ethhash;
           //$('#blockheight').html(height);
-          //$('#ethblockhash').html('<a href="https://etherscan.io/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">ETH BLOCK HEX: '+hexhash.substring(0,33)+'...</a>'); 
+          //$('#ethblockhash').html('<a href="https://etherscan.io/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">ETH BLOCK HEX: '+hexhash.substring(0,33)+'...</a>');
           $('#ethhblock').html('<a href="https://etherscan.io/block/'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
           $('#aribblock').html('<a href="https://etherscan.io/block/'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
         } else {
           var height = data9.ethblock[0];
           //var hexhash = data9.ethhash[0];
           //$('#blockheight').html(height);
-          //$('#ethblockhash').html('<a href="https://etherscan.io/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">ETH BLOCK HEX: '+hexhash.substring(0,33)+'...</a>'); 
+          //$('#ethblockhash').html('<a href="https://etherscan.io/block/'+height+'" style="color:#444;font-size:9px;font-weight:400;" target="_blank">ETH BLOCK HEX: '+hexhash.substring(0,33)+'...</a>');
           $('#ethhblock').html('<a href="https://etherscan.io/block/'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
           $('#aribblock').html('<a href="https://etherscan.io/block/'+height+'" target="_blank" style="color: rgb(93 196 41);">• '+height+'</a>');
         }
@@ -438,7 +438,7 @@ block content
       //- });
       //- let progarray = [];
       //- progarray.push(0);
-      //- socket.on('memory', function (data2) {   
+      //- socket.on('memory', function (data2) {
       //-   ldbar = new ldBar("#rammy", {
       //-                 "stroke-width": 8,
       //-                 "preset": "circle",
@@ -488,7 +488,7 @@ block content
           //- if (bal != 'undefined') {
           //-   bal = parseFloat(bal.toFixed(6));
           //- }
-          $('#totalethbal').html(bal); 
+          $('#totalethbal').html(bal);
           //$('#htotalethbal').html(bal + '<img class="res" src="../img/eth.png" alt="ETH" border="0" style="height:24px !important;width: 24px !important;margin:-15px 0px -12px !important;" /><span style="color:#888;">ETH</span>');
           var updatedethusd = bal * $('#currentethprice').text();
           $('#ethusdbalance').html(updatedethusd.toFixed(3));
@@ -507,7 +507,7 @@ block content
           //-   bal = parseFloat(bal.toFixed(4));
           //- }
           $('#totalaribal').html(bal);
-          //$('#htotalaribal').html(bal + '<img class="res" src="../img/ari.png" alt="ARI" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">ARI</span>');
+          //$('#htotalaribal').html(bal + '<img class="res" src="../img/ari.png" alt="USDT" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">USDT</span>');
           var updatedusd = bal * $('#currentariprice').text();
           $('#ariusdbalance').html(updatedusd.toFixed(3));
           document.querySelectorAll(".format").forEach((e) => {
@@ -522,7 +522,7 @@ block content
           //-   bal = parseFloat(bal.toFixed(4));
           //- }
           $('#totalaribal').html(bal);
-          //$('#htotalaribal').html(bal + '<img class="res" src="../img/ari.png" alt="ARI" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">ARI</span>');
+          //$('#htotalaribal').html(bal + '<img class="res" src="../img/ari.png" alt="USDT" border="0" style="height:24px !important;width: 24px !important;margin:-15px 5px -12px !important;" /><span style="color:#888;">USDT</span>');
           var updatedusd = bal * $('#currentariprice').text();
           $('#ariusdbalance').html(updatedusd.toFixed(3));
           document.querySelectorAll(".format").forEach((e) => {
@@ -609,7 +609,7 @@ block content
       $('#tab3').hide();
       $('#tab4').hide();
       $(".selector").css({
-        "left": activeItem.position.left + "px", 
+        "left": activeItem.position.left + "px",
         "width": activeWidth + "px"
       });
 
@@ -623,7 +623,7 @@ block content
         //- $('.selectorari').toggle();
         //- $('.selectoreth').toggle();
         $(".selector").css({
-          "left":itemPos.left + "px", 
+          "left":itemPos.left + "px",
           "width": activeWidth + "px"
         });
       });

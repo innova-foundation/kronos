@@ -581,12 +581,12 @@ app.get('/u2f', auth, authController.u2fsetup);
 app.post('/u2fadd', Limiter, authController.u2fadd);
 app.post('/u2fremove', Limiter, authController.u2fremove);
 
-//D Send
+//INN Send
 app.get('/createtx', auth, Limiter, sTXController.getsend);
 app.post('/simplesend', Limiter, sTXController.postcreate);
 app.post('/autosend', Limiter, sTXController.postauto);
 
-//D Send API
+//INN Send API
 app.post('/dapisend', Limiter, sTXController.postapisend);
 
 //BTC Send

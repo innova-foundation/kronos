@@ -8,7 +8,7 @@ block content
         border-color: #ca8500 !important;
         font-size:21px;
       }
-      
+
       .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
         background-color: #e79f16 !important;
         border-color: #e79f16 !important;
@@ -55,7 +55,7 @@ block content
         cursor: pointer;
         margin-top: 10px !important;
       }
-      
+
       .hash {
         width: 80%;
         background-color: #222;
@@ -76,7 +76,7 @@ block content
   #senddloading
     #loadert(align='center').loadtxtt
       img(src='../img/kload.gif', alt='Sending...', border='0')
-      h1 Sending D, Please wait...
+      h1 Sending INN, Please wait...
         br
         small InnoVault is signing and broadcasting your transaction
   #DisplayModalIPFS.modal
@@ -91,8 +91,8 @@ block content
               strong InnoVault IPFS Upload
               small  - Decentralize your files!
               br
-              span(style='font-size:11px;') 
-                strong 100 MB 
+              span(style='font-size:11px;')
+                strong 100 MB
                 | Max File Upload Limit
             form
               .upload-wrap
@@ -108,7 +108,7 @@ block content
           #mhash(align='center' style='display:none;padding:25px;background-color:#333;border-radius:10px;color:#fff;')
             span#linkedhash
         .modal-footer(style='border-top: none !important;')
-          button.btn.btn-default(type='button', data-dismiss='modal', style='background-color: #602828;border-radius: 15px;font-size: 15px !important;', onclick='$("#DisplayModalIPFS").hide();$("#message").focus();') Close  
+          button.btn.btn-default(type='button', data-dismiss='modal', style='background-color: #602828;border-radius: 15px;font-size: 15px !important;', onclick='$("#DisplayModalIPFS").hide();$("#message").focus();') Close
   #SubmitDisplayModal.modal
     .modal-dialog
         .modal-content(style='color:#FFF !important;background-color:#111 !important; border-color: #444 !important;')
@@ -125,19 +125,19 @@ block content
                     .input-group
                       input(type='hidden' name='_csrf' value=csrftoken)
                       input.form-control.blackinput2(type='text', style='width:100% !important;', id='dsendamount', name='dsendamount', placeholder='1.337', onkeyup='updateD()')
-                      span.input-group-addon(style='background-color:#333;color:#FFF;border:none;border-top-right-radius: 15px !important;border-bottom-right-radius: 15px !important;') D
+                      span.input-group-addon(style='background-color:#333;color:#FFF;border:none;border-top-right-radius: 15px !important;border-bottom-right-radius: 15px !important;') INN
                   .col-sm-12
                     br
                     .feestxt(align='center')
-                      strong + 0.00003 INN 
+                      strong + 0.00003 INN
                       | in network fees
             .modal-footer(style='border-top: none !important;')
-                button.btn.btn-success(type='submit', id='submit', onclick='confirmSendD()', style='background-color: #546639;border-radius: 15px;font-size: 15px !important;') Confirm and Send D
-                button.btn.btn-default(type='button', data-dismiss='modal', style='background-color: #602828;border-radius: 15px;font-size: 15px !important;', onclick='$("#SubmitDisplayModal").hide();$("#message").focus();') Cancel   
+                button.btn.btn-success(type='submit', id='submit', onclick='confirmSendD()', style='background-color: #546639;border-radius: 15px;font-size: 15px !important;') Confirm and Send INN
+                button.btn.btn-default(type='button', data-dismiss='modal', style='background-color: #602828;border-radius: 15px;font-size: 15px !important;', onclick='$("#SubmitDisplayModal").hide();$("#message").focus();') Cancel
   #connecthead(style='background-color:#111;padding:20px;width:100%;text-align:center;')
     span#loader(style='text-align: center; color: #fff; vertical-align: middle;') Encrypting & Connecting...Please wait...
     span#connectdot(style='text-align: center; color: #46a900; vertical-align: middle;')
-  #chatpop 
+  #chatpop
     a(href="#", onclick='javascript:window.open("http://'+lanip+':3000/chat", "_blank", "titlebar=no,toolbar=no,scrollbars=yes,location=no,resizable=yes,top=100,left=500,width=1300,height=800");')
       i.fas.fa-link
   #logingroup(style='')

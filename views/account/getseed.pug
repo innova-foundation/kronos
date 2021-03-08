@@ -21,8 +21,8 @@ block content
     p
       .titlesmall(align='center') Your Innova seed phrase, this is your BIP39 Seed Phrase compatible with any BIP39 wallet.
     p
-      .balancebig(align='center') Balance: 
-        strong #{totalbal} D
+      .balancebig(align='center') Balance:
+        strong #{totalbal} INN
     div.rowclass(style='font-weight:400;font-size:14px;padding:30px;background-color:#222;margin:15px;border-radius:15px;', align='center')
       h3 BIP39 Seed Phrase
       if (seedphrase)
@@ -43,6 +43,4 @@ block content
               br
               span(style='color:#444;') #{seed.path}
             .col-md-6(style='margin-top:8px;')
-              span.hashm(style='color:#666;') #{seed.privkey} 
-            
-        
+              span.hashm(style='color:#666;') #{seed.privkey}

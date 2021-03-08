@@ -29,7 +29,7 @@ block content
   .mainDiv
   .container
     h1(align='center', style='font-size:73px;font-weight:100;margin-top:42px !important;')  Innova Transaction
-    p(align='center') 
+    p(align='center')
       | Detailed information about a Innova transaction.
       br
       .div(style='margin-top:25px;')
@@ -39,19 +39,19 @@ block content
   .row.rowclass.container(id="menu", style='margin: 0 auto; margin-top:15px;width:90%;')
     if (txinfo)
       h3(align='center') Details on Transaction ID
-      .div(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;', align='center') 
+      .div(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;', align='center')
         span.hashm(style='font-size:22px;') #{txinfo.txid}
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='font-weight:400;font-size:14px;padding:30px!important;background-color:#222;margin:15px!important;margin-right:40px!important;border-radius:15px;')
         .col-md-6
-          p(style='font-size:21px;') Block Height: 
-            strong 
+          p(style='font-size:21px;') Block Height:
+            strong
               a(href='/block/'+blockinfo.height) #{blockinfo.height}
-          p Received Time: 
+          p Received Time:
             span= new Date(txinfo.time*1000).toUTCString()
-          p Block Hash: 
+          p Block Hash:
             a.hashm(href='/block/'+blockinfo.hash) #{blockinfo.hash}
-          p Number of Transactions Included in Block: 
+          p Number of Transactions Included in Block:
             strong #{blockinfo.tx.length}
         .col-md-6(align='right')
           p Block Size: #{blockinfo.size} bytes
@@ -72,7 +72,7 @@ block content
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='margin:15px;')
         .col-md-6
-          h2(style='font-weight:100;font-size:64px;') Inputs 
+          h2(style='font-weight:100;font-size:64px;') Inputs
             i.fas.fa-arrow-down(style='font-size:48px;')
           br
           if (txinfo.vin)
@@ -82,24 +82,24 @@ block content
                   a.hashm(href='/tx/'+vin.txid) #{vin.txid}
                   |  : #{vin.vout}
               else
-                .label.label-info 
+                .label.label-info
                   | COINBASE INPUT
         .col-md-2(align='center', style='margin-top:30px;')
           i.fas.fa-arrow-circle-right.fa-4x(style='color:#444;margin-top:100px;')
         .col-md-4
-          h2(style='font-weight:100;font-size:64px;') Outputs 
+          h2(style='font-weight:100;font-size:64px;') Outputs
             i.fas.fa-arrow-up(style='font-size:48px;')
           br
           if (txinfo.vout)
             each vout in txinfo.vout
-              .outs(style='color:#eee;margin:15px!important;margin-right:30px!important;important;padding:20px!important;padding-top:25px;background-color:#222;border-radius:5px;') 
-                p #{vout.n} - 
-                  a.hashm(href='/address/'+vout.scriptPubKey.addresses) #{vout.scriptPubKey.addresses}                
-                p #{vout.scriptPubKey.type} - 
+              .outs(style='color:#eee;margin:15px!important;margin-right:30px!important;important;padding:20px!important;padding-top:25px;background-color:#222;border-radius:5px;')
+                p #{vout.n} -
+                  a.hashm(href='/address/'+vout.scriptPubKey.addresses) #{vout.scriptPubKey.addresses}
+                p #{vout.scriptPubKey.type} -
                   if (txinfo.confirmations < 10)
-                    span.label.label-danger Amount: #{vout.value} D
+                    span.label.label-danger Amount: #{vout.value} INN
                   else
-                    span.label.label-success(style='background-color:#41B805;') Amount: #{vout.value} D
+                    span.label.label-success(style='background-color:#41B805;') Amount: #{vout.value} INN
       .divider(style='background-color:#2b2b2b !important;height:2px;width:90%;margin:0 auto;', align='center')
       .row(style='margin:0 auto;width:90%;')
         h3 Raw Transaction Information
@@ -110,4 +110,4 @@ block content
       br
   br
   p(align='center')
-    a.btn.btn-default(href='/', role='button') Go back to the Dashboard     
+    a.btn.btn-default(href='/', role='button') Go back to the Dashboard
