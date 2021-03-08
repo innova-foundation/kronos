@@ -107,10 +107,10 @@ const client = new bitcoin.Client({
   res.locals.lanip = ipaddy;
 
   //The used Electrumx Hosts for our InnoVault ElectrumX Cluster
-  const delectrumxhost1 = 'electrumx1.innova.pro';
-  const delectrumxhost2 = 'electrumx2.innova.pro';
-  const delectrumxhost3 = 'electrumx3.innova.pro';
-  const delectrumxhost4 = 'electrumx4.innova.pro';
+  const ielectrumxhost1 = 'electrumx1.innova.pro';
+  const ielectrumxhost2 = 'electrumx2.innova.pro';
+  const ielectrumxhost3 = 'electrumx3.innova.pro';
+  const ielectrumxhost4 = 'electrumx4.innova.pro';
 
   //Global Vars
   var scripthasharray = [];
@@ -275,10 +275,10 @@ const client = new bitcoin.Client({
             const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
             // Add some servers to the cluster.
-            electrum.addServer(delectrumxhost1);
-            electrum.addServer(delectrumxhost2);
-            electrum.addServer(delectrumxhost3);
-            electrum.addServer(delectrumxhost4);
+            electrum.addServer(ielectrumxhost1);
+            electrum.addServer(ielectrumxhost2);
+            electrum.addServer(ielectrumxhost3);
+            electrum.addServer(ielectrumxhost4);
 
             // Wait for enough connections to be available.
             await electrum.ready();
@@ -328,10 +328,10 @@ const client = new bitcoin.Client({
             const electrum = new ElectrumCluster('InnoVault ElectrumX Cluster', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
             // Add some servers to the cluster.
-            electrum.addServer(delectrumxhost1);
-            electrum.addServer(delectrumxhost2);
-            electrum.addServer(delectrumxhost3);
-            electrum.addServer(delectrumxhost4);
+            electrum.addServer(ielectrumxhost1);
+            electrum.addServer(ielectrumxhost2);
+            electrum.addServer(ielectrumxhost3);
+            electrum.addServer(ielectrumxhost4);
 
             // Wait for enough connections to be available.
             await electrum.ready();

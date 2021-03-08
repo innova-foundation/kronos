@@ -90,10 +90,10 @@ if (currentOS === 'linux') {
 }
 
 //ElectrumX Hosts for Innova
-const delectrumxhost1 = 'electrumx1.innova.pro';
-const delectrumxhost2 = 'electrumx2.innova.pro';
-const delectrumxhost3 = 'electrumx3.innova.pro';
-const delectrumxhost4 = 'electrumx4.innova.pro';
+const ielectrumxhost1 = 'electrumx1.innova.pro';
+const ielectrumxhost2 = 'electrumx2.innova.pro';
+const ielectrumxhost3 = 'electrumx3.innova.pro';
+const ielectrumxhost4 = 'electrumx4.innova.pro';
 
 //ElectrumX Hosts for Bitcoin
 const btcelectrumhost1 = 'bitcoin.lukechilds.co';
@@ -213,10 +213,10 @@ exports.getsend = (req, res) => {
         const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
         // Add some servers to the cluster.
-        electrum.addServer(delectrumxhost1);
-        electrum.addServer(delectrumxhost2);
-        electrum.addServer(delectrumxhost3);
-        electrum.addServer(delectrumxhost4);
+        electrum.addServer(ielectrumxhost1);
+        electrum.addServer(ielectrumxhost2);
+        electrum.addServer(ielectrumxhost3);
+        electrum.addServer(ielectrumxhost4);
         try {
         // Wait for enough connections to be available.
         await electrum.ready();
@@ -475,10 +475,10 @@ exports.postapisend = (req, res) => {
         const electrum = new ElectrumCluster('InnoVault Core Mode UTXO History', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
         // Add some servers to the cluster.
-        electrum.addServer(delectrumxhost1);
-        electrum.addServer(delectrumxhost2);
-        electrum.addServer(delectrumxhost3);
-        electrum.addServer(delectrumxhost4);
+        electrum.addServer(ielectrumxhost1);
+        electrum.addServer(ielectrumxhost2);
+        electrum.addServer(ielectrumxhost3);
+        electrum.addServer(ielectrumxhost4);
         try {
         // Wait for enough connections to be available.
         await electrum.ready();
@@ -663,10 +663,10 @@ exports.postapisend = (req, res) => {
                     const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
                     // Add some servers to the cluster.
-                    electrum.addServer(delectrumxhost1);
-                    electrum.addServer(delectrumxhost2);
-                    electrum.addServer(delectrumxhost3);
-                    electrum.addServer(delectrumxhost4);
+                    electrum.addServer(ielectrumxhost1);
+                    electrum.addServer(ielectrumxhost2);
+                    electrum.addServer(ielectrumxhost3);
+                    electrum.addServer(ielectrumxhost4);
 
                     // Wait for enough connections to be available.
                     await electrum.ready();
@@ -838,10 +838,10 @@ exports.postcreate = (req, res) => {
             const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
             // Add some servers to the cluster.
-            electrum.addServer(delectrumxhost1);
-            electrum.addServer(delectrumxhost2);
-            electrum.addServer(delectrumxhost3);
-            electrum.addServer(delectrumxhost4);
+            electrum.addServer(ielectrumxhost1);
+            electrum.addServer(ielectrumxhost2);
+            electrum.addServer(ielectrumxhost3);
+            electrum.addServer(ielectrumxhost4);
 
             // Wait for enough connections to be available.
             await electrum.ready();
@@ -1022,10 +1022,10 @@ exports.postauto = (req, res) => {
             const electrum = new ElectrumCluster('InnoVault Core Mode Transaction', '1.4.1', 1, 2, ElectrumCluster.ORDER.RANDOM);
 
             // Add some servers to the cluster.
-            electrum.addServer(delectrumxhost1);
-            electrum.addServer(delectrumxhost2);
-            electrum.addServer(delectrumxhost3);
-            electrum.addServer(delectrumxhost4);
+            electrum.addServer(ielectrumxhost1);
+            electrum.addServer(ielectrumxhost2);
+            electrum.addServer(ielectrumxhost3);
+            electrum.addServer(ielectrumxhost4);
 
             // Wait for enough connections to be available.
             await electrum.ready();
